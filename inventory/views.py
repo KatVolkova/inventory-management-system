@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Item
 
 # Create your views here.
 
-
-def welcome_message(request):
-    return HttpResponse("Welcome to Inventory Management System!")
+class ItemListView(generic.ListView):
+    model = Item
+    template_name = "inventory/item_list.html"
+    content_object_name = "items"
+    queryset = Item.objects.all()
