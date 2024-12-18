@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">{{ item.name }}</h2>
+            <p class="card-text">
+                <strong>SKU:</strong> {{ item.sku }}<br>
+                <strong>Quantity:</strong> {{ item.quantity }}<br>
+                <strong>Price:</strong> ${{ item.price }}<br>
+                <strong>Description:</strong> {{ item.description }}<br>
+                <strong>Category:</strong> {{ item.category }}<br>
+                <strong>Last Updated:</strong> {{ item.updated_at|date:"F d, Y H:i" }}
+            </p>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Inventory</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
