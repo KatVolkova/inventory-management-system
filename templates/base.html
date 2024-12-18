@@ -2,6 +2,10 @@
 
 {% url 'home' as home_url %}
 
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
@@ -47,6 +51,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'admin:index' %}">Admin Panel</a>
                     </li>
+                    {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" 
+                        href="{{ logout_url }}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" 
+                        href="{{ signup_url }}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" 
+                        href="{{ login_url }}">Login</a>
+                </li>
+                {% endif %}
                 </ul>
                 <span class="navbar-text text-muted">
                     Manage your inventory efficiently
