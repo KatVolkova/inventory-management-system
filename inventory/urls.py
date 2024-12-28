@@ -6,4 +6,5 @@ urlpatterns = [
     path("item/<int:pk>/", views.ItemDetailView.as_view(), name="item-detail"),
     path("item/<int:pk>/edit/", views.ItemEditView.as_view(), name="item-edit"),
     path("item/<int:pk>/delete/", views.ItemDeleteView.as_view(), name="item-delete"),
+    path('low-stock/', views.low_stock_items, name='low-stock'),
 ]

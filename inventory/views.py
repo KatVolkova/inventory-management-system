@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.db import models
 from .models import Item
 from .forms import ItemForm
 
@@ -45,3 +46,8 @@ class ItemDeleteView(View):
         item.delete()
         messages.success(request, "Item deleted successfully!")
         return HttpResponseRedirect(reverse("home"))
+
+
+def low_stock_items(request):
+    low_stock_items = Item.objects.filter(quantity__lte=models.F('low_stock_threshold'))
+    return render(request, "inventory/low_stock.html", {"low_stock_items": low_stock_items})

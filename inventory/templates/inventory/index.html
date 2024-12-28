@@ -12,11 +12,15 @@
             <div class="row">
                 {% for item in object_list %}
                 <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card mb-4 shadow-sm {% if item.is_low_stock %}border-danger{% endif %}">
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'item-detail' item.pk %}" class="post-link">
                                 {{ item.name }}
-                            </a></h5>
+                            </a>
+                            {% if item.is_low_stock %}
+                            <span class="badge bg-danger ms-2">Low Stock</span>
+                            {% endif %}
+                        </h5>
                             <p class="card-text">
                                 SKU: <strong>{{ item.sku }}</strong><br>
                                 Quantity: <strong>{{ item.quantity }}</strong><br>
