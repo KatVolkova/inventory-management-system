@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db import models
+from django.db.models import Q
 from .models import Item
 from .forms import ItemForm
 
@@ -12,6 +13,14 @@ class ItemListView(generic.ListView):
     model = Item
     template_name = "inventory/index.html"
     queryset = Item.objects.all()
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Item.objects.filter(
+                Q(name__icontains=query) | Q(sku__icontains=query) | Q(description__icontains=query)
+            )
+        return super().get_queryset()
    
 
 class ItemDetailView(generic.DetailView):
