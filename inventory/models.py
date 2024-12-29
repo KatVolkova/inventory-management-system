@@ -42,3 +42,22 @@ class Item(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class Transaction(models.Model):
+    TRANSACTION_TYPE_CHOICES = [
+        ('add', 'Add Stock'),
+        ('remove', 'Remove Stock'),
+    ]
+
+    item = models.ForeignKey('Item', on_delete=models.CASCADE, related_name='transactions')
+    transaction_type = models.CharField(max_length=10, choices=TRANSACTION_TYPE_CHOICES)
+    quantity = models.PositiveIntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Transaction"
+        verbose_name_plural = "Transactions"
+        ordering = ['-timestamp']
+
+    def __str__(self):
+        return f"{self.get_transaction_type_display()} {self.quantity} of {self.item.name}"

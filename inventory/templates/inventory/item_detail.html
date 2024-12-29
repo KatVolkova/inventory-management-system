@@ -17,7 +17,8 @@
             {% if user.is_authenticated %}
             <div class="mt-3">
                 <a href="{% url 'item-edit' item.id %}" class="btn btn-primary me-2">Edit</a>
-               
+                <a href="{% url 'record-transaction' item.id %}" class="btn btn-info me-2">Record Transaction</a>
+                <a href="{% url 'view-transactions' item.id %}" class="btn btn-secondary">View Transactions</a>
                  
                     <!-- Trigger Button -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">

@@ -1,11 +1,12 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db import models
 from django.db.models import Q
-from .models import Item
-from .forms import ItemForm
+from .models import Item, Transaction
+from .forms import ItemForm, TransactionForm
 
 # Create your views here.
 
@@ -60,3 +61,38 @@ class ItemDeleteView(View):
 def low_stock_items(request):
     low_stock_items = Item.objects.filter(quantity__lte=models.F('low_stock_threshold'))
     return render(request, "inventory/low_stock.html", {"low_stock_items": low_stock_items})
+
+
+def record_transaction(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+
+    if request.method == "POST":
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            transaction = form.save(commit=False)
+            transaction.item = item
+
+            # Update item quantity
+            if transaction.transaction_type == 'add':
+                item.quantity += transaction.quantity
+            elif transaction.transaction_type == 'remove':
+                if transaction.quantity > item.quantity:
+                    messages.error(request, "Cannot remove more than available stock!")
+                    return redirect('record-transaction', pk=pk)
+                item.quantity -= transaction.quantity
+
+            item.save()
+            transaction.save()
+            messages.success(request, "Transaction recorded successfully!")
+            return redirect('item-detail', pk=pk)
+    else:
+        form = TransactionForm()
+
+    return render(request, 'inventory/record_transaction.html', {'form': form, 'item': item})
+
+
+def view_transactions(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    transactions = item.transactions.all()
+
+    return render(request, 'inventory/view_transactions.html', {'item': item, 'transactions': transactions})
