@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db import models
 from django.db.models import Q
 from .models import Item, Transaction
-from .forms import ItemForm, TransactionForm
+from .forms import CategoryForm, ItemForm, TransactionForm
 
 # Create your views here.
 
@@ -96,3 +96,26 @@ def view_transactions(request, pk):
     transactions = item.transactions.all()
 
     return render(request, 'inventory/view_transactions.html', {'item': item, 'transactions': transactions})
+
+
+def add_category(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Category added successfully!")
+            return redirect("home")
+    else:
+        form = CategoryForm()
+    return render(request, "inventory/add_category.html", {"form": form})
+
+def add_item(request):
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Item added successfully!")
+            return redirect("home")
+    else:
+        form = ItemForm()
+    return render(request, "inventory/add_item.html", {"form": form})

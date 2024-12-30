@@ -21,7 +21,14 @@
                 <a href="{% url 'home' %}" class="btn btn-outline-secondary">Clear</a>
             </form>
         </div>
-
+        <!-- Add Buttons -->
+        <div class="col-12 mb-4">
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'add-category' %}" class="btn btn-success btn-lg mx-2">Add Category</a>
+                <a href="{% url 'add-item' %}" class="btn btn-primary btn-lg mx-2">Add Item</a>
+            </div>
+        </div>
+        
         <!-- Inventory Items Column -->
         <div class="col-12 mt-3">
             <h2 class="text-center mb-4">Items in Inventory</h2>
