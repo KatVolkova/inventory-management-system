@@ -1,6 +1,6 @@
 /* General Body Styles */
 body {
-    background-color: #F4F7FC; /* Slightly different background */
+    background-color: #F4F7FC; 
     font-family: Arial, sans-serif;
     color: #333333;
 }
@@ -13,7 +13,7 @@ body {
     letter-spacing: 1px;
 }
 .red-o {
-    color: #FF5733; /* A bright orange */
+    color: #FF5733; 
 }
 .thin {
     font-weight: 300;
@@ -23,7 +23,7 @@ body {
     background-color: #FFFFFF;
 }
 .dark-bg {
-    background-color: #2C3E50; /* Dark navy blue */
+    background-color: #2C3E50; 
 }
 .main-bg {
     background-color: #F4F7FC;
