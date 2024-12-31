@@ -9,6 +9,9 @@
                 <th>Category</th>
                 <th>Total Quantity</th>
                 <th>Total Value</th>
+                <th>Number of Items</th>
+                <th>Average Price</th>
+                <th>Items Below Stock Threshold</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +20,9 @@
                 <td>{{ row.category__name }}</td>
                 <td>{{ row.total_quantity }}</td>
                 <td>${{ row.total_value|floatformat:2 }}</td>
+                <td>{{ row.item_count }}</td>
+                <td>${{ row.avg_price|floatformat:2 }}</td>
+                <td>{{ row.low_stock_count }}</td>
             </tr>
             {% empty %}
             <tr>

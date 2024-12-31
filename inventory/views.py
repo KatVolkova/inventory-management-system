@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db import models
 from django.db.models import Q
-from django.db.models import F, Sum, FloatField
+from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction
 from .forms import CategoryForm, ItemForm, TransactionForm
 
@@ -122,10 +122,13 @@ def add_item(request):
     return render(request, "inventory/add_item.html", {"form": form})
 
 def stock_report(request):
-    # Group items by category and calculate total quantity and total value
+    # Group items by category and calculate all metrics
     report_data = Item.objects.values('category__name').annotate(
         total_quantity=Sum('quantity'),
-        total_value=Sum(F('quantity') * F('price'), output_field=FloatField())
+        total_value=Sum(F('quantity') * F('price'), output_field=FloatField()),
+        item_count=Count('id'),
+        avg_price=Avg('price', output_field=FloatField()),
+        low_stock_count=Count('id', filter=Q(quantity__lte=F('low_stock_threshold')))
     )
 
     return render(request, 'inventory/stock_report.html', {'report_data': report_data})
