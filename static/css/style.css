@@ -28,26 +28,24 @@ body {
 .main-bg {
     background-color: #F4F7FC;
 }
-/* Card Styles */
+/* Dashboard Styles */
 .card {
-    border: 1px solid #e0e0e0;
+    border: none;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #FFFFFF;
-    transition: all 0.3s ease-in-out;
 }
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+.card-body {
+    padding: 20px;
 }
-.card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #35424A;
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
 }
-.card-text {
-    font-size: 0.9rem;
-    color: #555555;
+
+.chart-container {
+    margin-top: 20px;
 }
 /* Masthead Styles */
 .masthead {

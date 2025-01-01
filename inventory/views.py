@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db import models
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
-from .models import Item, Transaction
+from .models import Item, Transaction, Category
 from .forms import CategoryForm, ItemForm, TransactionForm
 
 # Create your views here.
@@ -145,4 +145,20 @@ def stock_report(request):
         'values': json.dumps(values),
         'low_stocks': json.dumps(low_stocks),
         })
+
+
+def dashboard(request):
+    # Calculate analytics data
+    total_items = Item.objects.count()
+    total_categories = Category.objects.count()
+    total_value = Item.objects.aggregate(total_value=Sum(F('quantity') * F('price')))['total_value'] or 0
+    low_stock_count = Item.objects.filter(quantity__lte=F('low_stock_threshold')).count()
+
+    # Pass the data to the template
+    return render(request, 'inventory/dashboard.html', {
+        'total_items': total_items,
+        'total_categories': total_categories,
+        'total_value': total_value,
+        'low_stock_count': low_stock_count,
+    })
 
