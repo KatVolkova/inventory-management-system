@@ -44,23 +44,23 @@
     </table>
 </div>
 <!-- Chart Container -->
-<div class="mb-4">
+<div class="mb-4 stock-chart-container">
     <h4>Stock Overview Chart</h4>
-    <canvas id="stockOverviewChart" width="400" height="200"></canvas>
+    <canvas id="stockOverviewChart" class="stock-chart"></canvas>
 </div>
-<div class="mb-4">
+<div class="mb-4 stock-chart-container">
     <h4>Category Contribution (Pie Chart)</h4>
-    <canvas id="categoryPieChart" width="400" height="200"></canvas>
+    <canvas id="categoryPieChart" class="stock-chart"></canvas>
 </div>
 
-<div class="mb-4">
+<div class="mb-4 stock-chart-container">
     <h4>Low Stock Trends (Line Chart)</h4>
-    <canvas id="lowStockLineChart" width="400" height="200"></canvas>
+    <canvas id="lowStockLineChart" class="stock-chart"></canvas>
 </div>
 
-<div class="mb-4">
+<div class="mb-4 stock-chart-container">
     <h4>Total Value by Category (Bar Chart)</h4>
-    <canvas id="valueBarChart" width="400" height="200"></canvas>
+    <canvas id="valueBarChart" class="stock-chart"></canvas>
 </div>
 </div>
 
@@ -70,25 +70,25 @@
     // Get data from Django context and ensure JSON format
     const chartCategories = JSON.parse('{{ categories|safe|escapejs }}');
     const chartQuantities = JSON.parse('{{ quantities|safe|escapejs }}');
-    const chartValues = JSON.parse('{{ values|safe }}');
-    const chartLowStocks = JSON.parse('{{ low_stocks|safe }}');
+    const chartValues = JSON.parse('{{ values|safe|escapejs }}');
+    const chartLowStocks = JSON.parse('{{ low_stocks|safe|escapejs }}');
 
     // Get the canvas element
     const ctx = document.getElementById('stockOverviewChart').getContext('2d');
 
-    // Initialize the chart
+    // Bar Chart: Total Quantity
     new Chart(ctx, {
-        type: 'bar', // Change to 'pie' or 'line' if needed
+        type: 'bar', 
         data: {
             labels: chartCategories, // Categories as labels
             datasets: [{
                 label: 'Total Quantity',
                 data: chartQuantities, // Quantities as data
                 backgroundColor: [
-                    '#FF5733', '#33FF57', '#3357FF', '#F4D03F', '#AF7AC5', '#5DADE2'
+                    '#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'
                 ],
                 borderColor: [
-                    '#C70039', '#28B463', '#1F618D', '#D4AC0D', '#884EA0', '#3498DB'
+                    '#40738a', '#b06d6d', '#6db06d', '#b09e6d', '#6d6db0', '#b06db0'
                 ],
                 borderWidth: 1
             }]
@@ -132,7 +132,7 @@ const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
                 labels: chartCategories,
                 datasets: [{
                     data: chartValues,
-                    backgroundColor: ['#FF5733', '#33FF57', '#3357FF', '#F4D03F', '#AF7AC5', '#5DADE2'],
+                    backgroundColor: ['#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'],
                     borderWidth: 1
                 }]
             },
@@ -160,8 +160,8 @@ const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
                 datasets: [{
                     label: 'Low Stock Count',
                     data: chartLowStocks,
-                    borderColor: '#FF5733',
-                    backgroundColor: 'rgba(255, 87, 51, 0.2)',
+                    borderColor: '#6a9eaf',
+                    backgroundColor: 'rgba(106, 158, 175, 0.2)',
                     fill: true
                 }]
             },
@@ -179,21 +179,21 @@ const horizontalBarCtx = document.getElementById('valueBarChart').getContext('2d
 new Chart(horizontalBarCtx, {
     type: 'bar',
     data: {
-        labels: chartCategories, // Categories as labels
+        labels: chartCategories, 
         datasets: [{
             label: 'Total Value (USD)',
-            data: chartValues, // Total values as data
+            data: chartValues, 
             backgroundColor: [
-                '#FF5733', '#33FF57', '#3357FF', '#F4D03F', '#AF7AC5', '#5DADE2'
+                '#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'
             ],
             borderColor: [
-                '#C70039', '#28B463', '#1F618D', '#D4AC0D', '#884EA0', '#3498DB'
+                '#40738a', '#b06d6d', '#6db06d', '#b09e6d', '#6d6db0', '#b06db0'
             ],
             borderWidth: 1
         }]
     },
     options: {
-        indexAxis: 'y', // Change the axis to horizontal
+        indexAxis: 'y', 
         responsive: true,
         plugins: {
             legend: { position: 'top' },

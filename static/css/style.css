@@ -179,3 +179,51 @@ table#stockReportTable tfoot th {
     margin-left: 5px;
 }
 
+/*stock charts*/
+.stock-chart-container {
+    max-width: 80%; /* Reduce chart container width */
+    margin: 0 auto; /* Center the charts */
+    padding: 20px; /* Add some padding */
+    background-color: #f9f9f9; /* Subtle background for contrast */
+    border: 1px solid #ddd; /* Border for separation */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.stock-chart-container h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.stock-chart {
+    max-height: 300px; /* Set a smaller maximum height for the charts */
+}
+
+/* Subtle colors for charts */
+.chart-color-1 {
+    background-color: #6a9eaf; /* Subtle blue */
+    border-color: #40738a;
+}
+.chart-color-2 {
+    background-color: #d4a5a5; /* Subtle pink */
+    border-color: #b06d6d;
+}
+.chart-color-3 {
+    background-color: #a5d4a5; /* Subtle green */
+    border-color: #6db06d;
+}
+.chart-color-4 {
+    background-color: #d4c2a5; /* Subtle yellow */
+    border-color: #b09e6d;
+}
+.chart-color-5 {
+    background-color: #a5a5d4; /* Subtle purple */
+    border-color: #6d6db0;
+}
+.chart-color-6 {
+    background-color: #d4a5d4; /* Subtle violet */
+    border-color: #b06db0;
+}
+
