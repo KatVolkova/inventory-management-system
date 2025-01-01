@@ -135,10 +135,14 @@ def stock_report(request):
     # Prepare data for the chart
     categories = [data['category__name'] for data in report_data]
     quantities = [data['total_quantity'] for data in report_data]
+    values = [data['total_value'] for data in report_data]
+    low_stocks = [data['low_stock_count'] for data in report_data]
 
     return render(request, 'inventory/stock_report.html', {
         'report_data': report_data,
         'categories': json.dumps(categories),
-        'quantities': json.dumps(quantities)
+        'quantities': json.dumps(quantities),
+        'values': json.dumps(values),
+        'low_stocks': json.dumps(low_stocks),
         })
 

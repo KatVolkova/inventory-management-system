@@ -48,6 +48,20 @@
     <h4>Stock Overview Chart</h4>
     <canvas id="stockOverviewChart" width="400" height="200"></canvas>
 </div>
+<div class="mb-4">
+    <h4>Category Contribution (Pie Chart)</h4>
+    <canvas id="categoryPieChart" width="400" height="200"></canvas>
+</div>
+
+<div class="mb-4">
+    <h4>Low Stock Trends (Line Chart)</h4>
+    <canvas id="lowStockLineChart" width="400" height="200"></canvas>
+</div>
+
+<div class="mb-4">
+    <h4>Total Value by Category (Bar Chart)</h4>
+    <canvas id="valueBarChart" width="400" height="200"></canvas>
+</div>
 </div>
 
 
@@ -56,6 +70,8 @@
     // Get data from Django context and ensure JSON format
     const chartCategories = JSON.parse('{{ categories|safe|escapejs }}');
     const chartQuantities = JSON.parse('{{ quantities|safe|escapejs }}');
+    const chartValues = JSON.parse('{{ values|safe }}');
+    const chartLowStocks = JSON.parse('{{ low_stocks|safe }}');
 
     // Get the canvas element
     const ctx = document.getElementById('stockOverviewChart').getContext('2d');
@@ -108,7 +124,105 @@
             }
         }
     });
+// Pie Chart: Category Contribution
+const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: chartCategories,
+                datasets: [{
+                    data: chartValues,
+                    backgroundColor: ['#FF5733', '#33FF57', '#3357FF', '#F4D03F', '#AF7AC5', '#5DADE2'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                const percentage = ((tooltipItem.raw / chartValues.reduce((a, b) => a + b, 0)) * 100).toFixed(2);
+                                return `${chartCategories[tooltipItem.dataIndex]}: $${tooltipItem.raw} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Line Chart: Low Stock Trends
+        const lineCtx = document.getElementById('lowStockLineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: chartCategories,
+                datasets: [{
+                    label: 'Low Stock Count',
+                    data: chartLowStocks,
+                    borderColor: '#FF5733',
+                    backgroundColor: 'rgba(255, 87, 51, 0.2)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Low Stock Count' } },
+                    x: { title: { display: true, text: 'Categories' } }
+                }
+            }
+        });
+
+        // Horizontal Bar Chart: Total Value by Category
+const horizontalBarCtx = document.getElementById('valueBarChart').getContext('2d');
+new Chart(horizontalBarCtx, {
+    type: 'bar',
+    data: {
+        labels: chartCategories, // Categories as labels
+        datasets: [{
+            label: 'Total Value (USD)',
+            data: chartValues, // Total values as data
+            backgroundColor: [
+                '#FF5733', '#33FF57', '#3357FF', '#F4D03F', '#AF7AC5', '#5DADE2'
+            ],
+            borderColor: [
+                '#C70039', '#28B463', '#1F618D', '#D4AC0D', '#884EA0', '#3498DB'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        indexAxis: 'y', // Change the axis to horizontal
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return `$${tooltipItem.raw}`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: { // X-axis for the values
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Total Value (USD)'
+                }
+            },
+            y: { // Y-axis for the categories
+                title: {
+                    display: true,
+                    text: 'Categories'
+                }
+            }
+        }
+    }
 });
+    });
 
 </script>
 
