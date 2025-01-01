@@ -43,9 +43,74 @@
         </tfoot>
     </table>
 </div>
+<!-- Chart Container -->
+<div class="mb-4">
+    <h4>Stock Overview Chart</h4>
+    <canvas id="stockOverviewChart" width="400" height="200"></canvas>
+</div>
 </div>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Get data from Django context and ensure JSON format
+    const chartCategories = JSON.parse('{{ categories|safe|escapejs }}');
+    const chartQuantities = JSON.parse('{{ quantities|safe|escapejs }}');
+
+    // Get the canvas element
+    const ctx = document.getElementById('stockOverviewChart').getContext('2d');
+
+    // Initialize the chart
+    new Chart(ctx, {
+        type: 'bar', // Change to 'pie' or 'line' if needed
+        data: {
+            labels: chartCategories, // Categories as labels
+            datasets: [{
+                label: 'Total Quantity',
+                data: chartQuantities, // Quantities as data
+                backgroundColor: [
+                    '#FF5733', '#33FF57', '#3357FF', '#F4D03F', '#AF7AC5', '#5DADE2'
+                ],
+                borderColor: [
+                    '#C70039', '#28B463', '#1F618D', '#D4AC0D', '#884EA0', '#3498DB'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return `Total Quantity: ${tooltipItem.raw}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Total Quantity'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Categories'
+                    }
+                }
+            }
+        }
+    });
+});
+
 </script>
+
 {% endblock %}
 

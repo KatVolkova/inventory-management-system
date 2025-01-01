@@ -1,10 +1,10 @@
+import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db import models
-from django.db.models import Q
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction
 from .forms import CategoryForm, ItemForm, TransactionForm
@@ -132,4 +132,13 @@ def stock_report(request):
         low_stock_count=Count('id', filter=Q(quantity__lte=F('low_stock_threshold')))
     ).order_by(sort)
 
-    return render(request, 'inventory/stock_report.html', {'report_data': report_data})
+    # Prepare data for the chart
+    categories = [data['category__name'] for data in report_data]
+    quantities = [data['total_quantity'] for data in report_data]
+
+    return render(request, 'inventory/stock_report.html', {
+        'report_data': report_data,
+        'categories': json.dumps(categories),
+        'quantities': json.dumps(quantities)
+        })
+
