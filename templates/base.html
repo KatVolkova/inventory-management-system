@@ -74,7 +74,7 @@
                     <a class="nav-link" href="{% url 'low-stock' %}">Low Stock Alerts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'stock-report' %}">View Stock Report</a>
+                    <a class="nav-link" href="{% url 'stock-report' %}">Stock Report</a>
                 </li>
                 </ul>
                 <span class="navbar-text text-muted">
@@ -136,55 +136,75 @@
             $('#stockReportTable').DataTable({
             dom: 'Bfrtip', // Adds buttons to the table
             buttons: [
-                'copy',       // Copy table data to clipboard
-                'csv',        // Export table data as CSV
-                'excel',      // Export table data as Excel
-                'pdf',        // Export table data as PDF
-                'print'       // Print table
-            ],
-            footerCallback: function(row, data, start, end, display) {
-                var api = this.api();
-
-                // Helper function to parse string values to integers or floats
-                var intVal = function(i) {
-                    return typeof i === 'string'
-                        ? i.replace(/[\$,]/g, '') * 1
-                        : typeof i === 'number'
-                        ? i
-                        : 0;
-                };
-
-                // Calculate Total Quantity
-                var totalQuantity = api
-                    .column(1) // 2nd column (zero-based index)
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                $('#totalQuantity').html(totalQuantity);
-
-                // Calculate Total Value
-                var totalValue = api
-                    .column(2) // 3rd column
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                $('#totalValue').html('$' + totalValue.toFixed(2));
-
-                // Calculate Average Price Across Categories
-                var totalPriceSum = api
-                    .column(4) // 5th column
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                var categoryCount = api.column(4).data().length; // Number of categories
-                var averagePrice = categoryCount > 0 ? (totalPriceSum / categoryCount) : 0;
-                $('#averagePrice').html('$' + averagePrice.toFixed(2));
+            {
+                extend: 'copy',
+                text: '<i class="fas fa-copy"></i> Copy',
+                className: 'btn btn-primary'
             },
+            {
+                extend: 'csv',
+                text: '<i class="fas fa-file-csv"></i> CSV',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> Excel',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'pdf',
+                text: '<i class="fas fa-file-pdf"></i> PDF',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'print',
+                text: '<i class="fas fa-print"></i> Print',
+                className: 'btn btn-primary'
+            }
+            ],
+            footerCallback: function (row, data, start, end, display) {
+            // Calculate Totals
+            var api = this.api();
+
+            // Total Quantity
+            var totalQuantity = api
+                .column(1, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return parseInt(a) + parseInt(b);
+                }, 0);
+
+            // Total Value
+            var totalValue = api
+                .column(2, { page: 'current' })
+                .data()
+                .reduce(function (a, b) {
+                    return parseFloat(a) + parseFloat(b.replace(/[\$,]/g, ''));
+                }, 0);
+
+            // Average Price
+            var averagePrice =
+                totalValue / api.column(4, { page: 'current' }).data().length || 0;
+
+            // Update Footer
+            $(api.column(1).footer()).html(totalQuantity);
+            $(api.column(2).footer()).html('$' + totalValue.toFixed(2));
+            $(api.column(4).footer()).html('$' + averagePrice.toFixed(2));
+        }
+    });
+
+    // Highlight rows based on the 'Items Below Stock Threshold' column
+    $('#stockReportTable tbody tr').each(function () {
+        var lowStock = $(this).find('td').eq(5).text(); 
+        if (parseInt(lowStock) > 0) {
+            $(this).addClass('table-danger'); 
+        }
         });
         });
+        // Initialize Bootstrap tooltips
+    $(function () {
+        $('[title]').tooltip(); 
+    });
     </script>
 
 

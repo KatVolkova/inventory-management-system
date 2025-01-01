@@ -3,15 +3,16 @@
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4">Stock Levels Report</h2>
+    <div class="table-responsive">
     <table id="stockReportTable" class="table table-bordered">
         <thead>
             <tr>
-                <th>Category</th>
-                <th>Total Quantity</th>
-                <th>Total Value</th>
-                <th>Number of Items</th>
-                <th>Average Price</th>
-                <th>Items Below Stock Threshold</th>
+                <th title="Category of the items">Category</th>
+                <th title="Total number of items in the category">Total Quantity</th>
+                <th title="Total value of items in USD">Total Value</th>
+                <th title="Number of items in the category">Number of Items</th>
+                <th title="Average price of items">Average Price</th>
+                <th title="Number of items below stock threshold">Items Below Stock Threshold</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@
             </tr>
         </tfoot>
     </table>
+</div>
 </div>
 
 
