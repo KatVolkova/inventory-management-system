@@ -51,17 +51,162 @@
         </div>
     </div>
 
-    <!-- Analytics Charts -->
-    <div class="mt-4">
-        <h4>Analytics Overview</h4>
-        <div class="row">
-            <div class="col-md-6">
-                <canvas id="categoryPieChart"></canvas>
+    <!-- Charts Grid -->
+    <div class="row">
+        <!-- Stock Overview Chart -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Stock Overview Chart</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="stockOverviewChart"></canvas>
+                </div>
             </div>
-            <div class="col-md-6">
-                <canvas id="stockTrendsChart"></canvas>
+        </div>
+
+        <!-- Category Contribution (Pie Chart) -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Category Contribution (Pie Chart)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="categoryPieChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Low Stock Trends (Line Chart) -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Low Stock Trends (Line Chart)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="lowStockLineChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Value by Category (Horizontal Bar Chart) -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Total Value by Category (Horizontal Bar Chart)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="valueBarChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categories = JSON.parse('{{ categories|safe|escapejs }}');
+        const quantities = JSON.parse('{{ quantities|safe|escapejs }}');
+        const values = JSON.parse('{{ values|safe }}');
+        const lowStocks = JSON.parse('{{ low_stocks|safe }}');
+
+        // Stock Overview Chart
+        new Chart(document.getElementById('stockOverviewChart'), {
+            type: 'bar',
+            data: {
+                labels: categories,
+                datasets: [{
+                    label: 'Total Quantity',
+                    data: quantities,
+                    backgroundColor: '#85C1E9',
+                    borderColor: '#3498DB',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Total Quantity' }
+                    },
+                    x: { title: { display: true, text: 'Categories' } }
+                }
+            }
+        });
+
+
+        // Low Stock Trends (Line Chart)
+        new Chart(document.getElementById('lowStockLineChart'), {
+            type: 'line',
+            data: {
+                labels: categories,
+                datasets: [{
+                    label: 'Low Stock Count',
+                    data: lowStocks,
+                    borderColor: '#E74C3C',
+                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Low Stock Count' }
+                    },
+                    x: { title: { display: true, text: 'Categories' } }
+                }
+            }
+        });
+
+        // Total Value by Category (Horizontal Bar Chart)
+        new Chart(document.getElementById('valueBarChart'), {
+            type: 'bar',
+            data: {
+                labels: categories,
+                datasets: [{
+                    label: 'Total Value',
+                    data: values,
+                    backgroundColor: '#2ECC71',
+                    borderColor: '#27AE60',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal bar chart
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Total Value (USD)' }
+                    },
+                    y: { title: { display: true, text: 'Categories' } }
+                }
+            }
+
+        
+        });
+        // Category Contribution (Pie Chart)
+        new Chart(document.getElementById('categoryPieChart'), {
+            type: 'pie',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: values,
+                    backgroundColor: ['#F39C12', '#E74C3C', '#8E44AD', '#3498DB', '#1ABC9C', '#2ECC71'],
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    });
+</script>
 {% endblock %}

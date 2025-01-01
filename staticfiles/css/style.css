@@ -47,6 +47,11 @@ body {
 .chart-container {
     margin-top: 20px;
 }
+/* Dashboard Mini Charts */
+.mini-chart {
+    max-height: 150px;
+    margin: 0 auto;
+}
 /* Masthead Styles */
 .masthead {
     height: 35vh;

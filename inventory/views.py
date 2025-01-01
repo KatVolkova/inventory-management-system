@@ -154,11 +154,28 @@ def dashboard(request):
     total_value = Item.objects.aggregate(total_value=Sum(F('quantity') * F('price')))['total_value'] or 0
     low_stock_count = Item.objects.filter(quantity__lte=F('low_stock_threshold')).count()
 
+    # Data for charts
+    report_data = Item.objects.values('category__name').annotate(
+        total_quantity=Sum('quantity'),
+        total_value=Sum(F('quantity') * F('price'), output_field=FloatField()),
+        low_stock_count=Count('id', filter=Q(quantity__lte=F('low_stock_threshold')))
+    )
+
+    # Prepare data for charts
+    categories = [data['category__name'] for data in report_data]
+    quantities = [data['total_quantity'] for data in report_data]
+    values = [data['total_value'] for data in report_data]
+    low_stocks = [data['low_stock_count'] for data in report_data] 
+
     # Pass the data to the template
     return render(request, 'inventory/dashboard.html', {
         'total_items': total_items,
         'total_categories': total_categories,
         'total_value': total_value,
         'low_stock_count': low_stock_count,
+        'categories': json.dumps(categories),
+        'quantities': json.dumps(quantities),
+        'values': json.dumps(values),
+        'low_stocks': json.dumps(low_stocks),
     })
 
