@@ -141,7 +141,48 @@
                 'excel',      // Export table data as Excel
                 'pdf',        // Export table data as PDF
                 'print'       // Print table
-            ]
+            ],
+            footerCallback: function(row, data, start, end, display) {
+                var api = this.api();
+
+                // Helper function to parse string values to integers or floats
+                var intVal = function(i) {
+                    return typeof i === 'string'
+                        ? i.replace(/[\$,]/g, '') * 1
+                        : typeof i === 'number'
+                        ? i
+                        : 0;
+                };
+
+                // Calculate Total Quantity
+                var totalQuantity = api
+                    .column(1) // 2nd column (zero-based index)
+                    .data()
+                    .reduce(function(a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                $('#totalQuantity').html(totalQuantity);
+
+                // Calculate Total Value
+                var totalValue = api
+                    .column(2) // 3rd column
+                    .data()
+                    .reduce(function(a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                $('#totalValue').html('$' + totalValue.toFixed(2));
+
+                // Calculate Average Price Across Categories
+                var totalPriceSum = api
+                    .column(4) // 5th column
+                    .data()
+                    .reduce(function(a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                var categoryCount = api.column(4).data().length; // Number of categories
+                var averagePrice = categoryCount > 0 ? (totalPriceSum / categoryCount) : 0;
+                $('#averagePrice').html('$' + averagePrice.toFixed(2));
+            },
         });
         });
     </script>

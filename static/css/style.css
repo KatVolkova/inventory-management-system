@@ -122,6 +122,8 @@ body {
 .approval {
     color: #E74C3C;
 }
+
+
 /* Utility Classes */
 .text-center {
     text-align: center;
@@ -134,4 +136,11 @@ body {
 }
 .mb-4 {
     margin-bottom: 1.5rem;
+}
+/*Stock Report Tables */
+/*Table Footer*/
+table#stockReportTable tfoot th {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    
 }
