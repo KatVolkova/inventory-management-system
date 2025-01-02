@@ -37,10 +37,10 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <span class="brand">Inventory<span class="red-o">|</span>System</span>
+                <span class="brand">Inventory<span class="logo">|</span>System</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,36 +49,40 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'items-list' %}">Manage Inventory</a>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'items-list' %}active{% endif %}" 
+                        href="{% url 'items-list' %}">Manage Inventory</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin Panel</a>
-                    </li>
-                    {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" 
-                        href="{{ logout_url }}">Logout</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'low-stock' %}active{% endif %}" 
+                    href="{% url 'low-stock' %}">Stock Control</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'stock-report' %}active{% endif %}" 
+                    href="{% url 'stock-report' %}">Reporting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'admin:index' %}active{% endif %}" 
+                    href="{% url 'admin:index' %}">Admin Panel</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}" 
+                    href="{{ logout_url }}">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" 
-                        href="{{ signup_url }}">Register</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}" 
+                    href="{{ signup_url }}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" 
-                        href="{{ login_url }}">Login</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}" 
+                    href="{{ login_url }}">Login</a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'low-stock' %}">Low Stock</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'stock-report' %}">Reporting</a>
-                </li>
                 </ul>
                 <span class="navbar-text text-muted">
                     Manage your inventory efficiently
