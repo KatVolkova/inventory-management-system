@@ -4,16 +4,20 @@ from django.urls import reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.db import models
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction, Category
 from .forms import CategoryForm, ItemForm, TransactionForm
+
 
 # Create your views here.
 
 class ItemListView(generic.ListView):
     model = Item
     template_name = "inventory/index.html"
+    context_object_name = "object_list"
+    paginate_by = 10
     queryset = Item.objects.all()
 
     def get_queryset(self):
