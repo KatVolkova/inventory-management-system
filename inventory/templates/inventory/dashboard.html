@@ -167,7 +167,13 @@
         scales: {
             y: { ticks: { display: false }, grid: { display: false } },
             x: { ticks: { maxRotation: 0, font: { size: 10 } } }
-        }
+        },
+                onClick: function (event, elements) {
+                    if (elements.length > 0) {
+                        const category = categories[elements[0].index];
+                        window.location.href = `/stock-report/#lowStockLineChart?category=${encodeURIComponent(category)}`;
+            }
+            }
             }
         });
 
@@ -194,6 +200,12 @@
             x: { ticks: { display: false }, grid: { display: false } },
             y: { ticks: { font: { size: 10 } } }
         }
+            },
+                onClick: function (event, elements) {
+                    if (elements.length > 0) {
+                        const category = categories[elements[0].index];
+                        window.location.href = `/stock-report/#valueBarChart?category=${encodeURIComponent(category)}`;
+            }
             }
 
         
@@ -215,6 +227,12 @@
                 legend: { display: false },
                 title: { display: true, text: 'Category Contribution' },
                 }
+            },
+                onClick: function (event, elements) {
+                    if (elements.length > 0) {
+                        const category = categories[elements[0].index];
+                        window.location.href = `/stock-report/#category-pie-chart?category=${encodeURIComponent(category)}`;
+            }
             }
         });
         // Integration of Transaction Modal Logic
