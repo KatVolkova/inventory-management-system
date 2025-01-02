@@ -150,21 +150,25 @@ h2 {
 .mb-4 {
     margin-bottom: 1.5rem;
 }
-/*Stock Report Tables */
-/*Table Footer*/
-table#stockReportTable {
+/*General table styling */
+
+table#stockReportTable,
+table#lowStockItemsTable {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 1rem;
 }
-table#stockReportTable tbody tr:nth-child(odd) {
+table#stockReportTable tbody tr:nth-child(odd),
+table#lowStockItemsTable tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
-table#stockReportTable tbody tr:hover {
+table#stockReportTable tbody tr:hover,
+table#lowStockItemsTable tbody tr:hover {
     background-color: #f1f1f1;
     cursor: pointer;
 }
-table#stockReportTable thead th {
+table#stockReportTable thead th,
+table#lowStockItemsTable thead th {
     background-color: #188181;
     color: #ffffff;
     text-align: center;
@@ -174,7 +178,7 @@ table#stockReportTable tfoot th {
     font-weight: bold;
     background-color: #f8f9fa;
     color: #333;
-    text-align: center;
+    text-align: left;
     border-top: 2px solid #188181;
     margin-bottom: 1rem;
 }

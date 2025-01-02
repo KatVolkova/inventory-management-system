@@ -74,7 +74,7 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'low-stock' %}">Low Stock Alerts</a>
+                    <a class="nav-link" href="{% url 'low-stock' %}">Low Stock</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stock-report' %}">Reporting</a>
@@ -138,6 +138,7 @@
     <!-- Custom Scripts -->
     <script>
         $(document).ready(function() {
+            // Initialize Stock Report Table
             $('#stockReportTable').DataTable({
             dom: 'Bfrtip', // Adds buttons to the table
             buttons: [
@@ -205,11 +206,48 @@
             $(this).addClass('table-danger'); 
         }
         });
+     // Initialize Low Stock Items Table
+    $('#lowStockItemsTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copy',
+                text: '<i class="fas fa-copy"></i> Copy',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'csv',
+                text: '<i class="fas fa-file-csv"></i> CSV',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> Excel',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'pdf',
+                text: '<i class="fas fa-file-pdf"></i> PDF',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'print',
+                text: '<i class="fas fa-print"></i> Print',
+                className: 'btn btn-primary'
+            }
+        ],
+        paging: true, 
+        searching: true, 
+        ordering: true, 
+        order: [[2, 'asc']], 
+        columnDefs: [
+            { targets: 4, orderable: false } 
+        ]   
         });
         // Initialize Bootstrap tooltips
-    $(function () {
-        $('[title]').tooltip(); 
+        $('[title]').tooltip();
     });
+
     </script>
 
 
