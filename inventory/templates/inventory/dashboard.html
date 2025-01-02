@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
 <div class="container mt-4">
@@ -6,35 +7,35 @@
 
     <!-- Analytics Section -->
     <div class="row">
-        <div class="col-md-3">
-            <div class="card shadow-sm">
+        <div class="col-sm-6 col-md-3 mb-4">
+            <div class="card shadow analytics-card">
                 <div class="card-body text-center">
-                    <h5>Total Items</h5>
-                    <p class="display-4">{{ total_items }}</p>
+                    <h6 class="card-title">TOTAL ITEMS</h6>
+                    <p class="card-number">{{ total_items|intcomma }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm">
+        <div class="col-sm-6 col-md-3 mb-4">
+            <div class="card shadow analytics-card">
                 <div class="card-body text-center">
-                    <h5>Total Categories</h5>
-                    <p class="display-4">{{ total_categories }}</p>
+                    <h6 class="card-title">TOTAL CATEGORIES</h6>
+                <p class="card-number">{{ total_categories|intcomma }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm">
+        <div class="col-sm-6 col-md-3 mb-4">
+            <div class="card shadow analytics-card">
                 <div class="card-body text-center">
-                    <h5>Total Value</h5>
-                    <p class="display-4">${{ total_value|floatformat:2 }}</p>
+                    <h6 class="card-title">TOTAL VALUE</h6>
+                <p class="card-number">${{ total_value|floatformat:2|intcomma }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm">
+        <div class="col-sm-6 col-md-3 mb-4">
+            <div class="card shadow analytics-card">
                 <div class="card-body text-center">
-                    <h5>Low Stock Alerts</h5>
-                    <p class="display-4">{{ low_stock_count }}</p>
+                    <h6 class="card-title">LOW STOCK ALERTS</h6>
+                <p class="card-number">{{ low_stock_count|intcomma }}</p>
                 </div>
             </div>
         </div>

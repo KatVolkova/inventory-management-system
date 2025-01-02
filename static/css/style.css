@@ -29,6 +29,38 @@ body {
     background-color: #F4F7FC;
 }
 /* Dashboard Styles */
+/* Analytics Cards */
+.analytics-card {
+    border: 2px solid #188181; /* Highlight border */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effect */
+}
+
+.analytics-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase; /* All caps for titles */
+    color: #188181; /* Brand color */
+    margin-bottom: 10px;
+}
+
+.card-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333; /* Neutral color */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-number {
+        font-size: 28px; /* Reduce font size on smaller screens */
+    }
+}
 .card {
     border: none;
     border-radius: 8px;
