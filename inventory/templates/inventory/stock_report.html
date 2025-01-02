@@ -44,23 +44,23 @@
     </table>
 </div>
 <!-- Chart Container -->
-<div class="mb-4 stock-chart-container">
+<div id="stockOverviewChart" class="mb-4 stock-chart-container">
     <h4>Total Quantity</h4>
-    <canvas id="stockOverviewChart" class="stock-chart"></canvas>
+    <canvas id="stockOverviewChartCanvas" class="stock-chart"></canvas>
 </div>
-<div class="mb-4 stock-chart-container">
+<div id="categoryPieChart" class="mb-4 stock-chart-container">
     <h4>Category Contribution</h4>
-    <canvas id="categoryPieChart" class="stock-chart"></canvas>
+    <canvas id="categoryPieChartCanvas" class="stock-chart"></canvas>
 </div>
 
-<div class="mb-4 stock-chart-container">
+<div id="lowStockLineChart" class="mb-4 stock-chart-container">
     <h4>Low Stock Trends</h4>
-    <canvas id="lowStockLineChart" class="stock-chart"></canvas>
+    <canvas id="lowStockLineChartCanvas" class="stock-chart"></canvas>
 </div>
 
-<div class="mb-4 stock-chart-container">
+<div id="valueBarChart" class="mb-4 stock-chart-container">
     <h4>Total Value by Category</h4>
-    <canvas id="valueBarChart" class="stock-chart"></canvas>
+    <canvas id="valueBarChartCanvas" class="stock-chart"></canvas>
 </div>
 </div>
 
@@ -74,16 +74,16 @@
     const chartLowStocks = JSON.parse('{{ low_stocks|safe|escapejs }}');
 
     // Get the canvas element
-    const ctx = document.getElementById('stockOverviewChart').getContext('2d');
+    const ctx = document.getElementById('stockOverviewChartCanvas').getContext('2d');
 
     // Bar Chart: Total Quantity
     new Chart(ctx, {
         type: 'bar', 
         data: {
-            labels: chartCategories, // Categories as labels
+            labels: chartCategories, 
             datasets: [{
                 label: 'Total Quantity',
-                data: chartQuantities, // Quantities as data
+                data: chartQuantities, 
                 backgroundColor: [
                     '#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'
                 ],
@@ -97,7 +97,7 @@
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
+                    position: false,
                 },
                 tooltip: {
                     callbacks: {
@@ -125,7 +125,7 @@
         }
     });
 // Pie Chart: Category Contribution
-const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
+const pieCtx = document.getElementById('categoryPieChartCanvas').getContext('2d');
         new Chart(pieCtx, {
             type: 'pie',
             data: {
@@ -152,7 +152,7 @@ const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
         });
 
         // Line Chart: Low Stock Trends
-        const lineCtx = document.getElementById('lowStockLineChart').getContext('2d');
+        const lineCtx = document.getElementById('lowStockLineChartCanvas').getContext('2d');
         new Chart(lineCtx, {
             type: 'line',
             data: {
@@ -166,6 +166,10 @@ const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
                 }]
             },
             options: {
+                plugins: {
+            legend: {
+            display: false // Hides the legend
+                },},
                 responsive: true,
                 scales: {
                     y: { beginAtZero: true, title: { display: true, text: 'Low Stock Count' } },
@@ -175,13 +179,13 @@ const pieCtx = document.getElementById('categoryPieChart').getContext('2d');
         });
 
         // Horizontal Bar Chart: Total Value by Category
-const horizontalBarCtx = document.getElementById('valueBarChart').getContext('2d');
+const horizontalBarCtx = document.getElementById('valueBarChartCanvas').getContext('2d');
 new Chart(horizontalBarCtx, {
     type: 'bar',
     data: {
         labels: chartCategories, 
         datasets: [{
-            label: 'Total Value (USD)',
+            
             data: chartValues, 
             backgroundColor: [
                 '#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'
@@ -196,7 +200,7 @@ new Chart(horizontalBarCtx, {
         indexAxis: 'y', 
         responsive: true,
         plugins: {
-            legend: { position: 'top' },
+            legend: { display: false },
             tooltip: {
                 callbacks: {
                     label: function (tooltipItem) {
@@ -222,16 +226,8 @@ new Chart(horizontalBarCtx, {
         }
     }
 });
-// Smooth scroll to the specific chart
-document.addEventListener('DOMContentLoaded', function () {
-        const chartID = window.location.hash;
-        if (chartID) {
-            const chartElement = document.querySelector(chartID);
-            if (chartElement) {
-                chartElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    });
+
+
     });
 
 </script>

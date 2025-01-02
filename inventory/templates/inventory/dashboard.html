@@ -59,30 +59,33 @@
 
         <!-- Total Quantity Chart -->
         <div class="col-md-6 mb-4">
+            <a href="/stock-report/#stockOverviewChart">
             <div class="card">
                 <div class="card-header text-center">
-                    
                 </div>
                 <div class="card-body">
                     <canvas id="stockOverviewChart"></canvas>
                 </div>
             </div>
+        </a>
         </div>
 
         <!-- Category Contribution (Pie Chart) -->
         <div class="col-md-6 mb-4">
+            <a href="/stock-report/#categoryPieChart">
             <div class="card">
                 <div class="card-header text-center">
-                    
                 </div>
                 <div class="card-body">
                     <canvas id="categoryPieChart"></canvas>
                 </div>
             </div>
+        </a>
         </div>
 
         <!-- Low Stock Trends (Line Chart) -->
         <div class="col-md-6 mb-4">
+            <a href="/stock-report/#lowStockLineChart">
             <div class="card">
                 <div class="card-header text-center">
                     
@@ -91,19 +94,21 @@
                     <canvas id="lowStockLineChart"></canvas>
                 </div>
             </div>
+        </a>
         </div>
 
         <!-- Total Value by Category (Horizontal Bar Chart) -->
         <div class="col-md-6 mb-4">
+            <a href="/stock-report/#valueBarChart">
             <div class="card">
                 <div class="card-header text-center">
-                    
                 </div>
                 <div class="card-body">
                     <canvas id="valueBarChart"></canvas>
                 </div>
             </div>
         </div>
+    </a>
     </div>
     <p class="text-center text-muted">Click on any chart to view detailed stock reports for that category.</p>
 </div>
@@ -133,13 +138,7 @@
                     y: { ticks: { display: false }, grid: { display: false } },
                     x: { ticks: { maxRotation: 0, font: { size: 10 } } }
                     
-                },
-                onClick: function (event, elements) {
-                    if (elements.length > 0) {
-                        const category = categories[elements[0].index];
-                        window.location.href = `/stock-report/#stockOverviewChart?category=${encodeURIComponent(category)}`;
-            }
-            }
+                }
         }
         });
 
@@ -167,13 +166,7 @@
         scales: {
             y: { ticks: { display: false }, grid: { display: false } },
             x: { ticks: { maxRotation: 0, font: { size: 10 } } }
-        },
-                onClick: function (event, elements) {
-                    if (elements.length > 0) {
-                        const category = categories[elements[0].index];
-                        window.location.href = `/stock-report/#lowStockLineChart?category=${encodeURIComponent(category)}`;
-            }
-            }
+        }
             }
         });
 
@@ -200,14 +193,7 @@
             x: { ticks: { display: false }, grid: { display: false } },
             y: { ticks: { font: { size: 10 } } }
         }
-            },
-                onClick: function (event, elements) {
-                    if (elements.length > 0) {
-                        const category = categories[elements[0].index];
-                        window.location.href = `/stock-report/#valueBarChart?category=${encodeURIComponent(category)}`;
             }
-            }
-
         
         });
         // Category Contribution (Pie Chart)
@@ -227,12 +213,6 @@
                 legend: { display: false },
                 title: { display: true, text: 'Category Contribution' },
                 }
-            },
-                onClick: function (event, elements) {
-                    if (elements.length > 0) {
-                        const category = categories[elements[0].index];
-                        window.location.href = `/stock-report/#category-pie-chart?category=${encodeURIComponent(category)}`;
-            }
             }
         });
         // Integration of Transaction Modal Logic
