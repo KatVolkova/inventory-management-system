@@ -45,12 +45,12 @@
     <div class="mt-4 quick-actions">
         <h4>Quick Actions</h4>
         <div class="quick-actions-buttons d-flex flex-wrap justify-content-center gap-3 mt-3">
-            <a href="{% url 'add-category' %}" class="btn btn-primary mx-2">Add Category</a>
-            <a href="{% url 'add-item' %}" class="btn btn-primary mx-2">Add Inventory</a>
-            <a href="{% url 'select-item-record-transaction' %}" class="btn btn-primary mx-2">Record Transaction</a>
-            <a href="{% url 'select-item-view-transactions' %}" class="btn btn-primary mx-2">View Transactions</a>
-            <a href="{% url 'stock-report' %}" class="btn btn-primary mx-2">Stock Report</a>
-            <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2">Low Stock</a>
+            <a href="{% url 'add-category' %}" class="btn btn-primary mx-2" aria-label="Add Category">Add Category</a>
+            <a href="{% url 'add-item' %}" class="btn btn-primary mx-2" aria-label="Add Item">Add Inventory</a>
+            <a href="{% url 'select-item-record-transaction' %}" class="btn btn-primary mx-2" aria-label="Record Transaction">Record Transaction</a>
+            <a href="{% url 'select-item-view-transactions' %}" class="btn btn-primary mx-2" aria-label="View Transactions">View Transactions</a>
+            <a href="{% url 'stock-report' %}" class="btn btn-primary mx-2" aria-label="View Stock Report">Stock Report</a>
+            <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2" aria-label="View Low Stock Table">Low Stock</a>
         </div>
     </div>
 
@@ -65,7 +65,7 @@
                 <div class="card-header text-center">
                 </div>
                 <div class="card-body">
-                    <canvas id="stockOverviewChart"></canvas>
+                    <canvas id="stockOverviewChart" aria-label="Bar chart showing total quantity of items by category" role="img"></canvas>
                 </div>
             </div>
         </a>
@@ -78,7 +78,7 @@
                 <div class="card-header text-center">
                 </div>
                 <div class="card-body">
-                    <canvas id="categoryPieChart"></canvas>
+                    <canvas id="categoryPieChart" aria-label="Pie chart showing each category contribution" role="img"></canvas>
                 </div>
             </div>
         </a>
@@ -92,7 +92,7 @@
                     
                 </div>
                 <div class="card-body">
-                    <canvas id="lowStockLineChart"></canvas>
+                    <canvas id="lowStockLineChart" aria-label="Line chart showing trends in low-stock items" role="img"></canvas>
                 </div>
             </div>
         </a>
@@ -105,7 +105,7 @@
                 <div class="card-header text-center">
                 </div>
                 <div class="card-body">
-                    <canvas id="valueBarChart"></canvas>
+                    <canvas id="valueBarChart" aria-label="Horizontal Bar chart showing total value of items by category" role="img"></canvas>
                 </div>
             </div>
         </div>

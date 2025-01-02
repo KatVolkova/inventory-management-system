@@ -6,7 +6,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Add Category</button>
+        <button type="submit" class="btn btn-primary" aria-label="Add Category">Add Category</button>
         <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
