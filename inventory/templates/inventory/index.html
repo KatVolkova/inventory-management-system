@@ -8,17 +8,17 @@
 
         <!-- Search Form -->
         <div class="col-12 mb-4">
-            <form method="get" action="{% url 'home' %}" class="d-flex">
+            <form method="get" action="{% url 'items-list' %}" class="d-flex">
                 <input
                     class="form-control me-2"
                     type="search"
                     name="q"
-                    placeholder="Search items by name, SKU, or description"
+                    placeholder="Search items by name, SKU, category or description"
                     aria-label="Search"
                     value="{{ request.GET.q }}"
                 >
                 <button class="btn btn-outline-primary me-2" type="submit">Search</button>
-                <a href="{% url 'home' %}" class="btn btn-outline-secondary">Clear</a>
+                <a href="{% url 'items-list' %}" class="btn btn-outline-secondary">Clear</a>
             </form>
         </div>
         
@@ -40,7 +40,8 @@
                         <p class="mb-1">
                             <strong>SKU:</strong> {{ item.sku }} | 
                             <strong>Quantity:</strong> {{ item.quantity }} | 
-                            <strong>Price:</strong> ${{ item.price }}
+                            <strong>Price:</strong> ${{ item.price }} |
+                            <strong>Category:</strong> {{ item.category.name }}
                         </p>
                         <p class="text-muted small mb-0">
                             Last Updated: {{ item.updated_at|date:"F d, Y H:i" }}

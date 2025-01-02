@@ -24,7 +24,10 @@ class ItemListView(generic.ListView):
         query = self.request.GET.get("q")
         if query:
             return Item.objects.filter(
-                Q(name__icontains=query) | Q(sku__icontains=query) | Q(description__icontains=query)
+                Q(name__icontains=query) | 
+                Q(sku__icontains=query) | 
+                Q(description__icontains=query) |
+                Q(category__name__icontains=query)
             )
         return super().get_queryset()
    
