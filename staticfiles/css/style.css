@@ -145,7 +145,7 @@ body {
 table#stockReportTable {
     border-collapse: collapse;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
 }
 table#stockReportTable tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
@@ -164,7 +164,7 @@ table#stockReportTable tfoot th {
     font-weight: bold;
     background-color: #f8f9fa;
     color: #333;
-    text-align: center;
+    text-align: left;
     border-top: 2px solid #188181;
 }
 
@@ -203,9 +203,6 @@ table#stockReportTable tfoot th {
 .stock-chart {
     max-height: 300px; /* Set a smaller maximum height for the charts */
 }
-
-
-
 
 /* Subtle colors for charts */
 .chart-color-1 {

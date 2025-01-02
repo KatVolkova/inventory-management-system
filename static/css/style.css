@@ -52,6 +52,16 @@ body {
     max-height: 150px;
     margin: 0 auto;
 }
+
+/* Headings */
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase; /* Makes the heading uppercase */
+    color: #343a40; /* Neutral dark color for contrast */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
 /* Masthead Styles */
 .masthead {
     height: 35vh;
@@ -166,6 +176,7 @@ table#stockReportTable tfoot th {
     color: #333;
     text-align: center;
     border-top: 2px solid #188181;
+    margin-bottom: 1rem;
 }
 
 /* Highlight for Low Stock */
@@ -201,32 +212,36 @@ table#stockReportTable tfoot th {
 }
 
 .stock-chart {
-    max-height: 300px; /* Set a smaller maximum height for the charts */
+    max-height: 300px; 
 }
 
-/* Subtle colors for charts */
+.gap-top {
+    margin-top: 30px; 
+}
+
+/* Colors for charts */
 .chart-color-1 {
-    background-color: #6a9eaf; /* Subtle blue */
+    background-color: #6a9eaf;
     border-color: #40738a;
 }
 .chart-color-2 {
-    background-color: #d4a5a5; /* Subtle pink */
+    background-color: #d4a5a5; 
     border-color: #b06d6d;
 }
 .chart-color-3 {
-    background-color: #a5d4a5; /* Subtle green */
+    background-color: #a5d4a5; 
     border-color: #6db06d;
 }
 .chart-color-4 {
-    background-color: #d4c2a5; /* Subtle yellow */
+    background-color: #d4c2a5; 
     border-color: #b09e6d;
 }
 .chart-color-5 {
-    background-color: #a5a5d4; /* Subtle purple */
+    background-color: #a5a5d4; 
     border-color: #6d6db0;
 }
 .chart-color-6 {
-    background-color: #d4a5d4; /* Subtle violet */
+    background-color: #d4a5d4; 
     border-color: #b06db0;
 }
 

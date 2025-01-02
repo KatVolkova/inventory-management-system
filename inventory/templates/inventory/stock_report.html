@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="mb-4">Stock Levels Report</h2>
+    <h2 class="mb-4 text-center">Stock Report</h2>
     <div class="table-responsive">
     <table id="stockReportTable" class="table table-bordered">
         <thead>
@@ -44,7 +44,7 @@
     </table>
 </div>
 <!-- Chart Container -->
-<div id="stockOverviewChart" class="mb-4 stock-chart-container">
+<div id="stockOverviewChart" class="mb-4 stock-chart-container gap-top">
     <h4>Total Quantity</h4>
     <canvas id="stockOverviewChartCanvas" class="stock-chart"></canvas>
     <button class="btn btn-primary mt-2" onclick="exportChart('stockOverviewChartCanvas', 'Total_Quantity_Chart')">Export as Image</button>
