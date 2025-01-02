@@ -13,7 +13,7 @@
                 <strong>Category:</strong> {{ item.category }}<br>
                 <strong>Last Updated:</strong> {{ item.updated_at|date:"F d, Y H:i" }}
             </p>
-            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Inventory</a>
+            <a href="{% url 'items-list' %}" class="btn btn-secondary">Back to Inventory</a>
             {% if user.is_authenticated %}
             <div class="mt-3">
                 <a href="{% url 'item-edit' item.id %}" class="btn btn-primary me-2">Edit</a>
