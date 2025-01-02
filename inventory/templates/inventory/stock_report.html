@@ -47,20 +47,24 @@
 <div id="stockOverviewChart" class="mb-4 stock-chart-container">
     <h4>Total Quantity</h4>
     <canvas id="stockOverviewChartCanvas" class="stock-chart"></canvas>
+    <button class="btn btn-primary mt-2" onclick="exportChart('stockOverviewChartCanvas', 'Total_Quantity_Chart')">Export as Image</button>
 </div>
 <div id="categoryPieChart" class="mb-4 stock-chart-container">
     <h4>Category Contribution</h4>
     <canvas id="categoryPieChartCanvas" class="stock-chart"></canvas>
+    <button class="btn btn-primary mt-2" onclick="exportChart('categoryPieChartCanvas', 'Category_Contribution_Chart')">Export as Image</button>
 </div>
 
 <div id="lowStockLineChart" class="mb-4 stock-chart-container">
     <h4>Low Stock Trends</h4>
     <canvas id="lowStockLineChartCanvas" class="stock-chart"></canvas>
+    <button class="btn btn-primary mt-2" onclick="exportChart('lowStockLineChartCanvas', 'Low_Stock_Trends_Chart')">Export as Image</button>
 </div>
 
 <div id="valueBarChart" class="mb-4 stock-chart-container">
     <h4>Total Value by Category</h4>
     <canvas id="valueBarChartCanvas" class="stock-chart"></canvas>
+    <button class="btn btn-primary mt-2" onclick="exportChart('valueBarChartCanvas', 'Total_Value_By_Category_Chart')">Export as Image</button>
 </div>
 </div>
 
@@ -226,6 +230,14 @@ new Chart(horizontalBarCtx, {
         }
     }
 });
+// Export Chart Function
+window.exportChart = function (canvasId, filename) {
+        const canvas = document.getElementById(canvasId);
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png'); // Convert canvas to Base64 image
+        link.download = `${filename}.png`; // Set the file name
+        link.click(); // Trigger the download
+    };
 
 
     });
