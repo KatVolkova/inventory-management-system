@@ -13,23 +13,36 @@
                 <strong>Category:</strong> {{ item.category }}<br>
                 <strong>Last Updated:</strong> {{ item.updated_at|date:"F d, Y H:i" }}
             </p>
+            <!-- Back to Inventory Button -->
+            <div class="mb-3">
             <a href="{% url 'items-list' %}" class="btn btn-secondary">Back to Inventory</a>
+            </div>
             {% if user.is_authenticated %}
-            <div class="mt-3">
-                <a href="{% url 'item-edit' item.id %}" class="btn btn-primary me-2">Edit</a>
-                <a href="{% url 'record-transaction' item.id %}" class="btn btn-info me-2">Record Transaction</a>
-                <a href="{% url 'view-transactions' item.id %}" class="btn btn-secondary">View Transactions</a>
-                 
-                    <!-- Trigger Button -->
+            
+            <!-- Action Buttons -->
+            <div class="d-flex flex-column flex-md-row gap-2 mb-3">
+                <!-- Transaction Buttons -->
+                <div>
+                    <a href="{% url 'record-transaction' item.id %}" class="btn btn-primary me-2">Record Transaction</a>
+                    <a href="{% url 'view-transactions' item.id %}" class="btn btn-primary">View Transactions</a>
+                </div>
+            </div>
+                <!-- Edit/Delete Buttons -->
+                <div class="d-flex flex-column flex-md-row gap-2">
+                <div>
+                    <a href="{% url 'item-edit' item.id %}" class="btn btn-primary me-2">Edit</a>
+                    <!-- Trigger Button for Delete Modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete Item
                     </button>
                 </div>
+                
+            </div>
                 {% endif %}
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal Confirm Delete Action-->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
