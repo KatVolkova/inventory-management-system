@@ -45,21 +45,23 @@
         <h4>Quick Actions</h4>
         <div class="d-flex justify-content-center mt-3">
             <a href="{% url 'add-category' %}" class="btn btn-primary mx-2">Add Category</a>
-            <a href="{% url 'add-item' %}" class="btn btn-success mx-2">Add Inventory</a>
-            <a href="{% url 'stock-report' %}" class="btn btn-info mx-2">View Stock Report</a>
+            <a href="{% url 'add-item' %}" class="btn btn-primary mx-2">Add Inventory</a>
+            <a href="{% url 'stock-report' %}" class="btn btn-primary mx-2">View Stock Report</a>
+            <a href="{% url 'select-item-record-transaction' %}" class="btn btn-primary mx-2">Record Transaction</a>
+            <a href="{% url 'select-item-view-transactions' %}" class="btn btn-primary mx-2">View Transactions</a>
             <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2">Low Stock Alerts</a>
-            <a href="{% url 'select-item-record-transaction' %}" class="btn btn-warning mx-2">Record Transaction</a>
-            <a href="{% url 'select-item-view-transactions' %}" class="btn btn-secondary mx-2">View Transactions</a>
         </div>
     </div>
 
     <!-- Charts Grid -->
     <div class="row">
-        <!-- Stock Overview Chart -->
+        
+
+        <!-- Total Quantity Chart -->
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h5>Stock Overview Chart</h5>
+                    
                 </div>
                 <div class="card-body">
                     <canvas id="stockOverviewChart"></canvas>
@@ -71,7 +73,7 @@
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h5>Category Contribution (Pie Chart)</h5>
+                    
                 </div>
                 <div class="card-body">
                     <canvas id="categoryPieChart"></canvas>
@@ -83,7 +85,7 @@
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h5>Low Stock Trends (Line Chart)</h5>
+                    
                 </div>
                 <div class="card-body">
                     <canvas id="lowStockLineChart"></canvas>
@@ -95,7 +97,7 @@
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header text-center">
-                    <h5>Total Value by Category (Horizontal Bar Chart)</h5>
+                    
                 </div>
                 <div class="card-body">
                     <canvas id="valueBarChart"></canvas>
@@ -103,6 +105,7 @@
             </div>
         </div>
     </div>
+    <p class="text-center text-muted">Click on any chart to view detailed stock reports for that category.</p>
 </div>
 
 <script>
@@ -121,21 +124,23 @@
                     label: 'Total Quantity',
                     data: quantities,
                     backgroundColor: '#85C1E9',
-                    borderColor: '#3498DB',
-                    borderWidth: 1,
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Total Quantity' }
-                    },
-                    x: { title: { display: true, text: 'Categories' } }
-                }
+                    y: { ticks: { display: false }, grid: { display: false } },
+                    x: { ticks: { maxRotation: 0, font: { size: 10 } } }
+                    
+                },
+                onClick: function (event, elements) {
+                    if (elements.length > 0) {
+                        const category = categories[elements[0].index];
+                        window.location.href = `/stock-report/#stockOverviewChart?category=${encodeURIComponent(category)}`;
             }
+            }
+        }
         });
 
 
@@ -148,20 +153,21 @@
                     label: 'Low Stock Count',
                     data: lowStocks,
                     borderColor: '#E74C3C',
-                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                    backgroundColor: 'rgba(106, 158, 175, 0.2)',
                     fill: true
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Low Stock Count' }
-                    },
-                    x: { title: { display: true, text: 'Categories' } }
-                }
+                plugins: {
+            legend: { display: false },
+            title: { display: true, text: 'Low Stock Trends' },
+        },
+        scales: {
+            y: { ticks: { display: false }, grid: { display: false } },
+            x: { ticks: { maxRotation: 0, font: { size: 10 } } }
+        }
             }
         });
 
@@ -173,22 +179,21 @@
                 datasets: [{
                     label: 'Total Value',
                     data: values,
-                    backgroundColor: '#2ECC71',
-                    borderColor: '#27AE60',
-                    borderWidth: 1,
+                    backgroundColor: '#a5d4a5',
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                indexAxis: 'y', // Horizontal bar chart
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Total Value (USD)' }
-                    },
-                    y: { title: { display: true, text: 'Categories' } }
-                }
+                indexAxis: 'y', 
+                plugins: {
+            legend: { display: false },
+            title: { display: true, text: 'Total Value by Category' },
+        },
+        scales: {
+            x: { ticks: { display: false }, grid: { display: false } },
+            y: { ticks: { font: { size: 10 } } }
+        }
             }
 
         
@@ -200,13 +205,16 @@
                 labels: categories,
                 datasets: [{
                     data: values,
-                    backgroundColor: ['#F39C12', '#E74C3C', '#8E44AD', '#3498DB', '#1ABC9C', '#2ECC71'],
-                    borderWidth: 1,
+                    backgroundColor: ['#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'],
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                legend: { display: false },
+                title: { display: true, text: 'Category Contribution' },
+                }
             }
         });
         // Integration of Transaction Modal Logic

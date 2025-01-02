@@ -204,6 +204,9 @@ table#stockReportTable tfoot th {
     max-height: 300px; /* Set a smaller maximum height for the charts */
 }
 
+
+
+
 /* Subtle colors for charts */
 .chart-color-1 {
     background-color: #6a9eaf; /* Subtle blue */

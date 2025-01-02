@@ -45,21 +45,21 @@
 </div>
 <!-- Chart Container -->
 <div class="mb-4 stock-chart-container">
-    <h4>Stock Overview Chart</h4>
+    <h4>Total Quantity</h4>
     <canvas id="stockOverviewChart" class="stock-chart"></canvas>
 </div>
 <div class="mb-4 stock-chart-container">
-    <h4>Category Contribution (Pie Chart)</h4>
+    <h4>Category Contribution</h4>
     <canvas id="categoryPieChart" class="stock-chart"></canvas>
 </div>
 
 <div class="mb-4 stock-chart-container">
-    <h4>Low Stock Trends (Line Chart)</h4>
+    <h4>Low Stock Trends</h4>
     <canvas id="lowStockLineChart" class="stock-chart"></canvas>
 </div>
 
 <div class="mb-4 stock-chart-container">
-    <h4>Total Value by Category (Bar Chart)</h4>
+    <h4>Total Value by Category</h4>
     <canvas id="valueBarChart" class="stock-chart"></canvas>
 </div>
 </div>
@@ -222,6 +222,16 @@ new Chart(horizontalBarCtx, {
         }
     }
 });
+// Smooth scroll to the specific chart
+document.addEventListener('DOMContentLoaded', function () {
+        const chartID = window.location.hash;
+        if (chartID) {
+            const chartElement = document.querySelector(chartID);
+            if (chartElement) {
+                chartElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
     });
 
 </script>
