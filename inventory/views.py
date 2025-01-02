@@ -105,6 +105,28 @@ def view_transactions(request, pk):
 
     return render(request, 'inventory/view_transactions.html', {'item': item, 'transactions': transactions})
 
+def select_item_record_transaction(request):
+    """
+    View to select an item before redirecting to the Record Transaction page.
+    """
+    if request.method == 'POST':
+        item_id = request.POST.get('item')
+        return redirect('record-transaction', pk=item_id)
+
+    items = Item.objects.all()
+    return render(request, 'inventory/select_item_record_transaction.html', {'items': items})
+
+
+def select_item_view_transactions(request):
+    """
+    View to select an item before redirecting to the View Transactions page.
+    """
+    if request.method == 'POST':
+        item_id = request.POST.get('item')
+        return redirect('view-transactions', pk=item_id)
+
+    items = Item.objects.all()
+    return render(request, 'inventory/select_item_view_transactions.html', {'items': items})
 
 def add_category(request):
     if request.method == "POST":
@@ -167,7 +189,8 @@ def dashboard(request):
         total_value=Sum(F('quantity') * F('price'), output_field=FloatField()),
         low_stock_count=Count('id', filter=Q(quantity__lte=F('low_stock_threshold')))
     )
-
+    # Fetch Items
+    items = Item.objects.all()
     # Prepare data for charts
     categories = [data['category__name'] for data in report_data]
     quantities = [data['total_quantity'] for data in report_data]

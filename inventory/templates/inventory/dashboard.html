@@ -48,6 +48,8 @@
             <a href="{% url 'add-item' %}" class="btn btn-success mx-2">Add Inventory</a>
             <a href="{% url 'stock-report' %}" class="btn btn-info mx-2">View Stock Report</a>
             <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2">Low Stock Alerts</a>
+            <a href="{% url 'select-item-record-transaction' %}" class="btn btn-warning mx-2">Record Transaction</a>
+            <a href="{% url 'select-item-view-transactions' %}" class="btn btn-secondary mx-2">View Transactions</a>
         </div>
     </div>
 
@@ -206,6 +208,21 @@
                 responsive: true,
                 maintainAspectRatio: false,
             }
+        });
+        // Integration of Transaction Modal Logic
+        const recordLink = document.getElementById('recordTransactionLink');
+        const recordSelect = document.getElementById('recordItemSelect');
+        const viewLink = document.getElementById('viewTransactionsLink');
+        const viewSelect = document.getElementById('viewItemSelect');
+
+        // Update Record Transaction Link Based on Selected Item
+        recordSelect.addEventListener('change', function () {
+            recordLink.href = `/item/${this.value}/record-transaction/`;
+        });
+
+        // Update View Transactions Link Based on Selected Item
+        viewSelect.addEventListener('change', function () {
+            viewLink.href = `/item/${this.value}/transactions/`;
         });
     });
 </script>
