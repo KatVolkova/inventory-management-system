@@ -83,31 +83,48 @@ body {
     padding: 10px 20px;
     font-size: 1rem;
 }
+.cancel-button {
+    background-color: #6c757d; /* Gray background */
+    color: #fff; /* White text */
+    border: 1px solid #6c757d; /* Match border color with background */
+    border-radius: 4px; /* Slightly rounded corners */
+    padding: 8px 16px; /* Add padding for size consistency */
+    text-align: center; /* Center text inside the button */
+    display: inline-block; /* Ensure proper button appearance */
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out; /* Faster transition */
+}
 
+/* Hover effect for the Cancel button */
+.cancel-button:hover {
+    background-color: #fff; /* White background */
+    color: #6c757d; /* Gray text */
+    border-color: #6c757d; /* Gray border */
+    text-decoration: none; /* Remove underline if any */
+}
 .chart-container {
     margin-top: 20px;
 }
 /* Quick Actions Section*/
 .quick-actions {
-    border: 2px solid #343a40; /* Border to highlight the section */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Inner padding for spacing */
-    background-color: #ffffff; /* Background color for contrast */
-    margin: 20px 0; /* Margin to separate from other elements */
+    border: 2px solid #343a40; 
+    border-radius: 10px; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    margin: 20px 0; 
 }
 
 .quick-actions h4 {
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase; /* Make the heading uppercase */
-    color: #343a40; /* Match the brand color */
-    margin-bottom: 15px; /* Space below the heading */
+    text-transform: uppercase; 
+    color: #343a40; 
+    margin-bottom: 15px; 
     text-align: center;
 }
 
 .quick-actions-buttons a {
-    flex: 1 1 auto; /* Ensure buttons are responsive */
-    max-width: 200px; /* Set a maximum width for buttons */
+    flex: 1 1 auto; 
+    max-width: 200px; 
     text-align: center;
 }
 

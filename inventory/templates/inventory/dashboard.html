@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load humanize %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4 text-center">Dashboard</h2>
@@ -216,21 +216,8 @@
                 }
             }
         });
-        // Integration of Transaction Modal Logic
-        const recordLink = document.getElementById('recordTransactionLink');
-        const recordSelect = document.getElementById('recordItemSelect');
-        const viewLink = document.getElementById('viewTransactionsLink');
-        const viewSelect = document.getElementById('viewItemSelect');
-
-        // Update Record Transaction Link Based on Selected Item
-        recordSelect.addEventListener('change', function () {
-            recordLink.href = `/item/${this.value}/record-transaction/`;
-        });
-
-        // Update View Transactions Link Based on Selected Item
-        viewSelect.addEventListener('change', function () {
-            viewLink.href = `/item/${this.value}/transactions/`;
-        });
+        
     });
 </script>
+<script src="{% static 'js/transactions.js' %}"></script>
 {% endblock %}
