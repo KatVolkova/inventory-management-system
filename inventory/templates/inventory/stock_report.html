@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4 text-center">Stock Report</h2>
@@ -49,6 +49,11 @@
     <canvas id="stockOverviewChartCanvas" class="stock-chart"></canvas>
     <button class="btn btn-primary mt-2" onclick="exportChart('stockOverviewChartCanvas', 'Total_Quantity_Chart')">Export as Image</button>
 </div>
+<div id="valueBarChart" class="mb-4 stock-chart-container">
+    <h4>Total Value by Category</h4>
+    <canvas id="valueBarChartCanvas" class="stock-chart"></canvas>
+    <button class="btn btn-primary mt-2" onclick="exportChart('valueBarChartCanvas', 'Total_Value_By_Category_Chart')">Export as Image</button>
+</div>
 <div id="categoryPieChart" class="mb-4 stock-chart-container">
     <h4>Category Contribution</h4>
     <canvas id="categoryPieChartCanvas" class="stock-chart"></canvas>
@@ -61,188 +66,19 @@
     <button class="btn btn-primary mt-2" onclick="exportChart('lowStockLineChartCanvas', 'Low_Stock_Trends_Chart')">Export as Image</button>
 </div>
 
-<div id="valueBarChart" class="mb-4 stock-chart-container">
-    <h4>Total Value by Category</h4>
-    <canvas id="valueBarChartCanvas" class="stock-chart"></canvas>
-    <button class="btn btn-primary mt-2" onclick="exportChart('valueBarChartCanvas', 'Total_Value_By_Category_Chart')">Export as Image</button>
-</div>
-</div>
 
-
+</div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    // Get data from Django context and ensure JSON format
-    const chartCategories = JSON.parse('{{ categories|safe|escapejs }}');
-    const chartQuantities = JSON.parse('{{ quantities|safe|escapejs }}');
-    const chartValues = JSON.parse('{{ values|safe|escapejs }}');
-    const chartLowStocks = JSON.parse('{{ low_stocks|safe|escapejs }}');
-
-    // Get the canvas element
-    const ctx = document.getElementById('stockOverviewChartCanvas').getContext('2d');
-
-    // Bar Chart: Total Quantity
-    new Chart(ctx, {
-        type: 'bar', 
-        data: {
-            labels: chartCategories, 
-            datasets: [{
-                label: 'Total Quantity',
-                data: chartQuantities, 
-                backgroundColor: [
-                    '#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'
-                ],
-                borderColor: [
-                    '#40738a', '#b06d6d', '#6db06d', '#b09e6d', '#6d6db0', '#b06db0'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: false,
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            return `Total Quantity: ${tooltipItem.raw}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Total Quantity'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Categories'
-                    }
-                }
-            }
-        }
-    });
-// Pie Chart: Category Contribution
-const pieCtx = document.getElementById('categoryPieChartCanvas').getContext('2d');
-        new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: chartCategories,
-                datasets: [{
-                    data: chartValues,
-                    backgroundColor: ['#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: { position: 'bottom' },
-                    tooltip: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                const percentage = ((tooltipItem.raw / chartValues.reduce((a, b) => a + b, 0)) * 100).toFixed(2);
-                                return `${chartCategories[tooltipItem.dataIndex]}: $${tooltipItem.raw} (${percentage}%)`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Line Chart: Low Stock Trends
-        const lineCtx = document.getElementById('lowStockLineChartCanvas').getContext('2d');
-        new Chart(lineCtx, {
-            type: 'line',
-            data: {
-                labels: chartCategories,
-                datasets: [{
-                    label: 'Low Stock Count',
-                    data: chartLowStocks,
-                    borderColor: '#6a9eaf',
-                    backgroundColor: 'rgba(106, 158, 175, 0.2)',
-                    fill: true
-                }]
-            },
-            options: {
-                plugins: {
-            legend: {
-            display: false // Hides the legend
-                },},
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: true, title: { display: true, text: 'Low Stock Count' } },
-                    x: { title: { display: true, text: 'Categories' } }
-                }
-            }
-        });
-
-        // Horizontal Bar Chart: Total Value by Category
-const horizontalBarCtx = document.getElementById('valueBarChartCanvas').getContext('2d');
-new Chart(horizontalBarCtx, {
-    type: 'bar',
-    data: {
-        labels: chartCategories, 
-        datasets: [{
-            
-            data: chartValues, 
-            backgroundColor: [
-                '#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'
-            ],
-            borderColor: [
-                '#40738a', '#b06d6d', '#6db06d', '#b09e6d', '#6d6db0', '#b06db0'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        indexAxis: 'y', 
-        responsive: true,
-        plugins: {
-            legend: { display: false },
-            tooltip: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return `$${tooltipItem.raw}`;
-                    }
-                }
-            }
-        },
-        scales: {
-            x: { // X-axis for the values
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Total Value (USD)'
-                }
-            },
-            y: { // Y-axis for the categories
-                title: {
-                    display: true,
-                    text: 'Categories'
-                }
-            }
-        }
-    }
-});
-// Export Chart Function
-window.exportChart = function (canvasId, filename) {
-        const canvas = document.getElementById(canvasId);
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png'); // Convert canvas to Base64 image
-        link.download = `${filename}.png`; // Set the file name
-        link.click(); // Trigger the download
+    const chartData = {
+        categories: JSON.parse('{{ categories|safe|escapejs }}'),
+        quantities: JSON.parse('{{ quantities|safe|escapejs }}'),
+        values: JSON.parse('{{ values|safe|escapejs }}'),
+        lowStocks: JSON.parse('{{ low_stocks|safe|escapejs }}')
     };
-
-
-    });
-
 </script>
+<script src="{% static 'js/stock_report.js' %}"></script>
+
+
 
 {% endblock %}
 

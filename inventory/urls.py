@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.http import HttpResponse
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path("", views.dashboard, name='home'),
@@ -15,4 +17,5 @@ urlpatterns = [
     path("item/<int:pk>/record-transaction/", views.record_transaction, name="record-transaction"),
     path("item/<int:pk>/transactions/", views.view_transactions, name="view-transactions"),
     path("stock-report/", views.stock_report, name="stock-report"),
+    path('favicon.ico', RedirectView.as_view(url='/static/images/default-favicon.ico', permanent=True)),
 ]
