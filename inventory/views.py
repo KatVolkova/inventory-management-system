@@ -75,24 +75,32 @@ def record_transaction(request, pk):
     item = get_object_or_404(Item, pk=pk)
 
     if request.method == "POST":
-        form = TransactionForm(request.POST)
-        if form.is_valid():
-            transaction = form.save(commit=False)
-            transaction.item = item
+        try:
+            # Initialize the form with POST data and the item instance
+            form = TransactionForm(request.POST, item=item)
+            if form.is_valid():
+                transaction = form.save(commit=False)
+                transaction.item = item
 
-            # Update item quantity
-            if transaction.transaction_type == 'add':
-                item.quantity += transaction.quantity
-            elif transaction.transaction_type == 'remove':
-                item.quantity -= transaction.quantity
+                # Update item quantity
+                if transaction.transaction_type == 'add':
+                    item.quantity += transaction.quantity
+                elif transaction.transaction_type == 'remove':
+                    item.quantity -= transaction.quantity
 
-            item.save()
-            transaction.save()
-            messages.success(request, "Transaction recorded successfully!")
+                item.save()
+                transaction.save()
+                messages.success(request, "Transaction recorded successfully!")
+                return redirect('item-detail', pk=pk)
+        except Exception as e:
+            # Handle unexpected errors gracefully
+            messages.error(request, f"An error occurred: {str(e)}")
             return redirect('item-detail', pk=pk)
     else:
-        form = TransactionForm()
+        # Initialize the form for a GET request
+        form = TransactionForm(item=item)
 
+    # Render the template with the form
     return render(request, 'inventory/record_transaction.html', {'form': form, 'item': item})
 
 

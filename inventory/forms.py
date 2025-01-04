@@ -28,9 +28,11 @@ class TransactionForm(forms.ModelForm):
         transaction_type = cleaned_data.get('transaction_type')
         quantity = cleaned_data.get('quantity')
 
-        if transaction_type == 'remove' and quantity > self.item.quantity:
-            raise forms.ValidationError("Cannot remove more than available stock!")
-
+        if transaction_type == 'remove':
+            if not self.item:
+                raise forms.ValidationError("Item is not provided for validation.")
+            if quantity > self.item.quantity:
+                raise forms.ValidationError("Cannot remove more than available stock!")
         return cleaned_data
 
 class SelectItemForm(forms.Form):
