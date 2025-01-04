@@ -42,7 +42,7 @@ class ItemEditView(View):
     def get(self, request, pk):
         item = get_object_or_404(Item, pk=pk)
         form = ItemForm(instance=item)
-        return render(request, "inventory/item_edit.html", {"form": form, "item": item})
+        return render(request, "inventory/item_form.html", {"form": form, "item": item})
 
 
     def post(self, request, pk):
@@ -52,7 +52,7 @@ class ItemEditView(View):
             form.save()
             messages.success(request, "Item updated successfully!")
             return HttpResponseRedirect(reverse("item-detail", args=[pk]))
-        return render(request, "inventory/item_edit.html", {"form": form, "item": item})
+        return render(request, "inventory/item_form.html", {"form": form, "item": item})
 
 
 
@@ -160,10 +160,10 @@ def add_item(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Item added successfully!")
-            return redirect("home")
+            return redirect("items-list")
     else:
         form = ItemForm()
-    return render(request, "inventory/add_item.html", {"form": form})
+    return render(request, "inventory/item_form.html", {"form": form})
 
 def stock_report(request):
     # Group items by category and calculate all metrics

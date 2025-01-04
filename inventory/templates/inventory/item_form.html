@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2>{{ item.name if item else "Add New Item" }}</h2>
+    <h2>{% if item %}Edit Item: {{ item.name }}{% else %}Add New Item{% endif %}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
