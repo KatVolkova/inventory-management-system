@@ -5,13 +5,8 @@
     <h2 class="text-center">Select an Item to View Transactions</h2>
     <form method="post" class="text-center">
         {% csrf_token %}
-        <label for="item-select" class="form-label">Select Item:</label>
-        <select id="item-select" name="item" class="form-select w-50 mx-auto">
-            {% for item in items %}
-            <option value="{{ item.id }}">{{ item.name }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit" class="btn btn-secondary mt-3">Next</button>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Next</button>
     </form>
 </div>
 {% endblock %}

@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 from django.db import models
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction, Category
-from .forms import CategoryForm, ItemForm, TransactionForm
+from .forms import CategoryForm, ItemForm, TransactionForm, SelectItemForm, SelectItemForViewForm
 
 
 # Create your views here.
@@ -84,9 +84,6 @@ def record_transaction(request, pk):
             if transaction.transaction_type == 'add':
                 item.quantity += transaction.quantity
             elif transaction.transaction_type == 'remove':
-                if transaction.quantity > item.quantity:
-                    messages.error(request, "Cannot remove more than available stock!")
-                    return redirect('record-transaction', pk=pk)
                 item.quantity -= transaction.quantity
 
             item.save()
@@ -103,18 +100,25 @@ def view_transactions(request, pk):
     item = get_object_or_404(Item, pk=pk)
     transactions = item.transactions.all()
 
-    return render(request, 'inventory/view_transactions.html', {'item': item, 'transactions': transactions})
+    paginator = Paginator(transactions, 10)  # Show 10 transactions per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'inventory/view_transactions.html', {'item': item, 'page_obj': page_obj})
 
 def select_item_record_transaction(request):
     """
     View to select an item before redirecting to the Record Transaction page.
     """
     if request.method == 'POST':
-        item_id = request.POST.get('item')
-        return redirect('record-transaction', pk=item_id)
+        form = SelectItemForm(request.POST)
+        if form.is_valid():
+            item = form.cleaned_data['item']
+            return redirect('record-transaction', pk=item.id)
+    else:
+        form = SelectItemForm()
 
-    items = Item.objects.all()
-    return render(request, 'inventory/select_item_record_transaction.html', {'items': items})
+    return render(request, 'inventory/select_item_record_transaction.html', {'form': form})
 
 
 def select_item_view_transactions(request):
@@ -122,11 +126,14 @@ def select_item_view_transactions(request):
     View to select an item before redirecting to the View Transactions page.
     """
     if request.method == 'POST':
-        item_id = request.POST.get('item')
-        return redirect('view-transactions', pk=item_id)
+        form = SelectItemForViewForm(request.POST)
+        if form.is_valid():
+            item = form.cleaned_data['item']
+            return redirect('view-transactions', pk=item.id)
+    else:
+        form = SelectItemForm()
 
-    items = Item.objects.all()
-    return render(request, 'inventory/select_item_view_transactions.html', {'items': items})
+    return render(request, 'inventory/select_item_view_transactions.html', {'form': form})
 
 def add_category(request):
     if request.method == "POST":
