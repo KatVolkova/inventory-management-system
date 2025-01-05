@@ -23,7 +23,7 @@
                 <td>{{ item.low_stock_threshold }}</td>
                 <td class="text-end">
                     <a href="{% url 'item-detail' item.id %}" class="btn btn-primary btn-sm me-2">View</a>
-                    <a href="{% url 'item-edit' item.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                    <a href="{% url 'item-edit' item.id %}" class="btn btn-secondary cancel-button btn-sm">Edit</a>
                 </td>
             </tr>
             {% empty %}

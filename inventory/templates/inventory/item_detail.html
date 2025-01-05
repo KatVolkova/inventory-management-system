@@ -15,7 +15,7 @@
             </p>
             <!-- Back to Inventory Button -->
             <div class="mb-3">
-            <a href="{% url 'items-list' %}" class="btn btn-secondary">Back to Inventory</a>
+            <a href="{% url 'items-list' %}" class="btn btn-secondary cancel-button">Cancel</a>
             </div>
             {% if user.is_authenticated %}
             
@@ -24,7 +24,7 @@
                 <!-- Transaction Buttons -->
                 <div>
                     <a href="{% url 'record-transaction' item.id %}" class="btn btn-primary me-2">Record Transaction</a>
-                    <a href="{% url 'view-transactions' item.id %}" class="btn btn-primary">View Transactions</a>
+                    <a href="{% url 'view-transactions' item.id %}" class="btn btn-primary">View Transaction</a>
                 </div>
             </div>
                 <!-- Edit/Delete Buttons -->
@@ -33,7 +33,7 @@
                     <a href="{% url 'item-edit' item.id %}" class="btn btn-primary me-2">Edit</a>
                     <!-- Trigger Button for Delete Modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                        Delete Item
+                        Delete
                     </button>
                 </div>
                 

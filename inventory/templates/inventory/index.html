@@ -17,8 +17,8 @@
                     aria-label="Search"
                     value="{{ request.GET.q }}"
                 >
-                <button class="btn btn-outline-primary me-2" type="submit">Search</button>
-                <a href="{% url 'items-list' %}" class="btn btn-outline-secondary">Clear</a>
+                <button class="btn btn-primary me-2" type="submit">Search</button>
+                <a href="{% url 'items-list' %}" class="btn btn-secondary cancel-button">Clear</a>
             </form>
         </div>
         

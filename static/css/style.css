@@ -84,22 +84,23 @@ body {
     font-size: 1rem;
 }
 .cancel-button {
-    background-color: #6c757d; /* Gray background */
-    color: #fff; /* White text */
-    border: 1px solid #6c757d; /* Match border color with background */
-    border-radius: 4px; /* Slightly rounded corners */
-    padding: 8px 16px; /* Add padding for size consistency */
-    text-align: center; /* Center text inside the button */
-    display: inline-block; /* Ensure proper button appearance */
-    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out; /* Faster transition */
+    font-weight: bold;
+    background-color: #6c757d; 
+    color: #fff; 
+    border: 1px solid #6c757d; 
+    border-radius: 4px; 
+    padding: 8px 16px; 
+    text-align: center; 
+    display: inline-block; 
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out; 
 }
 
 /* Hover effect for the Cancel button */
 .cancel-button:hover {
-    background-color: #fff; /* White background */
-    color: #6c757d; /* Gray text */
-    border-color: #6c757d; /* Gray border */
-    text-decoration: none; /* Remove underline if any */
+    background-color: #fff; 
+    color: #6c757d; 
+    border-color: #6c757d; 
+    text-decoration: none; 
 }
 .chart-container {
     margin-top: 20px;
@@ -132,7 +133,7 @@ body {
 
 @media (max-width: 768px) {
     .quick-actions-buttons a {
-        width: 100%; /* Stack buttons on smaller screens */
+        width: 100%; 
     }
 }
 
@@ -151,13 +152,38 @@ h2 {
     color: #343a40; 
     margin-bottom: 20px; 
 }
+
+
+/* General Form Container */
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Form Heading */
+.form-container h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+}
 .form-label {
     font-size: 24px;
     font-weight: bold;
     color: #343a40; 
     margin-bottom: 20px; 
 }
+/* Form Fields */
+form .form-control, form .form-select {
+    border-radius: 5px;
+}
 
+/* Accessibility & Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+    }
+}
 /* Masthead Styles */
 .masthead {
     height: 35vh;
@@ -180,6 +206,7 @@ h2 {
 }
 /* Buttons */
 .btn-primary {
+    font-weight: bold;
     background-color: #188181;
     color: #FFFFFF;
     border: none;
@@ -194,12 +221,15 @@ h2 {
     border: 1px solid #188181;
 }
 .btn-danger {
+    font-weight: bold;
     background-color: #FF5733;
     color: #FFFFFF;
-    border: none;
+    border: 1px solid #FFFFFF;
 }
 .btn-danger:hover {
-    background-color: #C70039;
+    background-color: #FFFFFF;
+    color:#FF5733;
+    border: 1px solid #FF5733;
 }
 .dt-buttons {
     margin-bottom: 15px;
