@@ -196,11 +196,15 @@ def stock_report(request):
     values = [data['total_value'] for data in report_data]
     low_stocks = [data['low_stock_count'] for data in report_data]
 
-    # Include all recorded transactions
+    # Fetch all items for the All Inventory Items table
+    items = Item.objects.all().order_by('-updated_at')
+
+    # Fetch all recorded transactions
     transactions = Transaction.objects.select_related('item').all().order_by('-timestamp')
 
     return render(request, 'inventory/stock_report.html', {
         'report_data': report_data,
+        'items': items,
         'transactions': transactions,
         'categories': json.dumps(categories),
         'quantities': json.dumps(quantities),

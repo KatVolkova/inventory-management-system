@@ -140,11 +140,47 @@ $('#transactionsTable').DataTable({
     paging: true,
     searching: true,
     ordering: true,
-    order: [[1, 'desc']], // Sort by date (timestamp column) in descending order
+    order: [[1, 'desc']], 
     columnDefs: [
-        { targets: [0, 3], orderable: false } // Disable ordering on 'Item' and 'Type' columns
+        { targets: [0, 3], orderable: false } 
     ]
 });
+// Initialize Inventory Items List Table
+$('#allItemsTable').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            extend: 'copy',
+            text: '<i class="fas fa-copy"></i> Copy',
+            className: 'btn btn-primary'
+        },
+        {
+            extend: 'csv',
+            text: '<i class="fas fa-file-csv"></i> CSV',
+            className: 'btn btn-primary'
+        },
+        {
+            extend: 'excel',
+            text: '<i class="fas fa-file-excel"></i> Excel',
+            className: 'btn btn-primary'
+        },
+        {
+            extend: 'pdf',
+            text: '<i class="fas fa-file-pdf"></i> PDF',
+            className: 'btn btn-primary'
+        },
+        {
+            extend: 'print',
+            text: '<i class="fas fa-print"></i> Print',
+            className: 'btn btn-primary'
+        }
+    ],
+    paging: true,
+    searching: true,
+    ordering: true,
+    order: [[5, 'desc']], 
+});
+
 // Initialize Bootstrap tooltips
 $('[title]').tooltip();
 });

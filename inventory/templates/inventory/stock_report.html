@@ -43,6 +43,40 @@
         </tfoot>
     </table>
 </div>
+<!-- All Items Table -->
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">All Inventory Items</h2>
+    <div class="table-responsive">
+        <table id="allItemsTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Last Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.sku }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.price|floatformat:2 }}</td>
+                    <td>{{ item.category.name }}</td>
+                    <td>{{ item.updated_at|date:"F d, Y H:i" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No items available in the inventory.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 <!-- Recorded Transactions Table -->
 <div  class="table-responsive mt-5">
     <h2 class="text-center">Recorded Transactions</h2>

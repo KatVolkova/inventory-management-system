@@ -280,25 +280,29 @@ form .form-control, form .form-select {
 
 table#stockReportTable,
 table#lowStockItemsTable,
-table#transactionsTable {
+table#transactionsTable,
+table#allItemsTable {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 1rem;
 }
 table#stockReportTable tbody tr:nth-child(odd),
 table#lowStockItemsTable tbody tr:nth-child(odd),
-table#transactionsTable tbody tr:nth-child(odd){
+table#transactionsTable tbody tr:nth-child(odd),
+table#allItemsTable tbody tr:nth-child(odd){
     background-color: #f9f9f9;
 }
 table#stockReportTable tbody tr:hover,
 table#lowStockItemsTable tbody tr:hover,
-table#transactionsTable tbody tr:hover {
+table#transactionsTable tbody tr:hover,
+table#allItemsTable tbody tr:hover {
     background-color: #f1f1f1;
     cursor: pointer;
 }
 table#stockReportTable thead th,
 table#lowStockItemsTable thead th,
-table#transactionsTable thead th {
+table#transactionsTable thead th,
+table#allItemsTable thead th {
     background-color: #188181;
     color: #ffffff;
     text-align: center;
