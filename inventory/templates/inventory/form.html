@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="form-container" style="max-width: 500px; width: 100%;">
+        <h3 class="text-center mb-4">{{ heading }}</h3>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex justify-content-center gap-2 mt-4">
+                <button type="submit" class="btn btn-primary" aria-label="{{ button_label }}">{{ button_label }}</button>
+                <a href="{{ cancel_url }}" class="btn btn-secondary cancel-button">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

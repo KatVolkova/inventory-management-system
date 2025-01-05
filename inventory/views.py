@@ -37,27 +37,6 @@ class ItemDetailView(generic.DetailView):
     template_name = "inventory/item_detail.html"
     context_object_name = "item"
 
-
-class ItemEditView(View):
-    def get(self, request, pk):
-        item = get_object_or_404(Item, pk=pk)
-        form = ItemForm(instance=item)
-        return render(request, "inventory/item_form.html", {"form": form, "item": item})
-
-
-    def post(self, request, pk):
-        item = get_object_or_404(Item, pk=pk)
-        form = ItemForm(request.POST, instance=item)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Item updated successfully!")
-            return HttpResponseRedirect(reverse("item-detail", args=[pk]))
-        return render(request, "inventory/item_form.html", {"form": form, "item": item})
-
-
-
-
-
 class ItemDeleteView(View):
     def post(self, request, pk):
         item = get_object_or_404(Item, pk=pk)
@@ -65,6 +44,34 @@ class ItemDeleteView(View):
         messages.success(request, "Item deleted successfully!")
         return HttpResponseRedirect(reverse("home"))
 
+def add_or_edit_item(request, pk=None):
+    if pk:
+        # Editing an existing item
+        item = get_object_or_404(Item, pk=pk)
+        form = ItemForm(instance=item)
+        heading = f"Edit Item: {item.name}"
+        success_message = f"Item '{item.name}' updated successfully!"
+    else:
+        # Adding a new item
+        item = None
+        form = ItemForm()
+        heading = "Add New Item"
+        success_message = "Item added successfully!"
+
+    if request.method == "POST":
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            saved_item = form.save()
+            messages.success(request, success_message)
+            # Redirect based on whether it's an add or edit
+            return redirect("item-detail", pk=saved_item.pk)
+    
+    return render(request, "inventory/form.html", {
+        "form": form,
+        "heading": heading,
+        "button_label": "Save",
+        "cancel_url": reverse("items-list"),
+    })
 
 def low_stock_items(request):
     low_stock_items = Item.objects.filter(quantity__lte=models.F('low_stock_threshold'))
@@ -143,27 +150,33 @@ def select_item_view_transactions(request):
 
     return render(request, 'inventory/select_item_view_transactions.html', {'form': form})
 
-def add_category(request):
-    if request.method == "POST":
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Category added successfully!")
-            return redirect("home")
+def add_category(request, pk=None):
+    if pk:
+        category = get_object_or_404(Category, pk=pk)
+        form = CategoryForm(instance=category)
+        heading = f"Edit Category: {category.name}"
+        success_message = f"Category '{category.name}' updated successfully!"
     else:
+        category = None
         form = CategoryForm()
-    return render(request, "inventory/add_category.html", {"form": form})
+        heading = "Add New Category"
+        success_message = "Category added successfully!"
 
-def add_item(request):
     if request.method == "POST":
-        form = ItemForm(request.POST)
+        form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             form.save()
-            messages.success(request, "Item added successfully!")
-            return redirect("items-list")
-    else:
-        form = ItemForm()
-    return render(request, "inventory/item_form.html", {"form": form})
+            messages.success(request, success_message)
+            return redirect("home")
+    
+    return render(request, "inventory/form.html", {
+        "form": form,
+        "heading": heading,
+        "button_label": "Save",
+        "cancel_url": reverse("home"),
+    })
+
+
 
 def stock_report(request):
     # Group items by category and calculate all metrics
