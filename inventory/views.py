@@ -150,6 +150,7 @@ def select_item_view_transactions(request):
 
     return render(request, 'inventory/select_item_view_transactions.html', {'form': form})
 
+
 def add_category(request, pk=None):
     if pk:
         category = get_object_or_404(Category, pk=pk)
@@ -195,8 +196,12 @@ def stock_report(request):
     values = [data['total_value'] for data in report_data]
     low_stocks = [data['low_stock_count'] for data in report_data]
 
+    # Include all recorded transactions
+    transactions = Transaction.objects.select_related('item').all().order_by('-timestamp')
+
     return render(request, 'inventory/stock_report.html', {
         'report_data': report_data,
+        'transactions': transactions,
         'categories': json.dumps(categories),
         'quantities': json.dumps(quantities),
         'values': json.dumps(values),
