@@ -1,21 +1,24 @@
+/* jshint esversion: 6 */
+/* global Chart */
+import { initializeChart, setupChartExport } from './chart.js';
+
 document.addEventListener('DOMContentLoaded', function () {
-    const chartData = document.getElementById('chart-data');
+    const chartDataElement = document.getElementById('chart-data');
+
+    if (!chartDataElement) {
+        console.error('Chart data element not found.');
+        return;
+    }
 
     try {
-        // Parse data from the dataset attributes
-        const categories = JSON.parse(chartData.dataset.categories || '[]');
-        const quantities = JSON.parse(chartData.dataset.quantities || '[]');
-        const values = JSON.parse(chartData.dataset.values || '[]');
-        const lowStocks = JSON.parse(chartData.dataset.lowstocks || '[]');
+        // Parse data from dataset attributes
+        const categories = JSON.parse(chartDataElement.dataset.categories || '[]');
+        const quantities = JSON.parse(chartDataElement.dataset.quantities || '[]');
+        const values = JSON.parse(chartDataElement.dataset.values || '[]');
+        const lowStocks = JSON.parse(chartDataElement.dataset.lowstocks || '[]');
 
-        // Debugging: Log parsed data
-        console.log('Categories:', categories);
-        console.log('Quantities:', quantities);
-        console.log('Values:', values);
-        console.log('Low Stocks:', lowStocks);
-
-        // Initialize Stock Overview Chart
-        new Chart(document.getElementById('stockOverviewChart'), {
+        // Initialize Charts
+        initializeChart('stockOverviewChart', {
             type: 'bar',
             data: {
                 labels: categories,
@@ -35,8 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Initialize Low Stock Trends Chart
-        new Chart(document.getElementById('lowStockLineChart'), {
+        initializeChart('lowStockLineChart', {
             type: 'line',
             data: {
                 labels: categories,
@@ -51,10 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    title: { display: true, text: 'Low Stock Trends' },
-                },
+                plugins: { legend: { display: false } },
                 scales: {
                     y: { ticks: { display: false }, grid: { display: false } },
                     x: { ticks: { maxRotation: 0, font: { size: 10 } } }
@@ -62,8 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Initialize Total Value by Category Chart
-        new Chart(document.getElementById('valueBarChart'), {
+        initializeChart('valueBarChart', {
             type: 'bar',
             data: {
                 labels: categories,
@@ -77,10 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 indexAxis: 'y',
-                plugins: {
-                    legend: { display: false },
-                    title: { display: true, text: 'Total Value by Category' },
-                },
+                plugins: { legend: { display: false } },
                 scales: {
                     x: { ticks: { display: false }, grid: { display: false } },
                     y: { ticks: { font: { size: 10 } } }
@@ -88,8 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Initialize Category Contribution (Pie Chart)
-        new Chart(document.getElementById('categoryPieChart'), {
+        initializeChart('categoryPieChart', {
             type: 'pie',
             data: {
                 labels: categories,
@@ -101,15 +95,14 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    title: { display: true, text: 'Category Contribution' },
-                }
+                plugins: { legend: { display: true } },
             }
         });
 
     } catch (error) {
-        // Log errors if any occur during parsing or initialization
-        console.error('Error parsing JSON data:', error);
+        console.error('Error initializing charts:', error);
     }
+
+    // Setup chart export functionality
+    setupChartExport();
 });

@@ -9,7 +9,7 @@ from django.db import models
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction, Category
 from .forms import CategoryForm, ItemForm, TransactionForm, SelectItemForm, SelectItemForViewForm
-
+from .utils import prepare_stock_data
 
 # Create your views here.
 
@@ -191,10 +191,7 @@ def stock_report(request):
     ).order_by(sort)
 
     # Prepare data for the chart
-    categories = [data['category__name'] for data in report_data]
-    quantities = [data['total_quantity'] for data in report_data]
-    values = [data['total_value'] for data in report_data]
-    low_stocks = [data['low_stock_count'] for data in report_data]
+    stock_data = prepare_stock_data()
 
     # Fetch all items for the All Inventory Items table
     items = Item.objects.all().order_by('-updated_at')
@@ -206,10 +203,10 @@ def stock_report(request):
         'report_data': report_data,
         'items': items,
         'transactions': transactions,
-        'categories': json.dumps(categories),
-        'quantities': json.dumps(quantities),
-        'values': json.dumps(values),
-        'low_stocks': json.dumps(low_stocks),
+        'categories': json.dumps(stock_data['categories']),
+        'quantities': json.dumps(stock_data['quantities']),
+        'values': json.dumps(stock_data['values']),
+        'low_stocks': json.dumps(stock_data['low_stocks']),
         })
 
 
@@ -221,18 +218,10 @@ def dashboard(request):
     low_stock_count = Item.objects.filter(quantity__lte=F('low_stock_threshold')).count()
 
     # Data for charts
-    report_data = Item.objects.values('category__name').annotate(
-        total_quantity=Sum('quantity'),
-        total_value=Sum(F('quantity') * F('price'), output_field=FloatField()),
-        low_stock_count=Count('id', filter=Q(quantity__lte=F('low_stock_threshold')))
-    )
+    stock_data = prepare_stock_data()
     # Fetch Items
     items = Item.objects.all()
-    # Prepare data for charts
-    categories = [data['category__name'] for data in report_data]
-    quantities = [data['total_quantity'] for data in report_data]
-    values = [data['total_value'] for data in report_data]
-    low_stocks = [data['low_stock_count'] for data in report_data] 
+    
 
     # Pass the data to the template
     return render(request, 'inventory/dashboard.html', {
@@ -240,9 +229,9 @@ def dashboard(request):
         'total_categories': total_categories,
         'total_value': total_value,
         'low_stock_count': low_stock_count,
-        'categories': json.dumps(categories),
-        'quantities': json.dumps(quantities),
-        'values': json.dumps(values),
-        'low_stocks': json.dumps(low_stocks),
+        'categories': json.dumps(stock_data['categories']),
+        'quantities': json.dumps(stock_data['quantities']),
+        'values': json.dumps(stock_data['values']),
+        'low_stocks': json.dumps(stock_data['low_stocks']),
     })
 

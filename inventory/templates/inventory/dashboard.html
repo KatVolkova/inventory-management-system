@@ -56,8 +56,6 @@
 
     <!-- Charts Grid -->
     <div class="row">
-        
-
         <!-- Total Quantity Chart -->
         <div class="col-md-6 mb-4">
             <a href="/stock-report/#stockOverviewChart">
@@ -89,7 +87,6 @@
             <a href="/stock-report/#lowStockLineChart">
             <div class="card">
                 <div class="card-header text-center">
-                    
                 </div>
                 <div class="card-body">
                     <canvas id="lowStockLineChart" aria-label="Line chart showing trends in low-stock items" role="img"></canvas>
@@ -102,122 +99,24 @@
         <div class="col-md-6 mb-4">
             <a href="/stock-report/#valueBarChart">
             <div class="card">
-                <div class="card-header text-center">
-                </div>
+                <div class="card-header text-center"></div>
                 <div class="card-body">
                     <canvas id="valueBarChart" aria-label="Horizontal Bar chart showing total value of items by category" role="img"></canvas>
                 </div>
             </div>
-        </div>
-    </a>
+        </a>
     </div>
+</div>
     <p class="text-center text-muted">Click on any chart to view detailed stock reports for that category.</p>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const categories = JSON.parse('{{ categories|safe|escapejs }}');
-        const quantities = JSON.parse('{{ quantities|safe|escapejs }}');
-        const values = JSON.parse('{{ values|safe }}');
-        const lowStocks = JSON.parse('{{ low_stocks|safe }}');
-
-        // Stock Overview Chart
-        new Chart(document.getElementById('stockOverviewChart'), {
-            type: 'bar',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: 'Total Quantity',
-                    data: quantities,
-                    backgroundColor: '#85C1E9',
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { ticks: { display: false }, grid: { display: false } },
-                    x: { ticks: { maxRotation: 0, font: { size: 10 } } }
-                    
-                }
-        }
-        });
-
-
-        // Low Stock Trends (Line Chart)
-        new Chart(document.getElementById('lowStockLineChart'), {
-            type: 'line',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: 'Low Stock Count',
-                    data: lowStocks,
-                    borderColor: '#E74C3C',
-                    backgroundColor: 'rgba(106, 158, 175, 0.2)',
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-            legend: { display: false },
-            title: { display: true, text: 'Low Stock Trends' },
-        },
-        scales: {
-            y: { ticks: { display: false }, grid: { display: false } },
-            x: { ticks: { maxRotation: 0, font: { size: 10 } } }
-        }
-            }
-        });
-
-        // Total Value by Category (Horizontal Bar Chart)
-        new Chart(document.getElementById('valueBarChart'), {
-            type: 'bar',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: 'Total Value',
-                    data: values,
-                    backgroundColor: '#a5d4a5',
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: 'y', 
-                plugins: {
-            legend: { display: false },
-            title: { display: true, text: 'Total Value by Category' },
-        },
-        scales: {
-            x: { ticks: { display: false }, grid: { display: false } },
-            y: { ticks: { font: { size: 10 } } }
-        }
-            }
-        
-        });
-        // Category Contribution (Pie Chart)
-        new Chart(document.getElementById('categoryPieChart'), {
-            type: 'pie',
-            data: {
-                labels: categories,
-                datasets: [{
-                    data: values,
-                    backgroundColor: ['#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                legend: { display: false },
-                title: { display: true, text: 'Category Contribution' },
-                }
-            }
-        });
-        
-    });
-</script>
+<!-- Dataset Element for Charts -->
+<div id="chart-data"
+     data-categories='{{ categories }}'
+     data-quantities='{{ quantities }}'
+     data-values='{{ values }}'
+     data-lowstocks='{{ low_stocks }}'>
+</div>
+<!-- JavaScript -->
+<script type="module" src="{% static 'js/dashboard.js' %}"></script>
 <script src="{% static 'js/transactions.js' %}"></script>
 {% endblock %}
