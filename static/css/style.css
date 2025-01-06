@@ -63,6 +63,10 @@ body {
     color: #333; /* Neutral color */
 }
 
+.text-danger-alert{
+    color: #FF5733;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .card-number {

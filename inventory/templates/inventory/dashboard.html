@@ -34,8 +34,8 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card">
                 <div class="card-body text-center">
-                    <h6 class="card-title">LOW STOCK ALERTS</h6>
-                <p class="card-number">{{ low_stock_count|intcomma }}</p>
+                    <h6 class="card-title text-danger-alert">LOW STOCK ALERTS</h6>
+                <p class="card-number text-danger-alert">{{ low_stock_count|intcomma }}</p>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <a href="{% url 'add-item' %}" class="btn btn-primary mx-2" aria-label="Add Item">Add Item</a>
             <a href="{% url 'select-item-record-transaction' %}" class="btn btn-primary mx-2" aria-label="Record Transaction">Add Transaction</a>
             <a href="{% url 'select-item-view-transactions' %}" class="btn btn-primary mx-2" aria-label="View Transactions">View Transaction</a>
-            <a href="{% url 'stock-report' %}" class="btn btn-primary mx-2" aria-label="View Stock Report">Stock Report</a>
+            <a href="{% url 'stock-report' %}" class="btn btn-primary mx-2" aria-label="View Stock Report">Reports</a>
             <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2" aria-label="View Low Stock Table">Low Stock</a>
         </div>
     </div>
@@ -68,8 +68,6 @@
             </div>
         </a>
         </div>
-
-        
 
         <!-- Low Stock Trends (Line Chart) -->
         <div class="col-md-6 mb-4">
