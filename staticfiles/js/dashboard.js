@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
+                plugins: { legend: { display: false },
+                title: { display: true, text: 'Low Stock Trends' }, },
+                        
                 scales: {
                     y: { ticks: { display: false }, grid: { display: false } },
                     x: { ticks: { maxRotation: 0, font: { size: 10 } } }
@@ -75,7 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 indexAxis: 'y',
-                plugins: { legend: { display: false } },
+                plugins: { 
+                    legend: { display: false },
+                    title: { display: true, text: 'Total Value by Category' },
+                         },
                 scales: {
                     x: { ticks: { display: false }, grid: { display: false } },
                     y: { ticks: { font: { size: 10 } } }
@@ -95,7 +100,11 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: true } },
+                plugins: { 
+                    legend: { display: false },
+                    labels: {display: false },
+                    title: { display: true, text: 'Category Contribution' },
+                },
             }
         });
 

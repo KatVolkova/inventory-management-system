@@ -62,6 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 label: 'Low Stock Count',
                 data: chartData.lowStocks,
                 borderColor: '#6a9eaf',
+                backgroundColor: 'rgba(106, 158, 175, 0.2)',
+                tension: 0.3,
+                pointRadius: 4,
+                pointBackgroundColor: '#6a9eaf',
+                fill: true
             }]
         },
         options: {
