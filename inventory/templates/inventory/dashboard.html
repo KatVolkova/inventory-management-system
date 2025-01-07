@@ -3,14 +3,15 @@
 {% load static %}
 {% block content %}
 <div class="container mt-4">
-    <h2 class="mb-4 text-center">Dashboard</h2>
+    <h1 class="mb-4 text-center">Dashboard</h1>
+    <h2 class="mb-4 text-center">Analytics Section</h2>
 
     <!-- Analytics Section -->
     <div class="row">
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the total number of items">
                 <div class="card-body text-center">
-                    <h6 class="card-title">TOTAL ITEMS</h6>
+                    <h3 class="card-title">TOTAL ITEMS</h3>
                     <p class="card-number">{{ total_items|intcomma }}</p>
                 </div>
             </div>
@@ -18,7 +19,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the total number of categories">
                 <div class="card-body text-center">
-                    <h6 class="card-title">TOTAL CATEGORIES</h6>
+                    <h3 class="card-title">TOTAL CATEGORIES</h3>
                 <p class="card-number">{{ total_categories|intcomma }}</p>
                 </div>
             </div>
@@ -26,7 +27,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the total value of items">
                 <div class="card-body text-center">
-                    <h6 class="card-title">TOTAL VALUE</h6>
+                    <h3 class="card-title">TOTAL VALUE</h3>
                 <p class="card-number">${{ total_value|floatformat:2|intcomma }}</p>
                 </div>
             </div>
@@ -34,7 +35,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the number of low stock items">
                 <div class="card-body text-center">
-                    <h6 class="card-title text-danger-alert">LOW STOCK ALERTS</h6>
+                    <h3 class="card-title text-danger-alert">LOW STOCK ALERTS</h3>
                 <p class="card-number text-danger-alert">{{ low_stock_count|intcomma }}</p>
                 </div>
             </div>
@@ -43,7 +44,7 @@
 
     <!-- Quick Actions -->
     <div class="mt-4 quick-actions">
-        <h4>Quick Actions</h4>
+        <h2>Quick Actions</h2>
         <div class="quick-actions-buttons d-flex flex-wrap justify-content-center gap-3 mt-3">
             <a href="{% url 'add-category' %}" class="btn btn-primary mx-2" aria-label="Navigate to Add a new category page">Add Category</a>
             <a href="{% url 'add-item' %}" class="btn btn-primary mx-2" aria-label="Navigate to Add a new item page">Add Item</a>
@@ -53,7 +54,7 @@
             <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2" aria-label="View low stock items in a tabular format">Low Stock</a>
         </div>
     </div>
-
+    <h2 class="mb-4 text-center">Charts Overview</h2>
     <!-- Charts Grid -->
     <div class="row">
         <!-- Total Quantity Chart -->
