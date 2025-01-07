@@ -1,8 +1,7 @@
-/* jshint esversion: 6 */
-/* global Chart */
+/* jshint esversion: 9 */
 import { initializeChart, setupChartExport } from './chart.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     const chartDataElement = document.getElementById('chart-data');
 
     if (!chartDataElement) {
@@ -10,35 +9,49 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    try {
-        // Parse data from dataset attributes
-        const categories = JSON.parse(chartDataElement.dataset.categories || '[]');
-        const quantities = JSON.parse(chartDataElement.dataset.quantities || '[]');
-        const values = JSON.parse(chartDataElement.dataset.values || '[]');
-        const lowStocks = JSON.parse(chartDataElement.dataset.lowstocks || '[]');
+    // Helper Function: Parse Data Attributes
+    const parseChartData = (key, fallback = []) => {
+        try {
+            return JSON.parse(chartDataElement.dataset[key] || JSON.stringify(fallback));
+        } catch (error) {
+            console.error(`Error parsing data for ${key}:`, error);
+            return fallback;
+        }
+    };
 
-        // Initialize Charts
-        initializeChart('stockOverviewChart', {
+    // Retrieve data from the dataset
+    const categories = parseChartData('categories');
+    const quantities = parseChartData('quantities');
+    const values = parseChartData('values');
+    const lowStocks = parseChartData('lowstocks');
+
+    // Common chart options
+    const commonOptions = Object.assign({}, {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: { ticks: { display: false }, grid: { display: false } },
+            x: { ticks: { maxRotation: 0, font: { size: 10 } } }
+        }
+    });
+
+    // Chart Configurations
+    const chartsConfig = [
+        {
+            id: 'stockOverviewChart',
             type: 'bar',
             data: {
                 labels: categories,
                 datasets: [{
                     label: 'Total Quantity',
                     data: quantities,
-                    backgroundColor: '#85C1E9',
+                    backgroundColor: '#85C1E9'
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { ticks: { display: false }, grid: { display: false } },
-                    x: { ticks: { maxRotation: 0, font: { size: 10 } } }
-                }
-            }
-        });
-
-        initializeChart('lowStockLineChart', {
+            options: commonOptions
+        },
+        {
+            id: 'lowStockLineChart',
             type: 'line',
             data: {
                 labels: categories,
@@ -50,67 +63,48 @@ document.addEventListener('DOMContentLoaded', function () {
                     fill: true
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false },
-                title: { display: true, text: 'Low Stock Trends' }, },
-                        
-                scales: {
-                    y: { ticks: { display: false }, grid: { display: false } },
-                    x: { ticks: { maxRotation: 0, font: { size: 10 } } }
-                }
-            }
-        });
-
-        initializeChart('valueBarChart', {
+            options: Object.assign({}, commonOptions, {
+                plugins: { title: { display: true, text: 'Low Stock Trends' } }
+            })
+        },
+        {
+            id: 'valueBarChart',
             type: 'bar',
             data: {
                 labels: categories,
                 datasets: [{
                     label: 'Total Value',
                     data: values,
-                    backgroundColor: '#a5d4a5',
+                    backgroundColor: '#a5d4a5'
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
+            options: Object.assign({}, commonOptions, {
                 indexAxis: 'y',
-                plugins: { 
-                    legend: { display: false },
-                    title: { display: true, text: 'Total Value by Category' },
-                         },
-                scales: {
-                    x: { ticks: { display: false }, grid: { display: false } },
-                    y: { ticks: { font: { size: 10 } } }
-                }
-            }
-        });
-
-        initializeChart('categoryPieChart', {
+                plugins: { title: { display: true, text: 'Total Value by Category' } }
+            })
+        },
+        {
+            id: 'categoryPieChart',
             type: 'pie',
             data: {
                 labels: categories,
                 datasets: [{
                     data: values,
-                    backgroundColor: ['#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4'],
+                    backgroundColor: ['#6a9eaf', '#d4a5a5', '#a5d4a5', '#d4c2a5', '#a5a5d4', '#d4a5d4']
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { 
-                    legend: { display: false },
-                    labels: {display: false },
-                    title: { display: true, text: 'Category Contribution' },
-                },
+                plugins: { title: { display: true, text: 'Category Contribution' } }
             }
-        });
+        }
+    ];
 
-    } catch (error) {
-        console.error('Error initializing charts:', error);
-    }
+    // Initialize all charts
+    chartsConfig.forEach(({ id, type, data, options }) => {
+        initializeChart(id, { type, data, options });
+    });
 
     // Setup chart export functionality
     setupChartExport();
