@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const lowStocks = parseChartData('lowstocks');
 
     // Common chart options
-    const commonOptions = Object.assign({}, {
+    const commonOptions = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
             y: { ticks: { display: false }, grid: { display: false } },
             x: { ticks: { maxRotation: 0, font: { size: 10 } } }
         }
-    });
+    };
 
     // Chart Configurations
     const chartsConfig = [
@@ -43,12 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
             data: {
                 labels: categories,
                 datasets: [{
-                    label: 'Total Quantity',
                     data: quantities,
                     backgroundColor: '#85C1E9'
                 }]
             },
-            options: commonOptions
+            options: {
+                ...commonOptions,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Quantity' 
+                    },
+                    legend: {
+                        display: false 
+                    }
+                }
+            }
         },
         {
             id: 'lowStockLineChart',
@@ -63,9 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     fill: true
                 }]
             },
-            options: Object.assign({}, commonOptions, {
-                plugins: { title: { display: true, text: 'Low Stock Trends' } }
-            })
+            options: {
+                ...commonOptions,
+                plugins: { title: { display: true, text: 'Low Stock Trends' }, legend: { display: false } } 
+            }
         },
         {
             id: 'valueBarChart',
@@ -78,10 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     backgroundColor: '#a5d4a5'
                 }]
             },
-            options: Object.assign({}, commonOptions, {
+            options: {
+                ...commonOptions,
                 indexAxis: 'y',
-                plugins: { title: { display: true, text: 'Total Value by Category' } }
-            })
+                plugins: { title: { display: true, text: 'Total Value by Category' }, legend: { display: false } } 
+            }
         },
         {
             id: 'categoryPieChart',
@@ -96,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { title: { display: true, text: 'Category Contribution' } }
+                plugins: { title: { display: true, text: 'Category Contribution' }, legend: { display: false } } // Remove title and legend
             }
         }
     ];

@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 /* global Chart */
 
-
 // Helper Function: Initialize a Chart
 export function initializeChart(chartId, config) {
     const chartElement = document.getElementById(chartId);
@@ -11,7 +10,6 @@ export function initializeChart(chartId, config) {
         console.warn(`Chart element with id "${chartId}" not found.`);
     }
 }
-
 // Helper Function: Prepare Export Functionality for Charts
 export function setupChartExport() {
     window.exportChart = function (canvasId, filename) {
