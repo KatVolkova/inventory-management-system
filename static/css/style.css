@@ -347,7 +347,7 @@ table#stockReportTable tfoot th {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-.stock-chart-container h4 {
+.stock-chart-container h3 {
     text-align: center;
     margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
