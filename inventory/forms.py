@@ -1,5 +1,5 @@
 from django import forms
-from .models import Item , Category
+from .models import Item, Category
 from .models import Transaction
 
 
@@ -8,10 +8,18 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = ['name', 'description']
 
+
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'sku', 'quantity', 'price', 'description', 'category']
+        fields = [
+            'name',
+            'sku',
+            'quantity',
+            'price',
+            'description',
+            'category'
+            ]
 
 
 class TransactionForm(forms.ModelForm):
@@ -20,7 +28,7 @@ class TransactionForm(forms.ModelForm):
         fields = ['transaction_type', 'quantity']
 
     def __init__(self, *args, **kwargs):
-        self.item = kwargs.pop('item', None)  # Pass the item instance to the form
+        self.item = kwargs.pop('item', None)
         super().__init__(*args, **kwargs)
 
     def clean(self):
@@ -30,10 +38,15 @@ class TransactionForm(forms.ModelForm):
 
         if transaction_type == 'remove':
             if not self.item:
-                raise forms.ValidationError("Item is not provided for validation.")
+                raise forms.ValidationError(
+                    "Item is not provided for validation."
+                    )
             if quantity > self.item.quantity:
-                raise forms.ValidationError("Cannot remove more than available stock!")
+                raise forms.ValidationError(
+                    "Cannot remove more than available stock!"
+                    )
         return cleaned_data
+
 
 class ItemSelectionForm(forms.Form):
     item = forms.ModelChoiceField(
