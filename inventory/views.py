@@ -11,28 +11,32 @@ from .models import Item, Transaction, Category
 from .forms import CategoryForm, ItemForm, TransactionForm, ItemSelectionForm
 from .utils import prepare_stock_data
 # Create your views here.
+
+
 class ItemListView(generic.ListView):
     model = Item
     template_name = "inventory/index.html"
     context_object_name = "object_list"
     paginate_by = 10
     queryset = Item.objects.all()
+
     def get_queryset(self):
         query = self.request.GET.get("q")
         if query:
             return Item.objects.filter(
-                Q(name__icontains=query) | 
-                Q(sku__icontains=query) | 
+                Q(name__icontains=query) |
+                Q(sku__icontains=query) |
                 Q(description__icontains=query) |
                 Q(category__name__icontains=query)
             )
         return super().get_queryset()
-   
+
 
 class ItemDetailView(generic.DetailView):
     model = Item
     template_name = "inventory/item_detail.html"
     context_object_name = "item"
+
 
 class ItemDeleteView(View):
     def post(self, request, pk):
@@ -40,6 +44,7 @@ class ItemDeleteView(View):
         item.delete()
         messages.success(request, "Item deleted successfully!")
         return HttpResponseRedirect(reverse("home"))
+
 
 def add_or_edit_item(request, pk=None):
     if pk:
@@ -62,7 +67,7 @@ def add_or_edit_item(request, pk=None):
             messages.success(request, success_message)
             # Redirect based on whether it's an add or edit
             return redirect("item-detail", pk=saved_item.pk)
-    
+
     return render(request, "inventory/form.html", {
         "form": form,
         "heading": heading,
@@ -70,9 +75,16 @@ def add_or_edit_item(request, pk=None):
         "cancel_url": reverse("items-list"),
     })
 
+
 def low_stock_items(request):
-    low_stock_items = Item.objects.filter(quantity__lte=models.F('low_stock_threshold'))
-    return render(request, "inventory/low_stock.html", {"low_stock_items": low_stock_items})
+    low_stock_items = Item.objects.filter(
+        quantity__lte=models.F('low_stock_threshold')
+        )
+    return render(
+        request,
+        "inventory/low_stock.html",
+        {"low_stock_items": low_stock_items}
+        )
 
 
 # Unified view for selecting an item to record or view transactions
@@ -87,6 +99,8 @@ def select_item_for_transaction(request, action):
     return render(request, 'inventory/transaction_form.html', {'form': form})
 
 # Record a transaction for an item
+
+
 def record_transaction(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     form = TransactionForm(request.POST or None, item=item)
@@ -105,9 +119,15 @@ def record_transaction(request, item_id):
         messages.success(request, "Transaction recorded successfully!")
         return redirect('item-detail', pk=item.id)  # Use 'pk' here
 
-    return render(request, 'inventory/transaction_form.html', {'item': item, 'form': form})
+    return render(
+        request,
+        'inventory/transaction_form.html',
+        {'item': item, 'form': form}
+        )
 
 # View transactions for an item
+
+
 def view_transactions(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     transactions = Transaction.objects.filter(item=item).order_by('-timestamp')
@@ -116,7 +136,12 @@ def view_transactions(request, item_id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'inventory/transaction_list.html', {'item': item, 'page_obj': page_obj})
+    return render(
+        request,
+        'inventory/transaction_list.html',
+        {'item': item, 'page_obj': page_obj}
+        )
+
 
 def add_category(request, pk=None):
     if pk:
@@ -135,7 +160,7 @@ def add_category(request, pk=None):
             form.save()
             messages.success(request, success_message)
             return redirect("home")
-    
+
     return render(request, "inventory/form.html", {
         "form": form,
         "heading": heading,
@@ -152,7 +177,10 @@ def stock_report(request):
         total_value=Sum(F('quantity') * F('price'), output_field=FloatField()),
         item_count=Count('id'),
         avg_price=Avg('price', output_field=FloatField()),
-        low_stock_count=Count('id', filter=Q(quantity__lte=F('low_stock_threshold')))
+        low_stock_count=Count(
+            'id',
+            filter=Q(quantity__lte=F('low_stock_threshold'))
+            )
     ).order_by(sort)
 
     # Prepare data for the chart
@@ -160,11 +188,15 @@ def stock_report(request):
 
     # Fetch all items for the All Inventory Items table
     items = Item.objects.all().order_by('-updated_at')
-    
-    
+
     # Fetch all recorded transactions
 
-    transactions = Transaction.objects.select_related('item').all().order_by('-timestamp')
+    transactions = (
+        Transaction.objects
+        .select_related('item')
+        .all().
+        order_by('-timestamp')
+        )
     return render(request, 'inventory/stock_report.html', {
         'report_data': report_data,
         'items': items,
@@ -180,14 +212,21 @@ def dashboard(request):
     # Calculate analytics data
     total_items = Item.objects.count()
     total_categories = Category.objects.count()
-    total_value = Item.objects.aggregate(total_value=Sum(F('quantity') * F('price')))['total_value'] or 0
-    low_stock_count = Item.objects.filter(quantity__lte=F('low_stock_threshold')).count()
+    total_value = (
+        Item.objects.aggregate(
+            total_value=Sum(F('quantity') * F('price'))
+            )['total_value'] or 0
+        )
+    low_stock_count = (
+        Item.objects.filter(
+            quantity__lte=F('low_stock_threshold')
+            ).count()
+            )
 
     # Data for charts
     stock_data = prepare_stock_data()
     # Fetch Items
     items = Item.objects.all()
-    
 
     # Pass the data to the template
     return render(request, 'inventory/dashboard.html', {
@@ -200,4 +239,3 @@ def dashboard(request):
         'values': json.dumps(stock_data['values']),
         'low_stocks': json.dumps(stock_data['low_stocks']),
     })
-
