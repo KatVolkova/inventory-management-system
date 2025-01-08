@@ -14,6 +14,8 @@ from .utils import prepare_stock_data
 
 
 class ItemListView(generic.ListView):
+    """View to display a paginated list of
+    inventory items with optional search functionality."""
     model = Item
     template_name = "inventory/index.html"
     context_object_name = "object_list"
@@ -21,6 +23,7 @@ class ItemListView(generic.ListView):
     queryset = Item.objects.all()
 
     def get_queryset(self):
+        """Filter the queryset based on a search query parameter."""
         query = self.request.GET.get("q")
         if query:
             return Item.objects.filter(
@@ -33,13 +36,18 @@ class ItemListView(generic.ListView):
 
 
 class ItemDetailView(generic.DetailView):
+    """View to display detailed information
+    about a specific inventory item."""
     model = Item
     template_name = "inventory/item_detail.html"
     context_object_name = "item"
 
 
 class ItemDeleteView(View):
+    """View to handle the deletion of an inventory item."""
     def post(self, request, pk):
+        """Handle the deletion of an inventory
+        item and redirect to the home page."""
         item = get_object_or_404(Item, pk=pk)
         item.delete()
         messages.success(request, "Item deleted successfully!")
@@ -47,6 +55,9 @@ class ItemDeleteView(View):
 
 
 def add_or_edit_item(request, pk=None):
+    """
+    Handle the creation or editing of an inventory item.
+    """
     if pk:
         # Editing an existing item
         item = get_object_or_404(Item, pk=pk)
@@ -77,6 +88,9 @@ def add_or_edit_item(request, pk=None):
 
 
 def low_stock_items(request):
+    """
+    View to display a list of items that are low in stock
+    """
     low_stock_items = Item.objects.filter(
         quantity__lte=models.F('low_stock_threshold')
         )
@@ -87,8 +101,8 @@ def low_stock_items(request):
         )
 
 
-# Unified view for selecting an item to record or view transactions
 def select_item_for_transaction(request, action):
+    """View to handle item selection for recording or viewing transactions."""
     form = ItemSelectionForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         item = form.cleaned_data['item']
@@ -98,10 +112,9 @@ def select_item_for_transaction(request, action):
             return redirect('view-transactions', item_id=item.id)
     return render(request, 'inventory/transaction_form.html', {'form': form})
 
-# Record a transaction for an item
-
 
 def record_transaction(request, item_id):
+    """View to handle recording a transaction for a specific inventory item."""
     item = get_object_or_404(Item, id=item_id)
     form = TransactionForm(request.POST or None, item=item)
     if request.method == 'POST' and form.is_valid():
@@ -125,10 +138,9 @@ def record_transaction(request, item_id):
         {'item': item, 'form': form}
         )
 
-# View transactions for an item
-
 
 def view_transactions(request, item_id):
+    """View to display a paginated list of transactions for a specific item."""
     item = get_object_or_404(Item, id=item_id)
     transactions = Transaction.objects.filter(item=item).order_by('-timestamp')
 
@@ -144,6 +156,7 @@ def view_transactions(request, item_id):
 
 
 def add_category(request, pk=None):
+    """View to add a new category or edit an existing one."""
     if pk:
         category = get_object_or_404(Category, pk=pk)
         form = CategoryForm(instance=category)
@@ -170,7 +183,8 @@ def add_category(request, pk=None):
 
 
 def stock_report(request):
-    # Group items by category and calculate all metrics
+    """View to generate and display a stock report
+    with aggregated metrics and visualizations."""
     sort = request.GET.get('sort', 'category')
     report_data = Item.objects.values('category__name').annotate(
         total_quantity=Sum('quantity'),
@@ -209,6 +223,8 @@ def stock_report(request):
 
 
 def dashboard(request):
+    """View to display the inventory dashboard with
+    analytics and visualizations."""
     # Calculate analytics data
     total_items = Item.objects.count()
     total_categories = Category.objects.count()

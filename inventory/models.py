@@ -20,6 +20,7 @@ class Category(models.Model):
 
 
 class Item(models.Model):
+    """Model representing an inventory item with stock and category details."""
     name = models.CharField(max_length=100, unique=True)
     sku = models.CharField(max_length=50, unique=True)
     quantity = models.PositiveIntegerField()
@@ -46,6 +47,8 @@ class Item(models.Model):
 
     @property
     def is_low_stock(self):
+        """Check if the item's stock is below
+        or equal to the low stock threshold."""
         return self.quantity <= self.low_stock_threshold
 
     def __str__(self):
@@ -53,6 +56,7 @@ class Item(models.Model):
 
 
 class Transaction(models.Model):
+    """Model representing a stock transaction for an inventory item."""
     TRANSACTION_TYPE_CHOICES = [
         ('add', 'Add Stock'),
         ('remove', 'Remove Stock'),

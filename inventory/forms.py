@@ -4,12 +4,14 @@ from .models import Transaction
 
 
 class CategoryForm(forms.ModelForm):
+    """Form for creating and editing Category instances."""
     class Meta:
         model = Category
         fields = ['name', 'description']
 
 
 class ItemForm(forms.ModelForm):
+    """Form for creating and editing Item instances."""
     class Meta:
         model = Item
         fields = [
@@ -23,6 +25,7 @@ class ItemForm(forms.ModelForm):
 
 
 class TransactionForm(forms.ModelForm):
+    """Form for recording and validating stock transactions."""
     class Meta:
         model = Transaction
         fields = ['transaction_type', 'quantity']
@@ -49,6 +52,7 @@ class TransactionForm(forms.ModelForm):
 
 
 class ItemSelectionForm(forms.Form):
+    """Form for selecting an item from the inventory."""
     item = forms.ModelChoiceField(
         queryset=Item.objects.all(),
         empty_label="Select an item...",
