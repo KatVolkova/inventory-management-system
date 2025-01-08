@@ -97,9 +97,9 @@ $(document).ready(function () {
             dom: 'Bfrtip',
             buttons: dataTableButtons,
             language: dataTableLanguage,
+            stateSave: true,
             drawCallback: function () {
                 updatePaginationAria();
-                updatePaginationLinks(tableId); // Add valid href attributes
             },
             ...additionalOptions // Allow overriding or adding custom options
         });
