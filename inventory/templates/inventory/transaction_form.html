@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    {% if item %}
+        <h3>Record a New Transaction for {{ item.name }}</h3>
+    {% else %}
+        <h3 class="text-center">Select an Item to Record a New Transaction</h3>
+    {% endif %}
+    
+    <!-- Display Form Errors -->
+    {% if form.errors %}
+        <ul class="text-danger">
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ field|capfirst }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex {% if item %}justify-content-start{% else %}justify-content-center{% endif %} gap-2 mt-3">
+            <button type="submit" class="btn btn-primary" aria-label="{% if item %}Record Transaction{% else %}Next{% endif %}">
+                {% if item %}Record Transaction{% else %}Next{% endif %}
+            </button>
+            <a href="{% if item %}{% url 'item-detail' item.id %}{% else %}{% url 'home' %}{% endif %}" 
+               class="btn btn-secondary cancel-button" aria-label="Cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

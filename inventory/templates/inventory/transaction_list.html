@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    {% if item %}
+        <h2>Transaction History for {{ item.name }}</h2>
+    {% else %}
+        <h2 class="text-center">Select an Item to View Transactions</h2>
+    {% endif %}
+    
+    <!-- Form for selecting an item -->
+    <form method="post" class="text-center {% if item %}d-none{% endif %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3" aria-label="Next">Next</button>
+    </form>
+    
+    {% if item %}
+        <!-- Transaction Table -->
+        <table class="table table-striped table-hover mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in page_obj %}
+                <tr>
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.get_transaction_type_display }}</td>
+                    <td>{{ transaction.quantity }}</td>
+                    <td>{{ transaction.timestamp|date:"F d, Y H:i" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No transactions recorded.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary" aria-label="Previous Page">Previous</a>
+                {% endif %}
+            </div>
+            <div>
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </div>
+            <div>
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary" aria-label="Next Page">Next</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Back to Item Button -->
+        <div class="text-center mt-4">
+            <a href="{% url 'item-detail' item.id %}" class="btn btn-secondary" aria-label="Back to Item">Back to Item</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

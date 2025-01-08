@@ -35,24 +35,13 @@ class TransactionForm(forms.ModelForm):
                 raise forms.ValidationError("Cannot remove more than available stock!")
         return cleaned_data
 
-class SelectItemForm(forms.Form):
+class ItemSelectionForm(forms.Form):
     item = forms.ModelChoiceField(
         queryset=Item.objects.all(),
         empty_label="Select an item...",
         widget=forms.Select(attrs={
             'class': 'form-select w-50 mx-auto',
-            'aria-label': 'Select an item to record a new transaction',
+            'aria-label': 'Select an item',
             'id': 'item-select'
-        })
-    )
-
-class SelectItemForViewForm(forms.Form):
-    item = forms.ModelChoiceField(
-        queryset=Item.objects.all(),
-        empty_label="Select an item to view transactions...",
-        widget=forms.Select(attrs={
-            'class': 'form-select w-50 mx-auto',
-            'aria-label': 'Select an item to view transactions',
-            'id': 'item-select-view'
         })
     )

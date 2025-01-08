@@ -8,18 +8,15 @@ from django.core.paginator import Paginator
 from django.db import models
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction, Category
-from .forms import CategoryForm, ItemForm, TransactionForm, SelectItemForm, SelectItemForViewForm
+from .forms import CategoryForm, ItemForm, TransactionForm, ItemSelectionForm
 from .utils import prepare_stock_data
-
 # Create your views here.
-
 class ItemListView(generic.ListView):
     model = Item
     template_name = "inventory/index.html"
     context_object_name = "object_list"
     paginate_by = 10
     queryset = Item.objects.all()
-
     def get_queryset(self):
         query = self.request.GET.get("q")
         if query:
@@ -78,78 +75,48 @@ def low_stock_items(request):
     return render(request, "inventory/low_stock.html", {"low_stock_items": low_stock_items})
 
 
-def record_transaction(request, pk):
-    item = get_object_or_404(Item, pk=pk)
+# Unified view for selecting an item to record or view transactions
+def select_item_for_transaction(request, action):
+    form = ItemSelectionForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        item = form.cleaned_data['item']
+        if action == 'record':
+            return redirect('record-transaction', item_id=item.id)
+        elif action == 'view':
+            return redirect('view-transactions', item_id=item.id)
+    return render(request, 'inventory/transaction_form.html', {'form': form})
 
-    if request.method == "POST":
-        try:
-            # Initialize the form with POST data and the item instance
-            form = TransactionForm(request.POST, item=item)
-            if form.is_valid():
-                transaction = form.save(commit=False)
-                transaction.item = item
+# Record a transaction for an item
+def record_transaction(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    form = TransactionForm(request.POST or None, item=item)
+    if request.method == 'POST' and form.is_valid():
+        transaction = form.save(commit=False)
+        transaction.item = item
 
-                # Update item quantity
-                if transaction.transaction_type == 'add':
-                    item.quantity += transaction.quantity
-                elif transaction.transaction_type == 'remove':
-                    item.quantity -= transaction.quantity
+        # Update item quantity based on transaction type
+        if transaction.transaction_type == 'add':
+            item.quantity += transaction.quantity
+        elif transaction.transaction_type == 'remove':
+            item.quantity -= transaction.quantity
 
-                item.save()
-                transaction.save()
-                messages.success(request, "Transaction recorded successfully!")
-                return redirect('item-detail', pk=pk)
-        except Exception as e:
-            # Handle unexpected errors gracefully
-            messages.error(request, f"An error occurred: {str(e)}")
-            return redirect('item-detail', pk=pk)
-    else:
-        # Initialize the form for a GET request
-        form = TransactionForm(item=item)
+        item.save()
+        transaction.save()
+        messages.success(request, "Transaction recorded successfully!")
+        return redirect('item-detail', pk=item.id)  # Use 'pk' here
 
-    # Render the template with the form
-    return render(request, 'inventory/record_transaction.html', {'form': form, 'item': item})
+    return render(request, 'inventory/transaction_form.html', {'item': item, 'form': form})
 
+# View transactions for an item
+def view_transactions(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    transactions = Transaction.objects.filter(item=item).order_by('-timestamp')
 
-def view_transactions(request, pk):
-    item = get_object_or_404(Item, pk=pk)
-    transactions = item.transactions.all()
-
-    paginator = Paginator(transactions, 10)  # Show 10 transactions per page
+    paginator = Paginator(transactions, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'inventory/view_transactions.html', {'item': item, 'page_obj': page_obj})
-
-def select_item_record_transaction(request):
-    """
-    View to select an item before redirecting to the Record Transaction page.
-    """
-    if request.method == 'POST':
-        form = SelectItemForm(request.POST)
-        if form.is_valid():
-            item = form.cleaned_data['item']
-            return redirect('record-transaction', pk=item.id)
-    else:
-        form = SelectItemForm()
-
-    return render(request, 'inventory/select_item_record_transaction.html', {'form': form})
-
-
-def select_item_view_transactions(request):
-    """
-    View to select an item before redirecting to the View Transactions page.
-    """
-    if request.method == 'POST':
-        form = SelectItemForViewForm(request.POST)
-        if form.is_valid():
-            item = form.cleaned_data['item']
-            return redirect('view-transactions', pk=item.id)
-    else:
-        form = SelectItemForm()
-
-    return render(request, 'inventory/select_item_view_transactions.html', {'form': form})
-
+    return render(request, 'inventory/transaction_list.html', {'item': item, 'page_obj': page_obj})
 
 def add_category(request, pk=None):
     if pk:
@@ -162,7 +129,6 @@ def add_category(request, pk=None):
         form = CategoryForm()
         heading = "Add New Category"
         success_message = "Category added successfully!"
-
     if request.method == "POST":
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
@@ -176,7 +142,6 @@ def add_category(request, pk=None):
         "button_label": "Save",
         "cancel_url": reverse("home"),
     })
-
 
 
 def stock_report(request):
@@ -195,10 +160,11 @@ def stock_report(request):
 
     # Fetch all items for the All Inventory Items table
     items = Item.objects.all().order_by('-updated_at')
-
+    
+    
     # Fetch all recorded transactions
-    transactions = Transaction.objects.select_related('item').all().order_by('-timestamp')
 
+    transactions = Transaction.objects.select_related('item').all().order_by('-timestamp')
     return render(request, 'inventory/stock_report.html', {
         'report_data': report_data,
         'items': items,

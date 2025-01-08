@@ -48,8 +48,8 @@
         <div class="quick-actions-buttons d-flex flex-wrap justify-content-center gap-3 mt-3">
             <a href="{% url 'add-category' %}" class="btn btn-primary mx-2" aria-label="Navigate to Add a new category page">Add Category</a>
             <a href="{% url 'add-item' %}" class="btn btn-primary mx-2" aria-label="Navigate to Add a new item page">Add Item</a>
-            <a href="{% url 'select-item-record-transaction' %}" class="btn btn-primary mx-2" aria-label="Navigate to Record a new transaction page">Add Transaction</a>
-            <a href="{% url 'select-item-view-transactions' %}" class="btn btn-primary mx-2" aria-label="Navigate to View recorded transactions page">View Transaction</a>
+            <a href="{% url 'select-item' 'record' %}" class="btn btn-primary mx-2" aria-label="Select an item to record a transaction">Add Transaction</a>
+            <a href="{% url 'select-item' 'view' %}" class="btn btn-primary mx-2" aria-label="Select an item to view transactions">View Transaction</a>
             <a href="{% url 'stock-report' %}" class="btn btn-primary mx-2" aria-label="View all stock reports">Reports</a>
             <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2" aria-label="View low stock items in a tabular format">Low Stock</a>
         </div>
