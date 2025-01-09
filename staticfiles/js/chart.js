@@ -5,9 +5,10 @@
 export function initializeChart(chartId, config) {
     const chartElement = document.getElementById(chartId);
     if (chartElement) {
-        new Chart(chartElement.getContext('2d'), config);
+        return new Chart(chartElement.getContext('2d'), config);
     } else {
         console.warn(`Chart element with id "${chartId}" not found.`);
+        return null;
     }
 }
 // Helper Function: Prepare Export Functionality for Charts
