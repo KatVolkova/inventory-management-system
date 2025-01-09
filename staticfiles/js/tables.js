@@ -74,22 +74,6 @@ $(document).ready(function () {
         });
     };
 
-    // Update pagination links with valid href attributes
-    const updatePaginationLinks = (tableId) => {
-        $(`${tableId}_paginate a`).each(function () {
-            const text = $(this).text().trim();
-            if (!isNaN(text)) {
-                // For numbered pages, set href with a query parameter
-                $(this).attr('href', `?page=${text}`);
-            } else if (text.toLowerCase() === 'previous') {
-                // For the "Previous" button
-                $(this).attr('href', '?page=prev');
-            } else if (text.toLowerCase() === 'next') {
-                // For the "Next" button
-                $(this).attr('href', '?page=next');
-            }
-        });
-    };
 
     // Reusable DataTable initialization function
     const initializeDataTable = (tableId, additionalOptions = {}) => {
