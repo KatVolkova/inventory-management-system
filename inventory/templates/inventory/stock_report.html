@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container mt-4">
+    <h1 class="visually-hidden">Reporting</h1>
     <h2 class="mb-4 text-center">Stock Report</h2>
     <div class="table-responsive">
     <table id="stockReportTable" class="table table-bordered" aria-label="Stock report table showing inventory details by category">
@@ -106,6 +107,7 @@
     </table>
 </div>
 <!-- Chart Container -->
+<h2 class="mb-4 text-center">Stock Charts</h2>
 <div id="stockOverviewChart" class="mb-4 stock-chart-container gap-top">
     <h3>Total Quantity</h3>
     <canvas id="stockOverviewChartCanvas" class="stock-chart"></canvas>

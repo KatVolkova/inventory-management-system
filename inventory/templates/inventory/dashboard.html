@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4 text-center">Dashboard</h1>
+    <h1 class="visually-hidden">Dashboard</h1>
     <h2 class="mb-4 text-center">Analytics Section</h2>
 
     <!-- Analytics Section -->
@@ -11,7 +11,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the total number of items">
                 <div class="card-body text-center">
-                    <h3 class="card-title">TOTAL ITEMS</h3>
+                    <h3 class="analytics-card-title">TOTAL ITEMS</h3>
                     <p class="card-number">{{ total_items|intcomma }}</p>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the total number of categories">
                 <div class="card-body text-center">
-                    <h3 class="card-title">TOTAL CATEGORIES</h3>
+                    <h3 class="analytics-card-title">TOTAL CATEGORIES</h3>
                 <p class="card-number">{{ total_categories|intcomma }}</p>
                 </div>
             </div>
@@ -27,7 +27,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the total value of items">
                 <div class="card-body text-center">
-                    <h3 class="card-title">TOTAL VALUE</h3>
+                    <h3 class="analytics-card-title">TOTAL VALUE</h3>
                 <p class="card-number">${{ total_value|floatformat:2|intcomma }}</p>
                 </div>
             </div>
@@ -35,7 +35,7 @@
         <div class="col-sm-6 col-md-3 mb-4">
             <div class="card shadow analytics-card" aria-label="Card showing the number of low stock items">
                 <div class="card-body text-center">
-                    <h3 class="card-title text-danger-alert">LOW STOCK ALERTS</h3>
+                    <h3 class="analytics-card-title text-danger-alert">LOW STOCK ALERTS</h3>
                 <p class="card-number text-danger-alert">{{ low_stock_count|intcomma }}</p>
                 </div>
             </div>
@@ -54,16 +54,17 @@
             <a href="{% url 'low-stock' %}" class="btn btn-danger mx-2" aria-label="View low stock items in a tabular format">Low Stock</a>
         </div>
     </div>
+    <!-- Charts Overview -->
     <h2 class="mb-4 text-center">Charts Overview</h2>
     <!-- Charts Grid -->
     <div class="row">
         <!-- Total Quantity Chart -->
         <div class="col-md-6 mb-4">
             <a href="/stock-report/#stockOverviewChart" aria-label="View detailed stock overview in stock report">
-            <div class="card" aria-label="Bar chart card showing total quantity of items by category">
+            <div class="mini-chart-card" aria-label="Bar chart card showing total quantity of items by category">
                 <div class="card-header text-center">
                 </div>
-                <div class="card-body">
+                <div class="mini-chart-card-body">
                     <canvas id="stockOverviewChart" aria-label="Bar chart showing total quantity of items by category" role="img"></canvas>
                 </div>
             </div>
@@ -73,10 +74,10 @@
         <!-- Low Stock Trends (Line Chart) -->
         <div class="col-md-6 mb-4">
             <a href="/stock-report/#lowStockLineChart" aria-label="View detailed low stock trends in stock report">
-            <div class="card" aria-label="Line chart card showing low stock items">
+            <div class="mini-chart-card" aria-label="Line chart card showing low stock items">
                 <div class="card-header text-center">
                 </div>
-                <div class="card-body">
+                <div class="mini-chart-card-body">
                     <canvas id="lowStockLineChart" aria-label="Line chart showing trends in low-stock items" role="img"></canvas>
                 </div>
             </div>
@@ -86,9 +87,9 @@
         <!-- Total Value by Category (Horizontal Bar Chart) -->
         <div class="col-md-6 mb-4">
             <a href="/stock-report/#valueBarChart" aria-label="View detailed value by category information in stock report">
-            <div class="card" aria-label="Horizontal bar chart card showing total value of items by category">
+            <div class="mini-chart-card" aria-label="Horizontal bar chart card showing total value of items by category">
                 <div class="card-header text-center"></div>
-                <div class="card-body">
+                <div class="mini-chart-card-body">
                     <canvas id="valueBarChart" aria-label="Horizontal Bar chart showing total value of items by category" role="img"></canvas>
                 </div>
             </div>
@@ -97,16 +98,16 @@
         <!-- Category Contribution (Pie Chart) -->
         <div class="col-md-6 mb-4">
             <a href="/stock-report/#categoryPieChart" aria-label="View detailed pie chart in stock report">
-            <div class="card" aria-label="Pie chart card showing the proportion of each category">
+            <div class="mini-chart-card" aria-label="Pie chart card showing the proportion of each category">
                 <div class="card-header text-center"></div>
-                <div class="card-body">
+                <div class="mini-chart-card-body">
                     <canvas id="categoryPieChart" aria-label="Pie chart showing each category contribution" role="img"></canvas>
                 </div>
              </div>
             </a>
         </div>
     </div>
-    <p class="text-center text-muted">Click on any chart to view detailed stock reports for that category.</p>
+    <p class="text-center">Click on any chart to view detailed stock reports for that category.</p>
 </div>
 <!-- Dataset Element for Charts -->
 <div id="chart-data"

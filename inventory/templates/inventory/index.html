@@ -4,13 +4,14 @@
 
 <!-- index.html content starts here -->
 <div class="container-fluid">
+    <h1 class="visually-hidden">Manage Inventory</h1>
     <div class="row">
 
         <!-- Search Form -->
         <div class="col-12 mb-4">
-            <form method="get" action="{% url 'items-list' %}" class="d-flex">
+            <form method="get" action="{% url 'items-list' %}" class="search-form">
                 <input
-                    class="form-control me-2"
+                    class="search-input"
                     type="search"
                     name="q"
                     placeholder="Search items by name, SKU, category or description"
