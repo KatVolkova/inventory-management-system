@@ -9,7 +9,7 @@
     <!-- Analytics Section -->
     <div class="row">
         <div class="col-sm-6 col-md-3 mb-4">
-            <div class="card shadow analytics-card" role="region" aria-labelledby="total-items-number">
+            <div class="card shadow analytics-card">
                 <div class="card-body text-center">
                     <h3 class="analytics-card-title">TOTAL ITEMS</h3>
                     <p class="card-number">{{ total_items|intcomma }}</p>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-md-3 mb-4">
-            <div class="card shadow analytics-card" role="region" aria-labelledby="total-categories-number">
+            <div class="card shadow analytics-card">
                 <div class="card-body text-center">
                     <h3 class="analytics-card-title">TOTAL CATEGORIES</h3>
                 <p class="card-number">{{ total_categories|intcomma }}</p>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-md-3 mb-4">
-            <div class="card shadow analytics-card" role="region" aria-labelledby="total-value-title">
+            <div class="card shadow analytics-card" >
                 <div class="card-body text-center">
                     <h3 class="analytics-card-title">TOTAL VALUE</h3>
                 <p class="card-number">${{ total_value|floatformat:2|intcomma }}</p>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-md-3 mb-4">
-            <div class="card shadow analytics-card" role="region" aria-labelledby="low-stock-items">
+            <div class="card shadow analytics-card" >
                 <div class="card-body text-center">
                     <h3 class="analytics-card-title text-danger-alert">LOW STOCK ALERTS</h3>
                 <p class="card-number text-danger-alert">{{ low_stock_count|intcomma }}</p>
