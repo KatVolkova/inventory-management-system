@@ -247,6 +247,9 @@ form .form-control, form .form-select {
 .card-body {
     padding: 20px;
 }
+.list-group-item h3 a{
+    text-decoration: none;
+}
 /* Pagination Page*/
 .pagination .page-link {
     color: #1e7a7a;
@@ -361,6 +364,55 @@ form .form-control, form .form-select {
 
     .card-number {
         font-size: 1.75rem; 
+    }  
+}
+
+/* Media Query: For tablets and smaller screens (1005px and below) */
+@media screen and (max-width: 1005px) {
+/* Manage Stock Page */
+    .list-group-item .btn {
+        display: none; 
+    }
+    .list-group-item h3 a{
+        text-decoration: underline;
     }
 }
+
 /* Media Query: For tablets and smaller screens (768px and below) */
+@media screen and (max-width: 768px) {
+    /* Manage Stock Page */
+    .list-group-item h3 {
+        font-size: 1rem; 
+    }
+
+    .list-group-item p {
+        font-size: 0.8rem; 
+    }
+
+    .list-group-item {
+        padding: 0.75rem; 
+    }
+}
+ 
+/* Media Query: For small screens (507px and below) */
+@media screen and (max-width: 507px) {
+    /* Manage Stock Page - Adjust search form layout */
+    .search-form {
+        display: flex;
+        flex-direction: column; 
+        align-items: stretch; 
+        gap: 0.5rem; 
+    }
+
+    .search-input {
+        font-size: 0.85rem; 
+        padding: 8px; 
+        width: 100%; 
+    }
+
+    .search-form .btn {
+        font-size: 0.85rem; 
+        padding: 8px; 
+        width: 100%; 
+    }
+}

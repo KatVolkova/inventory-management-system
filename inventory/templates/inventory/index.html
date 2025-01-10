@@ -3,7 +3,7 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid">
+<div class="container mt-4">
     <h1 class="visually-hidden">Manage Inventory</h1>
     <div class="row">
 
@@ -33,7 +33,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center mb-2">
                     <div>
                         <h3 class="mb-1">
-                            <a href="{% url 'item-detail' item.pk %}" class="text-decoration-none">{{ item.name }}</a>
+                            <a href="{% url 'item-detail' item.pk %}" >{{ item.name }}</a>
                             {% if item.is_low_stock %}
                             <span class="badge bg-danger ms-2">Low Stock</span>
                             {% endif %}
