@@ -158,6 +158,17 @@ h3 {
 form .form-control, form .form-select {
     border-radius: 5px;
 }
+.form-container .btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    min-width: 100px; 
+    height: 40px; 
+    padding: 0; 
+    line-height: 40px; 
+    font-size: 1rem;
+    margin: 0 8px; 
+}
 
 
 /* Dashboard */
@@ -474,4 +485,19 @@ td.text-end {
     .container-error-message p {
         font-size: 0.9rem; 
     }
+    /* Forms */
+    .form-container {
+        padding: 1rem; 
+    }
+
+    .form-container textarea,
+    .form-container input {
+        width: 100%; 
+        max-width: 100%; 
+    }
+    .form-container .btn {
+        width: 100%; 
+        margin: 8px 0; 
+    }
+    
 }
