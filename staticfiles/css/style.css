@@ -419,7 +419,26 @@ td.text-end {
     .list-group-item {
         padding: 0.75rem; 
     }
-    
+    /* 404 Page */
+    .container-error-message {
+        margin: 0 auto; 
+        padding: 1.5rem; 
+        max-width: 90%; 
+        box-shadow: none; 
+    }
+
+    .container-error-message h1 {
+        font-size: 2rem; 
+    }
+
+    .container-error-message p {
+        font-size: 1rem; 
+    }
+    .container-error-message .btn {
+        font-size: 0.9rem; 
+        padding: 10px 20px; 
+        width: 100%; 
+    }
 }
  
 /* Media Query: For small screens (507px and below) */
@@ -442,5 +461,17 @@ td.text-end {
         font-size: 0.85rem; 
         padding: 8px; 
         width: 100%; 
+    }
+    /* 404 Page */
+    .container-error-message {
+        padding: 1rem; 
+    }
+
+    .container-error-message h1 {
+        font-size: 1.75rem; 
+    }
+
+    .container-error-message p {
+        font-size: 0.9rem; 
     }
 }
