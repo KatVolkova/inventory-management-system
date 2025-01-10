@@ -37,4 +37,5 @@ urlpatterns = [
             url='/static/images/favicon.png',
             permanent=True)
         ),
+    path('test-404/', views.test_404_view, name='test-404'),
 ]

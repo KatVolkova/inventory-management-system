@@ -310,3 +310,25 @@ form .form-control, form .form-select {
     margin: 0; 
     font-size: 0.9rem; 
 }
+
+/* Error message */
+.container-error-message {
+    text-align: center;
+    max-width: 600px;
+    background: #FFFFFF; 
+    padding: 2rem;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.container-error-message h1 {
+    font-size: 4rem;
+    color: #dd4b3a; 
+    margin: 0 0 1rem;
+}
+
+.container-error-message p {
+    font-size: 1.25rem;
+    color: #343a40; 
+    margin: 0 0 2rem;
+}
