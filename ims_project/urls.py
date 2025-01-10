@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from inventory.error_views import custom_404_view
+from inventory.error_views import custom_404_view, custom_500_view
 
 
 urlpatterns = [
@@ -26,3 +26,4 @@ urlpatterns = [
 ]
 
 handler404 = 'inventory.error_views.custom_404_view'
+handler500 = 'inventory.error_views.custom_500_view'

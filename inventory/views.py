@@ -5,7 +5,6 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import Http404
 from django.db import models
 from django.db.models import Sum, Count, Avg, F, Q, FloatField
 from .models import Item, Transaction, Category
@@ -257,6 +256,3 @@ def dashboard(request):
         'values': json.dumps(stock_data['values']),
         'low_stocks': json.dumps(stock_data['low_stocks']),
     })
-
-def test_404_view(request):
-    raise Http404("This is a test 404 error")
