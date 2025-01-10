@@ -338,22 +338,29 @@ form .form-control, form .form-select {
 }
 
 /* Media queries */
-
-/* Large screens (laptops and desktops) */
-@media screen and (min-width: 992px) {
-    /* Navigation */
-    .navbar-text {
-        display: inline; 
-    }
-}
-
-/* Small screens (tablets and phones) */
-@media screen and (max-width: 991px) {
+/* Media Query: For tablets and medium screens (1189px to 768px) */
+@media screen and (max-width: 1189px) and (min-width: 768px) {
     /* Navigation */
     .navbar-text {
         display: none; 
     }
+    /* Dashboard */
+    /* Analytics Section */
+    .analytics-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 150px; 
+    }
 
+    .analytics-card-title {
+        font-size: 1rem; 
+        margin-bottom: 0.5rem;
+    }
 
+    .card-number {
+        font-size: 1.75rem; 
+    }
 }
-
+/* Media Query: For tablets and smaller screens (768px and below) */
