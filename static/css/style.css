@@ -418,6 +418,10 @@ td.text-end {
 
 /* Media Query: For tablets and smaller screens (768px and below) */
 @media screen and (max-width: 768px) {
+    /* Naviagation */
+    .navbar-text {
+        display: none !important; /* Ensure it's always hidden */
+    }
     /* Manage Stock Page */
     .list-group-item h3 {
         font-size: 1rem; 
