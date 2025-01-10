@@ -336,3 +336,24 @@ form .form-control, form .form-select {
     color: #343a40; 
     margin: 0 0 2rem;
 }
+
+/* Media queries */
+
+/* Large screens (laptops and desktops) */
+@media screen and (min-width: 992px) {
+    /* Navigation */
+    .navbar-text {
+        display: inline; 
+    }
+}
+
+/* Small screens (tablets and phones) */
+@media screen and (max-width: 991px) {
+    /* Navigation */
+    .navbar-text {
+        display: none; 
+    }
+
+
+}
+
