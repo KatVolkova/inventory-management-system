@@ -376,6 +376,33 @@ form .form-control, form .form-select {
     .list-group-item h3 a{
         text-decoration: underline;
     }
+/* Stock Control Page */
+.dataTables_filter {
+    margin-bottom: 1rem; 
+}
+
+.table {
+    display: block; 
+    width: 100%; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+}
+
+.btn {
+    font-size: 0.85rem; 
+    padding: 0.5rem 1rem; 
+}
+
+.btn-sm {
+    padding: 0.4rem 0.8rem; 
+}
+
+
+td.text-end {
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 0.5rem; 
+}
 }
 
 /* Media Query: For tablets and smaller screens (768px and below) */
@@ -392,6 +419,7 @@ form .form-control, form .form-select {
     .list-group-item {
         padding: 0.75rem; 
     }
+    
 }
  
 /* Media Query: For small screens (507px and below) */
