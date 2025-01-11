@@ -74,7 +74,6 @@ $(document).ready(function () {
         });
     };
 
-
     // Reusable DataTable initialization function
     const initializeDataTable = (tableId, additionalOptions = {}) => {
         $(tableId).DataTable({
@@ -94,23 +93,28 @@ $(document).ready(function () {
         footerCallback: function (row, data, start, end, display) {
             const api = this.api();
 
+            // Helper function to calculate sum
+            const getTotal = (columnIndex, isCurrency = false) => {
+                return api
+                    .column(columnIndex)
+                    .data()
+                    .reduce((a, b) => {
+                        const value = isCurrency ? parseFloat(b.replace(/[\$,]/g, '')) : parseFloat(b);
+                        return a + (isNaN(value) ? 0 : value);
+                    }, 0);
+            };
+
             // Total Quantity
-            const totalQuantity = api
-                .column(1, { page: 'current' })
-                .data()
-                .reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            const totalQuantity = getTotal(1);
 
             // Total Value
-            const totalValue = api
-                .column(2, { page: 'current' })
-                .data()
-                .reduce((a, b) => parseFloat(a) + parseFloat(b.replace(/[\$,]/g, '')), 0);
+            const totalValue = getTotal(2, true);
 
-            // Average Price
-            const averagePrice =
-                totalValue / api.column(4, { page: 'current' }).data().length || 0;
+            // Average Price (Divide total value by number of items)
+            const totalItems = api.column(4).data().length;
+            const averagePrice = totalItems > 0 ? totalValue / totalItems : 0;
 
-            // Update footer with ARIA live regions
+            // Update footer with totals
             $(api.column(1).footer()).html(totalQuantity).attr('aria-live', 'polite');
             $(api.column(2).footer()).html('$' + totalValue.toFixed(2)).attr('aria-live', 'polite');
             $(api.column(4).footer()).html('$' + averagePrice.toFixed(2)).attr('aria-live', 'polite');
