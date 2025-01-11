@@ -11,7 +11,7 @@ export function initializeChart(chartId, config) {
         return null;
     }
 }
-// Helper Function: Prepare Export Functionality for Charts
+// Helper Function: Export Functionality for Charts
 export function setupChartExport() {
     window.exportChart = function (canvasId, filename) {
         const canvas = document.getElementById(canvasId);
