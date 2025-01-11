@@ -422,6 +422,26 @@ td.text-end {
     .navbar-text {
         display: none !important; /* Ensure it's always hidden */
     }
+    /* Dashboard */
+    /* Analytics Section */
+    .card-number {
+        font-size: 1.5rem; 
+        word-wrap: break-word; 
+    }
+    /* Quick Actions Section */
+    .quick-actions-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; 
+        align-items: center; 
+        gap: 10px; 
+    }
+
+    .quick-actions-buttons a {
+        width: 100%; 
+        max-width: 180px; 
+        margin: 0 auto; 
+    }
     /* Manage Stock Page */
     .list-group-item h3 {
         font-size: 1rem; 
