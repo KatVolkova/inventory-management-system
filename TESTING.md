@@ -75,31 +75,169 @@ Return to the [Inventory Management System README.md](README.md).
 
 ## User Story Validation
 
+| **User Story**                  | **What to Expect**                                                                                                                                                                                                                                                                                                                                                                    | **Result** |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| **Add new items to inventory**  | A user can add a new item (name, quantity, SKU, category, description) via “Add Item” form in the quick activity section on the Dashboard page. If invalid details are entered, an error message is displayed.                                                                                                                                                                          |  Works as expected          |
+| **View Inventory**              | A user can view a list of inventory items, their quantity, price, category, SKU, and last updated timestamp on the Manage Inventory Page. “View Details” button allows deletion and editing of the item’s information. Only a logged-in user can use the delete option.                                                                                                               |   Works as expected         |
+| **Edit existing items**         | A user can edit an item, including its name, SKU, quantity, and category using the “View Details” button on the Manage Inventory page.                                                                                                                                                                                                                                                 |    Works as expected        |
+| **Delete items from inventory** | Only a logged-in user can delete an item using the “View Details” button on the Manage Inventory page.                                                                                                                                                                                                                                                                                  | Works as expected            | 
+| **Search inventory items**      | A user can search for an inventory item, category, SKU, or description via the Search bar on the Manage Inventory Page.                                                                                                                                                                                                                                                                |     Works as expected       |
+| **Track Low Stock Alerts**      | A user can view the table listing low-stock items on the Stock Control page. The quantity limit is 10. A line chart shows low-stock trends. The full version of the chart is displayed on the Reporting page. Its mini version is displayed on the Dashboard page.                                                                                                                    |  Works as expected          |
+| **Record Inventory transactions** | A user can record inventory transactions (stock in/stock out) via the “Add Transaction” button in the quick actions section on the Dashboard page or via the “View Details” button on the Manage Inventory page.                                                                                                                                                                     |    Works as expected        |
+| **View Recorded Transactions**  | A user can view recorded transactions (stock in/stock out) via the “View Transaction” button in the quick actions section on the Dashboard page or via the “View Details” button on the Manage Inventory page. All recorded transactions are listed in the table on the Reporting page.                                                                                                     |     Works as expected       |
+| **Register an account**         | Given an email and password, a user can register an account. When registration is successful, the user is redirected to the login page. If the provided details are invalid, an error message is displayed.                                                                                                                                                                            |    Works as expected        |
+| **Log In / Log Out**            | When valid credentials are entered, the user is logged in. When the "Log Out" button is clicked, the user is logged out and redirected to the homepage. If invalid credentials are entered during login, an error message is displayed.                                                                                                                                                   |   Works as expected         |
+| **Add Interactive Dashboard**   | A user can view the Dashboard page that includes: The Analytics Section (cards with key indicators); The Quick Actions Section where the user can add items, categories, add and view transactions, and go to the reporting page and stock control page. The Charts Overview Section where data is displayed visually.                                                                     |  Works as expected          |
+| **Add Reporting page**          | A user can view the Reporting page that includes: a table of all inventory items; a table of all recorded transactions; a stock performance summary table; and corresponding charts.                                                                                                                                                                                                  |   Works as expected         |
+| **Add Charts to the Reporting page** | A user can view the following charts on the Reporting page: A bar chart showing the total quantity of items per category; A line chart displaying the trends in low-stock items over time; A pie chart showing the proportion of total inventory value by category; A horizontal bar chart showing total value by category. All charts include tooltips displaying data values when hovering over chart elements. Users can export each chart as an image. |    Works as expected        |
+
 ## Features Testing
 
 ### Naviagation Bar
 
+| Feature              | Action                                                                                     | Expected Result                                                                                       | Actual Result |
+|-----------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|---------------|
+| Navigation Links      | Click each navigation link (Dashboard, Manage Inventory, Stock Control, Reporting, Admin Panel, Logout). | Each link redirects to the correct page.                                                             |               |
+| Active Link Highlight | Navigate to a page (e.g., Dashboard).                                                     | The corresponding link (e.g., Dashboard) is highlighted in the navigation bar.                       |               |
+| Slogan Visibility     | Resize the browser to small screen size (below 768px).                                     | "Manage your inventory efficiently" slogan disappears.                                               |               |
+| Toggle Menu           | Resize the browser to small screen size (below 768px) and click the hamburger menu icon.   | The navigation menu collapses into a toggle menu and expands/collapses when the toggle button is clicked. |               |
+| Responsive Design     | Check the navigation bar on various screen sizes (large, medium, small).                  | The navigation bar adjusts seamlessly, maintaining usability and aesthetics.                          |               |
+
+
 ### Tables
+
+| Feature                      | Action                               | Expected Result                                     | Actual Result |
+|------------------------------|--------------------------------------|---------------------------------------------------|---------------|
+| Stock Control - Low Stock Items | Test search bar functionality       | Search bar filters rows correctly based on input  |               |
+| Stock Control - Low Stock Items | Test export functionality           | File is downloaded with correct data              |               |
+| Stock Control - Low Stock Items | Check responsiveness on smaller screens | Table scrolls horizontally without breaking       |               |
+| Reporting - Stock Report     | Check pagination                    | Rows are paginated correctly, and navigation works|               |
+| Reporting - Stock Report     | Test table styling consistency       | Table headers and rows have consistent styles     |               |
+| Reporting - Stock Report     | Check column sorting                | Columns are sortable in ascending/descending order|               |
+| All Inventory Items          | Verify rows and columns display correctly | Data matches backend inventory records            |               |
+| All Inventory Items          | Check "Last Updated" column formatting | Dates are formatted as "Month DD, YYYY HH:mm"    |               |
+| All Inventory Items          | Test edit/view buttons functionality | Redirects to correct pages for each item          |               |
+| Recorded Transactions        | Verify transactions are listed chronologically | Most recent transactions are displayed first      |               |
+| Recorded Transactions        | Test export buttons for transactions | Transactions are exported to files with correct data |            |
+| Recorded Transactions        | Check responsiveness on mobile      | Table adjusts correctly for smaller screens       |               |
+
 
 ### Forms
 
-### Dashboard
 
+| **Feature**               | **Action**                                                                 | **Expected Result**                                                                                                     | **Actual Result** |
+|---------------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|-------------------|
+| Add Item Form             | Fill out all fields and click "Save".                                     | The new item is added to the inventory, and the user is redirected to the inventory list.                              |                   |
+|                           | Leave a required field blank and click "Save".                           | A validation error message appears, and the form is not submitted.                                                    |                   |
+|                           | Click "Cancel".                                                          | The form resets or redirects the user to the previous page without saving changes.                                     |                   |
+| Add Category Form         | Fill out all fields and click "Save".                                     | The new category is added, and the user is redirected to the category list.                                            |                   |
+|                           | Leave the "Name" field blank and click "Save".                           | A validation error message appears for the "Name" field, and the form is not submitted.                                |                   |
+|                           | Click "Cancel".                                                          | The user is redirected to the previous page without saving changes.                                                   |                   |
+| Record Transaction Form   | Select a transaction type, enter quantity, and click "Record Transaction". | The transaction is recorded, and the inventory is updated accordingly.                                                |                   |
+|                           | Leave the quantity blank and click "Record Transaction".                 | A validation error message appears, and the form is not submitted.                                                    |                   |
+|                           | Click "Cancel".                                                          | The user is redirected to the previous page without recording the transaction.                                         |                   |
+| Edit Item Form            | Modify an item's details and click "Save".                               | The item's details are updated, and the user is redirected to the updated inventory list.                              |                   |
+|                           | Click "Cancel".                                                          | The form resets or redirects the user to the previous page without saving changes.                                     |                   |
+| View Transactions Page    | Select an item and view its transaction history.                         | A list of all transactions related to the selected item is displayed.                                                 |                   |
+| User Registration Form    | Fill out all fields and click "Register".                                | The user account is created, and the user is redirected to the login page.                                             |                   |
+|                           | Leave a required field blank and click "Register".                       | A validation error message appears for the blank fields, and the form is not submitted.                                |                   |
+| Login Form                | Enter valid credentials and click "Login".                               | The user is logged in and redirected to the dashboard.                                                                 |                   |
+|                           | Enter invalid credentials and click "Login".                            | An error message appears, and the user remains on the login page.                                                     |                   |
+|                           | Leave the fields blank and click "Login".                                | A validation error message appears, and the user is not logged in.                                                    |                   |
+| Responsiveness            | Resize the browser to small, medium, and large screen sizes.             | The form and buttons adjust seamlessly across all screen sizes, maintaining usability and aesthetics.                  |                   |
+| Cancel Buttons            | Click "Cancel" on various forms (Add Item, Add Category, Edit Item, etc.)| The form resets or redirects the user to the previous page without saving any changes.                                 |                   |
+| Update Tables and Charts  | Submit a form that updates inventory or transactions.                    | The associated tables and charts update automatically to reflect the changes.                                          |                   |
+
+### Dashboard
 #### Analytics section
+
+| **Feature**                | **Action**                                                                                     | **Expected Result**                                                                                     | **Actual Result** |
+|----------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------|
+| Total Items Card           | Verify the displayed number matches the total items in the inventory.                         | The card shows the correct total count of items.                                                        |                   |
+| Total Categories Card      | Verify the displayed number matches the total categories in the inventory.                    | The card shows the correct total count of categories.                                                   |                   |
+| Total Value Card           | Verify the displayed value matches the total monetary value of items in the inventory.        | The card shows the correct total value in currency format (e.g., `$19,562.65`).                         |                   |
+| Low Stock Alerts Card      | Verify the displayed number matches the count of items below the low-stock threshold.         | The card shows the correct count of low-stock items in red for visibility.                              |                   |
+| Responsiveness             | Resize the browser to small, medium, and large screen sizes.                                  | The cards adjust seamlessly across screen sizes without overlapping or breaking the layout.             |                   |
+| Hover Effect               | Hover over each card.                                                                         | Each card displays a slight hover effect (e.g., shadow or scale) for interactivity.                     |                   |
+| Update on Data Change      | Add or remove items, categories, or transactions in the system.                               | The displayed data on the cards updates dynamically to reflect the changes.                             |                   |
+| Accessibility              | Navigate to the cards using the keyboard (Tab key).                                          | Each card is accessible via the keyboard, and a focus state is displayed for accessibility compliance.  |                   |
+| Mobile Layout              | View the cards on small screens (below 768px).                                                | The cards stack vertically for better readability and fit within the viewport width.                    |                   |
+| Tooltip or Description     | Hover over the card labels or numbers.                                                        | (If applicable) A tooltip or description provides more details about what the number represents.         |                   |
+
 
 #### Quick Actions Section
 
+| **Feature**                | **Action**                                                         | **Expected Result**                                                                                     | **Actual Result** |
+|----------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------|
+| Add Category Button        | Click the "Add Category" button.                                  | Redirects to the "Add New Category" form.                                                               |                   |
+| Add Item Button            | Click the "Add Item" button.                                      | Redirects to the "Add New Item" form.                                                                   |                   |
+| Add Transaction Button      | Click the "Add Transaction" button.                              | Redirects to the "Record a New Transaction" form.                                                       |                   |
+| View Transaction Button     | Click the "View Transaction" button.                             | Redirects to the "View All Transactions" page.                                                          |                   |
+| Reports Button             | Click the "Reports" button.                                      | Redirects to the "Reports" page showing stock and inventory reports.                                    |                   |
+| Low Stock Button           | Click the "Low Stock" button.                                    | Redirects to the "Low Stock Items" page.                                                                |                   |
+| Responsiveness             | Resize the browser to small, medium, and large screen sizes.      | Buttons adjust their size, and layout remains seamless across all screen sizes.                         |                   |
+| Button Colors              | Hover over each button.                                           | Each button's background or border color changes slightly to indicate hover interactivity.              |                   |
+| Accessibility              | Navigate through buttons using the Tab key.                      | Buttons are accessible via keyboard navigation, and focus state is clearly visible.                     |                   |
+| Mobile Layout              | View buttons on small screens (below 768px).                     | Buttons stack vertically or adjust appropriately for better readability and usability on small screens.  |                   |
+| Functional Links           | Verify that each button leads to the correct page when clicked.  | Each button redirects to the intended functionality or form/page.                                       |                   |
+
 #### Charts Overview
 
-### Manage Inventory
+| **Feature**                | **Action**                                                       | **Expected Result**                                                                                     | **Actual Result** |
+|----------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------|
+| Total Quantity Chart       | Hover over each bar in the chart.                               | Displays a tooltip with the category name and total quantity.                                           |                   |
+|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
+|                            | Check that the chart's labels (categories and values) are visible and not overlapping. | Labels and values are clearly displayed without overlapping or truncation.                             |                   |
+| Low Stock Trends Chart     | Hover over each point on the chart.                             | Displays a tooltip with the category name and low stock value.                                          |                   |
+|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
+|                            | Verify the line and area rendering for smoothness and accuracy.  | The line graph and shaded area render smoothly without glitches.                                        |                   |
+| Total Value by Category Chart | Hover over each bar in the chart.                               | Displays a tooltip with the category name and total value.                                              |                   |
+|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
+|                            | Verify that the chart scales proportionally without data loss.   | The chart scales correctly, and all bars are visible and proportional.                                  |                   |
+| Category Contribution Chart| Hover over each segment in the pie chart.                       | Displays a tooltip with the category name and contribution percentage.                                  |                   |
+|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
+|                            | Verify that the segments are distinct and labeled.               | All segments are clearly distinct, and each is labeled or tooltipped accurately.                        |                   |
+| Accessibility              | Navigate to each chart using keyboard navigation.               | Each chart is accessible via keyboard, and tooltips can be triggered by focus or interaction.           |                   |
+| Mobile Responsiveness      | View charts on a mobile device or small screen.                 | All charts stack or resize appropriately for mobile screens without loss of readability or usability.    |                   |
 
+### Manage Inventory
 #### Search Bar
 
-### Reporting page
+| **Feature**                 | **Action**                                                                 | **Expected Result**                                                                                         | **Actual Result** |
+|-----------------------------|---------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-------------------|
+| Search Bar                  | Enter a search term (e.g., item name, SKU, category).                      | The inventory items list updates to show only items matching the search term.                              |                   |
+|                             | Clear the search term using the "Clear" button.                           | The inventory items list resets to display all items.                                                      |                   |
+|                             | Test the search with various inputs (uppercase, lowercase, partial match).| The search is case-insensitive and matches partial terms appropriately.                                     |                   |
+|                             | Resize the browser to small screen sizes.                                 | The search bar adjusts its size, maintains readability, and does not overlap other elements.                |                   |
+| Inventory Items List        | Verify that each item displays its name, SKU, quantity, price, category, and last updated date. | All item details are visible and correctly formatted.                                                       |                   |
+|                             | Check that items with low stock are labeled with a "Low Stock" badge.     | Items below the low stock threshold display a clearly visible red "Low Stock" badge.                       |                   |
+|                             | Resize the browser to small screen sizes.                                 | The inventory items list stacks vertically and maintains readability without layout issues.                 |                   |
+| View Details Button         | Click the "View Details" button for an item.                              | Redirects to the item detail page for the selected item.                                                    |                   |
+|                             | Hover over the "View Details" button.                                     | The button changes appearance (e.g., color, shadow) to indicate interactivity.                              |                   |
+|                             | Resize the browser to small screen sizes.                                 | The "View Details" button adjusts size proportionally and remains aligned with the item details.            |                   |
+| Mobile Responsiveness       | Test the entire page on a mobile device or small screen.                  | The search bar, inventory list, and buttons adjust seamlessly to fit smaller screens without overlapping.   |                   |
 
+### Reporting page
 #### Charts
+| **Feature**        | **Action**                                                                                                                                  | **Expected Result**                                                                                                                                                                | **Actual Result** |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+| Total Quantity      | Hover over bars to view the data tooltips.                                                                                                 | Data tooltips display correct values when hovering over the respective bars.                                                                                                      |                   |
+| Total Value by Category | Hover over bars to view the data tooltips.                                                                                                 | Data tooltips display correct category values and corresponding amounts when hovering over the respective bars.                                                                   |                   |
+| Category Contribution | Hover over the pie chart sections to view the data tooltips.                                                                              | Data tooltips display the correct percentage contribution of each category.                                                                                                       |                   |
+| Low Stock Trends   | Hover over the line chart points to view the data tooltips.                                                                                 | Data tooltips display the correct trend data (e.g., item name and its low stock status).                                                                                          |                   |
+| Export Charts      | Click on the "Export as Image" button for each chart.                                                                                       | A high-quality image of the chart is downloaded.                                                                                                                                  |                   |
+| Responsiveness     | Resize the browser to various screen sizes (large, medium, small).                                                                          | All charts adjust seamlessly across different screen sizes, maintaining readability and proper alignment.                                                                         |                   |
+| Chart Data Accuracy | Verify the data displayed on each chart matches the database values.                                                                        | All chart data reflects accurate values from the database.                                                                                                                        |                   |
 
 ### Footer
+| Feature          | Action                                                                                 | Expected Result                                                                                      | Actual Result |
+|-------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------|
+| Footer Links      | Click each social media link (Facebook, Twitter, Instagram).                          | Each link redirects to the correct respective external website (e.g., Facebook, Twitter, Instagram). |               |
+| Responsive Design | Resize the browser to various screen sizes (large, medium, small).                    | The footer adjusts seamlessly across different screen sizes without overlapping or breaking layout.  |               |
+| Accessibility     | Navigate through the footer links using the keyboard (Tab key) or screen reader tools.| Footer links are focusable, and accessible labels are correctly read by screen readers.              |               |
+| Design Consistency| Verify that the footer design matches the overall theme of the application.           | Footer uses consistent colors, font styles, and spacing aligned with the application's branding.     |               |
+| Link Hover Effect | Hover over each social media link to observe the hover behavior.                      | Links display a hover effect (e.g., underline or color change) to indicate interactivity.            |               |
+
 
 ## Code Validation
 
