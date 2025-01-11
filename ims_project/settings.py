@@ -124,6 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Allow embedding your site in iframes
+X_FRAME_OPTIONS = 'ALLOWALL'
+
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
