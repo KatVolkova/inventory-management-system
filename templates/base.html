@@ -69,11 +69,11 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'stock-report' %}active{% endif %}" 
                     href="{% url 'stock-report' %}" aria-label="View inventory reports">Reporting</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'admin:index' %}active{% endif %}" 
                     href="{% url 'admin:index' %}" aria-label="Open the admin panel">Admin Panel</a>
                 </li>
-                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}" 
                     href="{{ logout_url }}" aria-label="Logout from the app">Logout</a>
