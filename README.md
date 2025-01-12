@@ -30,7 +30,9 @@ The following colour palette has been used:
 
 Screenshots below show an example of the colour palette:
 ![Colour palette example 1](documentation/design/colours/colour_palette_example1.png)
+
 ![Colour palette example 1](documentation/design/colours/colour_palette_example2.png)
+
 ![Colour palette example 1](documentation/design/colours/colour_palette_example3.png)
 
 ### Typography
