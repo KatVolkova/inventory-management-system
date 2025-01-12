@@ -183,21 +183,21 @@ Return to the [Inventory Management System README.md](README.md).
 
 
 ### Manage Inventory
-#### Search Bar
+#### Search Bar and Inventory list
 
 | **Feature**                 | **Action**                                                                 | **Expected Result**                                                                                         | **Actual Result** |
 |-----------------------------|---------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-------------------|
-| Search Bar                  | Enter a search term (e.g., item name, SKU, category).                      | The inventory items list updates to show only items matching the search term.                              |                   |
-|                             | Clear the search term using the "Clear" button.                           | The inventory items list resets to display all items.                                                      |                   |
-|                             | Test the search with various inputs (uppercase, lowercase, partial match).| The search is case-insensitive and matches partial terms appropriately.                                     |                   |
-|                             | Resize the browser to small screen sizes.                                 | The search bar adjusts its size, maintains readability, and does not overlap other elements.                |                   |
-| Inventory Items List        | Verify that each item displays its name, SKU, quantity, price, category, and last updated date. | All item details are visible and correctly formatted.                                                       |                   |
-|                             | Check that items with low stock are labeled with a "Low Stock" badge.     | Items below the low stock threshold display a clearly visible red "Low Stock" badge.                       |                   |
-|                             | Resize the browser to small screen sizes.                                 | The inventory items list stacks vertically and maintains readability without layout issues.                 |                   |
-| View Details Button         | Click the "View Details" button for an item.                              | Redirects to the item detail page for the selected item.                                                    |                   |
-|                             | Hover over the "View Details" button.                                     | The button changes appearance (e.g., color, shadow) to indicate interactivity.                              |                   |
-|                             | Resize the browser to small screen sizes.                                 | The "View Details" button adjusts size proportionally and remains aligned with the item details.            |                   |
-| Mobile Responsiveness       | Test the entire page on a mobile device or small screen.                  | The search bar, inventory list, and buttons adjust seamlessly to fit smaller screens without overlapping.   |                   |
+| Search Bar                  | Enter a search term (e.g., item name, SKU, category).                      | The inventory items list updates to show only items matching the search term.                              | Works as expected                  |
+|                             | Clear the search term using the "Clear" button.                           | The inventory items list resets to display all items.                                                      | Works as expected                  |
+|                             | Test the search with various inputs (uppercase, lowercase, partial match).| The search is case-insensitive and matches partial terms appropriately.                                     | Works as expected                 |
+|                             | Resize the browser to small screen sizes.                                 | The search bar adjusts its size, maintains readability, and does not overlap other elements.                | Works as expected                  |
+| Inventory Items List        | Verify that each item displays its name, SKU, quantity, price, category, and last updated date. | All item details are visible and correctly formatted.                                                       | Works as expected                   |
+|                             | Check that items with low stock are labeled with a "Low Stock" badge.     | Items below the low stock threshold display a clearly visible red "Low Stock" badge.                       | Works as expected                  |
+|                             | Resize the browser to small screen sizes.                                 | The inventory items list stacks vertically and maintains readability without layout issues.                 | Works as expected                   |
+| View Details Button         | Click the "View Details" button for an item.                              | Redirects to the item detail page for the selected item.                                                    | Works as expected                  |
+|                             | Hover over the "View Details" button.                                     | The button changes appearance  to indicate interactivity.                              | Works as expected                   |
+|                             | Resize the browser to small screen sizes.                                 | The "View Details" button disappears on smaller screens, and link is used to redirect to "Item details card".            | Works as expected                   |
+| Mobile Responsiveness       | Test the entire page on a mobile device or small screen.                  | The search bar, inventory list, and buttons adjust seamlessly to fit smaller screens without overlapping.   | Works as expected                  |
 
 ### Reporting page
 #### Charts
