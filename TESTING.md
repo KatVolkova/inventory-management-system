@@ -222,17 +222,16 @@ Return to the [Inventory Management System README.md](README.md).
 ## Code Validation
 
 ### HTML
+Below are the results of HTML validation for each page, using the [W3C Markup Validation Service](https://validator.w3.org):
 
 #### Dashboard Page
-
+![HTML validation of Dashboard page](documentation/validation/html/validation_html_dashboard_result.png)
 #### Manage Inventory Page
-
+![HTML validation of Manage Inventory page](documentation/validation/html/validation_html_manage_inventory_result.png)
 #### Stock Control Page
-
+![HTML validation of Stock Control page](documentation/validation/html/validation_html_stock_control_result.png)
 #### Reporting Page
-
-#### 404 Error
-
+![HTML validation of Reporting page](documentation/validation/html/validation_html_reporting_result.png)
 ### CSS 
 
 ### JavaScript
