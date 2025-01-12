@@ -2,18 +2,37 @@
 ## Site Preview
 ![Inventory Management System website shown on a variety of screen sizes](documentation/site_overview.png)
 
-Visit the deployed site: [Inventory Management System](https://github.com/KatVolkova/inventory-management-system)
+Visit the deployed site: [Inventory Management System](https://inventory-mgmt-app-1aceae60ebf8.herokuapp.com/stock-report/)
 
 
 ## Overview
+
+The Inventory Management System is a web-based application built using Django to manage and track inventory efficiently. This project provides an intuitive interface for users to handle stock management, generate reports, and monitor low-stock items through a responsive and accessible platform. It also displays information visually via interactive charts. 
 
 ## Index
 
 ## Project Description
 
+### Main goals
+
+1. Simplify inventory management tasks
+2. Monitor inventory efficiently
+3. Access comprehensive reports and charts
+4. Provide responsive and exportable features
+
 ### User goals
 
+1. Users want to add, edit, delete inventory items, and record transactions to maintain accurate stock data.
+2. Users want to be able to track stock levels, item details, and low-stock alerts.
+3. Users want to make informed decisions based on charts and detailed stock reports.
+4. Users want to easily locate specific items and track inventory changes.
+
+
 ### Site owner goals
+
+1. Ensure that the inventory data is accurate, up-to-date, and free of errors by providing robust tools for tracking stock levels and transactions.
+2. Streamline the inventory management process by providing a centralized platform that minimizes manual work and improves productivity.
+3. Offer insights and analytics to help users make informed business decisions.
 
 ### Features
 
