@@ -266,8 +266,6 @@ The Inventory Management System is a web-based application built using Django to
 
 ## Design
 
-### Wireframes
-
 ### Colour Scheme
 The following colour palette has been used:
 - **#F4F7FC**: background color for the body, providing a light and clean look.
@@ -359,10 +357,25 @@ To deploy the project on your own computer you can clone it:
 - [Am I Responsive?](http://ami.responsivedesign.is/) To show the website image on a range of devices.
 - [Pixlr](https://pixlr.com/) To re-size favicon
 - [Grammarly](https://app.grammarly.com/ ) - has been used for spell-checking
-- [Balsamiq](https://balsamiq.com/) - Used to create wireframes.
 - [Gitpod](https://gitpod.io/) has been used as an online IDE
 - [Heroku](https://www.heroku.com//) has been used to host the website.
 
 
 ## Credits and References
+
+- Templates for a favicon were taken and customised using [Canva](https://www.canva.com/)
+- Fonts were taken from [Google Fonts](https://fonts.google.com/)
+- Icons for the social networks links were taken from [Font Awesome](https://fontawesome.com/)
+- Favicon was re-sized and converted into webp format using [Pixlr](https://pixlr.com/)
+- [W3 schools](https://www.w3schools.com/) - For general documentation
+- [ChatGPT](https://openai.com/index/chatgpt/) - For general debugging along with other tools and coding advice on using charts and DataTables
+- [Chart.js](https://www.chartjs.org/docs/latest/) - For general documentation
+- [DataTables](https://datatables.net/manual/) - For general documentation
+- [How to use chart.js with Django](https://simpleisbetterthancomplex.com/tutorial/2020/01/19/how-to-use-chart-js-with-django.html) - advice on using Charts.js with Django framework
+- [DataTables Django](https://docs.djangoproject.com/en/5.1/ref/databases/) - django documentation for using DataTables
+- [Stackoverflow](https://stackoverflow.com/) - used for general code advice mostly on css responsiveness 
+- [Views in Django](https://www.geeksforgeeks.org/views-in-django-python/) - provides clarification on using  views in Django
+
+
+
 
