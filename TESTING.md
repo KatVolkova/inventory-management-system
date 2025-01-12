@@ -177,7 +177,7 @@ Return to the [Inventory Management System README.md](README.md).
 |----------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------|
 | All charts       | Hover over each bar in the chart.                               | Displays a tooltip with the category name and total quantity.                                           | Works as expected                  |
 | All charts     | Resize the browser to different screen sizes (large, medium, small).                            | The chart adjusts its size.                                          | Works as expected                  |
-| AAll charts              | Click on any of the four charts to  navigate to the reporting page               |  Link navigates to the full size charts with an export functionality on the Reporting page          |  Works as expected                 |
+
 
 
 ### Manage Inventory
@@ -334,4 +334,4 @@ The use of DataTables and charts may impact performance on mobile devices due to
 
 | **Bug** | **Description**|
 |---------|-----------------|
-| Chart overview link| Clicking on a mini chart in the Chart Overview section redirects to the report page but does not scroll to the specific chart.
+| Chart overview link| Clicking on a mini chart in the Chart Overview section redirects to the report page but does not scroll completely to the exact chart.
