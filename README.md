@@ -1,5 +1,8 @@
-# The Inventory Management System
+# Inventory Management System
 ## Site Preview
+![Inventory Management System website shown on a variety of screen sizes](documentation/site_overview.png)
+
+Visit the deployed site: [Inventory Management System](https://github.com/KatVolkova/inventory-management-system)
 
 
 ## Overview
