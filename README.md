@@ -36,6 +36,200 @@ The Inventory Management System is a web-based application built using Django to
 
 ### Features
 
+#### Favicon
+
+- A recognizable favicon is displayed in the browser tab, improving the site’s branding and making it easy for users to identify the website among open tabs. 
+
+- Fully supported on all modern browsers and devices.
+
+![](documentation/features)
+
+#### Navigation
+
+- A responsive navigation bar with links to key pages: Dashboard, Manage Inventory, Stock Control, Reporting, Register, Login, and Logout.
+
+- Links are highlighted based on the current active page for better user experience.
+
+- Collapsible menu for smaller screen sizes (hamburger menu).
+
+![](documentation/features)
+
+#### Footer
+
+- Includes social media links (Facebook, Twitter, Instagram) with icons.
+
+- Provides users with accessible links to external profiles or pages.
+
+![](documentation/features)
+
+#### Dashboard Page
+
+- Analytics Section: Displays key metrics such as Total Items, Total Categories, Total Value, and Low Stock Alerts.
+
+![](documentation/features)
+
+- Quick Actions: Includes buttons for frequently used actions (e.g., Add Category, Add Item, View Transactions).
+
+![](documentation/features)
+
+- Charts Overview: Visualizations like bar charts, pie charts, and line charts for inventory data. 
+
+![](documentation/features)
+
+- Each chart links to more detailed stock reports.
+
+- Analytics cards adjust to fit smaller screen widths.
+
+- Charts are fully responsive, resizing dynamically to fit any screen size.
+
+![](documentation/features)
+
+#### Manage Inventory
+
+- Provides details for each item, such as SKU, quantity, price, and category.
+
+![](documentation/features)
+
+- A searchable and paginated list of inventory items.
+
+![](documentation/features)
+
+- Each item has a View Details button to view, edit, delete, or manage transactions.
+
+![](documentation/features)
+
+- The list adapts to smaller screens, displaying essential details in a readable format.
+
+- Pagination and search functionality are accessible on all devices.
+
+![](documentation/features)
+
+#### Item Detail Page
+
+- Displays detailed information about a specific inventory item, including description, quantity, price, and last updated date.
+
+- Allows authenticated users to edit, delete, or record/view transactions.
+
+- Includes a confirmation modal for delete actions.
+
+- Layout adjusts for mobile screens, stacking buttons and text content vertically.
+
+![](documentation/features)
+
+#### Stock Control (Low Stock Alerts) Page
+
+- Displays a table of items that are low in stock, along with their quantity and low stock threshold.
+
+- Provides View and Edit buttons for each item.
+
+- The table is fully responsive, with horizontal scrolling enabled on smaller screens.
+
+- Buttons adjust for easy touch navigation on mobile devices.
+
+![](documentation/features)
+
+#### Reporting Page
+
+- Stock Report: A detailed table showing inventory metrics such as total quantity, total value, average price, and low stock counts by category.
+
+![](documentation/features)
+
+- All Inventory Items Table: Lists all items with sortable columns for easy analysis.
+
+![](documentation/features)
+
+- Recorded Transactions Table: Displays transaction history for all items.
+
+![](documentation/features)
+
+- Charts: Interactive and exportable visualizations for total quantity, category contribution, low stock trends, and total value by category.
+
+![](documentation/features)
+
+- Tables support horizontal scrolling for smaller screens.
+
+![](documentation/features)
+
+- Charts resize dynamically to fit screen dimensions.
+
+![](documentation/features)
+
+#### Register, Login and Logout
+
+- Register: Allows new users to sign up for an account.
+
+![](documentation/features)
+
+- Login: Authenticated users can access restricted pages (e.g., Admin Panel).
+
+![](documentation/features)
+
+- Logout: Ends the user session and redirects to the login page.
+
+![](documentation/features)
+
+- Registration and login forms are fully responsive, adjusting for mobile screens without compromising usability.
+
+![](documentation/features)
+
+#### Admin Panel Link
+
+- Provides quick access to Django’s admin interface for site administrators.
+
+- Accessible on all devices through the navigation bar.
+
+![](documentation/features)
+
+#### Error pages (404 and 500)
+
+- 404 Page: Informs users that the requested page was not found.
+
+![](documentation/features)
+
+- 500 Page: Displays a server error message with a prompt to return to the home page.
+
+![](documentation/features)
+
+- Both error pages are styled consistently and remain user-friendly across all devices.
+
+#### Accessibility Features
+
+- Buttons and links include ARIA labels for screen readers.
+
+- Accessibility features are preserved across all screen sizes.
+
+![](documentation/features)
+
+#### Data Export (Reporting Tables and Charts)
+
+- Stock and transaction tables include export options (Copy, CSV, Excel, PDF, Print).
+
+- Export buttons provide easy access to download or print data.
+
+- Export buttons adjust their size and layout for smaller screens.
+
+![](documentation/features)
+
+- Dynamic and interactive charts powered by Chart.js.
+
+- Includes bar, line, pie, and horizontal bar charts for visualizing stock and transaction data.
+
+![](documentation/features)
+
+- Charts can be exported as images for reports or presentations.
+
+- Charts dynamically resize for all screen sizes while maintaining readability.
+
+#### Forms for Adding and Editing Data
+
+- Forms for adding/editing items and categories include validation and clear error messages.
+
+- Intuitive design for recording transactions with item-specific fields.
+
+- Forms adapt to smaller screens, with fields stacking vertically for better usability.
+
+![](documentation/features)
+
 #### Future Implementations
 
 1. Implement a system for assigning roles and permissions to users.
