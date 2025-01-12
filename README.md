@@ -42,7 +42,7 @@ The Inventory Management System is a web-based application built using Django to
 
 - Fully supported on all modern browsers and devices.
 
-![](documentation/features)
+![](documentation/features/favicon.png)
 
 #### Navigation
 
@@ -50,9 +50,15 @@ The Inventory Management System is a web-based application built using Django to
 
 - Links are highlighted based on the current active page for better user experience.
 
+- Admin Panel is higgen for unlogged users.
+
 - Collapsible menu for smaller screen sizes (hamburger menu).
 
-![](documentation/features)
+![](documentation/features/navigation_bar_unlogged.png)
+
+![](documentation/features/navigation_logged_in%20_user.png)
+
+![](documentation/features/navigation_menu_mobile.png)
 
 #### Footer
 
@@ -60,21 +66,21 @@ The Inventory Management System is a web-based application built using Django to
 
 - Provides users with accessible links to external profiles or pages.
 
-![](documentation/features)
+![](documentation/features/footer.png)
 
 #### Dashboard Page
 
 - Analytics Section: Displays key metrics such as Total Items, Total Categories, Total Value, and Low Stock Alerts.
 
-![](documentation/features)
+![](documentation/features/analytics_section.png)
 
 - Quick Actions: Includes buttons for frequently used actions (e.g., Add Category, Add Item, View Transactions).
 
-![](documentation/features)
+![](documentation/features/quick_actions_section.png)
 
 - Charts Overview: Visualizations like bar charts, pie charts, and line charts for inventory data. 
 
-![](documentation/features)
+![](documentation/features/charts_overview.png)
 
 - Each chart links to more detailed stock reports.
 
@@ -82,27 +88,24 @@ The Inventory Management System is a web-based application built using Django to
 
 - Charts are fully responsive, resizing dynamically to fit any screen size.
 
-![](documentation/features)
-
 #### Manage Inventory
+
+- Search bar enable users to look for item title, category, description and SKU (stock keeping unit)
+
+![](documentation/features/search_bar.png)
 
 - Provides details for each item, such as SKU, quantity, price, and category.
 
-![](documentation/features)
-
 - A searchable and paginated list of inventory items.
 
-![](documentation/features)
+![](documentation/features/inventory_items_list.png)
 
 - Each item has a View Details button to view, edit, delete, or manage transactions.
-
-![](documentation/features)
 
 - The list adapts to smaller screens, displaying essential details in a readable format.
 
 - Pagination and search functionality are accessible on all devices.
 
-![](documentation/features)
 
 #### Item Detail Page
 
@@ -114,7 +117,12 @@ The Inventory Management System is a web-based application built using Django to
 
 - Layout adjusts for mobile screens, stacking buttons and text content vertically.
 
-![](documentation/features)
+![](documentation/features/item_detail_card_unlogged_user.png)
+
+![](documentation/features/item_detail_card.png)
+
+![](documentation/features/item_detail_card_mobile.png)
+
 
 #### Stock Control (Low Stock Alerts) Page
 
@@ -126,51 +134,49 @@ The Inventory Management System is a web-based application built using Django to
 
 - Buttons adjust for easy touch navigation on mobile devices.
 
-![](documentation/features)
+![](documentation/features/stock_control_page.png)
+
+![](documentation/features/stock_control_mobile.png)
 
 #### Reporting Page
 
+![](documentation/features/reporting_page.png)
+
+![](documentation/features/reporting_mobile.png)
+
 - Stock Report: A detailed table showing inventory metrics such as total quantity, total value, average price, and low stock counts by category.
 
-![](documentation/features)
+![](documentation/features/stock_report_table.png)
 
 - All Inventory Items Table: Lists all items with sortable columns for easy analysis.
 
-![](documentation/features)
+![](documentation/features/all_inventory_items_table.png)
 
 - Recorded Transactions Table: Displays transaction history for all items.
 
-![](documentation/features)
+![](documentation/features/recorded_transactions_table.png)
 
 - Charts: Interactive and exportable visualizations for total quantity, category contribution, low stock trends, and total value by category.
 
-![](documentation/features)
-
 - Tables support horizontal scrolling for smaller screens.
 
-![](documentation/features)
-
 - Charts resize dynamically to fit screen dimensions.
-
-![](documentation/features)
 
 #### Register, Login and Logout
 
 - Register: Allows new users to sign up for an account.
 
-![](documentation/features)
+![](documentation/features/sign_up_form.png)
 
 - Login: Authenticated users can access restricted pages (e.g., Admin Panel).
 
-![](documentation/features)
+![](documentation/features/sign_in_form.png)
 
 - Logout: Ends the user session and redirects to the login page.
 
-![](documentation/features)
+![](documentation/features/sign_out_message.png)
 
 - Registration and login forms are fully responsive, adjusting for mobile screens without compromising usability.
-
-![](documentation/features)
 
 #### Admin Panel Link
 
@@ -178,17 +184,17 @@ The Inventory Management System is a web-based application built using Django to
 
 - Accessible on all devices through the navigation bar.
 
-![](documentation/features)
+![](documentation/features/admin_panel.png)
 
 #### Error pages (404 and 500)
 
 - 404 Page: Informs users that the requested page was not found.
 
-![](documentation/features)
+![](documentation/features/404_error.png)
 
 - 500 Page: Displays a server error message with a prompt to return to the home page.
 
-![](documentation/features)
+![](documentation/features/500_error.png)
 
 - Both error pages are styled consistently and remain user-friendly across all devices.
 
@@ -198,27 +204,37 @@ The Inventory Management System is a web-based application built using Django to
 
 - Accessibility features are preserved across all screen sizes.
 
-![](documentation/features)
-
 #### Data Export (Reporting Tables and Charts)
 
 - Stock and transaction tables include export options (Copy, CSV, Excel, PDF, Print).
 
 - Export buttons provide easy access to download or print data.
 
-- Export buttons adjust their size and layout for smaller screens.
+![](documentation/features/tables_export.png)
 
-![](documentation/features)
+![](documentation/features/pdf.png)
+
+![](documentation/features/tables_excel.png)
+
+- Export buttons adjust their size and layout for smaller screens.
 
 - Dynamic and interactive charts powered by Chart.js.
 
 - Includes bar, line, pie, and horizontal bar charts for visualizing stock and transaction data.
 
-![](documentation/features)
-
 - Charts can be exported as images for reports or presentations.
 
 - Charts dynamically resize for all screen sizes while maintaining readability.
+
+![](documentation/features/total_quantity_chart.png)
+
+![](documentation/features/total_value_by_category_chart.png)
+
+![](documentation/features/category_contribution_chart.png)
+
+![](documentation/features/low_stock_trends_chart.png)
+
+![](documentation/features/chart_export.png)
 
 #### Forms for Adding and Editing Data
 
@@ -228,7 +244,17 @@ The Inventory Management System is a web-based application built using Django to
 
 - Forms adapt to smaller screens, with fields stacking vertically for better usability.
 
-![](documentation/features)
+![](documentation/features/add_new_category_form.png)
+
+![](documentation/features/add_new_item_form.png)
+
+![](documentation/features/edit_item_form.png)
+
+![](documentation/features/record_a_new_transaction_form.png)
+
+![](documentation/features/record_new_transaction_specific_item.png)
+
+![](documentation/features/transaction_history.png)
 
 #### Future Implementations
 
