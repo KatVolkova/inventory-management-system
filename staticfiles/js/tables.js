@@ -84,7 +84,7 @@ $(document).ready(function () {
             drawCallback: function () {
                 updatePaginationAria();
             },
-            ...additionalOptions // Allow overriding or adding custom options
+            ...additionalOptions 
         });
     };
 
@@ -131,17 +131,17 @@ $(document).ready(function () {
 
     // Initialize other tables with different configurations
     initializeDataTable('#lowStockItemsTable', {
-        order: [[2, 'asc']], // Sort by the third column
+        order: [[2, 'asc']], 
         columnDefs: [{ targets: 4, orderable: false }]
     });
 
     initializeDataTable('#transactionsTable', {
-        order: [[1, 'desc']], // Sort by the second column
+        order: [[1, 'desc']], 
         columnDefs: [{ targets: [0, 3], orderable: false }]
     });
 
     initializeDataTable('#allItemsTable', {
-        order: [[5, 'desc']] // Sort by the sixth column
+        order: [[5, 'desc']] 
     });
 
     // Initialize Bootstrap tooltips

@@ -233,7 +233,9 @@ Below are the results of HTML validation for each page, using the [W3C Markup Va
 #### Reporting Page
 ![HTML validation of Reporting page](documentation/validation/html/validation_html_reporting_result.png)
 ### CSS 
-
+Below are the results of CSS validation by direct input, using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator).
+![CSS validation by direct input](documentation/validation/css/css_validation_direct_input.png)
+![CSS validation by direct input result](documentation/validation/css/css_validation_confirmation.png)
 ### JavaScript
 
 #### charts.js
