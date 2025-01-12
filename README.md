@@ -351,6 +351,8 @@ To deploy the project on your own computer you can clone it:
 - [Font Awesome](https://fontawesome.com/) - has been used for social networks links icons.
 - [Google Chrome](https://www.google.co.uk/chrome/) has been used for website testing.
 - [Google Developer Tools](https://developers.google.com/web/tools) - To troubleshoot and test features and solve issues with responsiveness and styling.
+- [Charts.js](https://www.chartjs.org/) has been used for creating interactive charts.
+- [DataTables](https://datatables.net/) has been used for creating interactive tables.
 - [Microsoft Edge](https://www.microsoft.com/en-gb/edge/) has been used for website testing.
 - [Firefox](https://www.mozilla.org/en-GB/firefox/new/) has been used for website testing.
 - [Canva.com](https://canva.com/) To create and customise favicon.
