@@ -23,8 +23,14 @@
 ### Colour Scheme
 
 ### Typography
-
-
+The website uses the following font styles for its design:
+- **Arial**: Used as the general font for the body text across the site.
+- **Lato**: Applied to the branding elements and `h2` headings for a clean and modern appearance.
+![Lato Google Fonts](documentation/design/typography/google_fonts_lato.png)
+- **Roboto**: Used for `h3` headings, providing a professional and readable style.
+![ROBOTO Google Fonts](documentation/design/typography/google_fonts_roboto.png)
+The screenshot below is an example of the above styles combination:
+![Typography example](documentation/design/typography/typography_example.png)
 ## Testing
 Detailed information about testing is available in the [Testing Documentation](TESTING.md).
 
@@ -81,6 +87,7 @@ To deploy the project on your own computer you can clone it:
 - [Git](https://git-scm.com/) - For version control.
 - [Github](https://github.com/) - To save and store the files for the website.
 - [Google Fonts](https://fonts.google.com/) - To import the fonts used on the website.
+- [Font Awesome](https://fontawesome.com/) - has been used for social networks links icons.
 - [Google Chrome](https://www.google.co.uk/chrome/) has been used for website testing.
 - [Google Developer Tools](https://developers.google.com/web/tools) - To troubleshoot and test features and solve issues with responsiveness and styling.
 - [Microsoft Edge](https://www.microsoft.com/en-gb/edge/) has been used for website testing.
