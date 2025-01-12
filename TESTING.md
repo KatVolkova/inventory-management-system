@@ -23,7 +23,6 @@ Return to the [Inventory Management System README.md](README.md).
         2. [Manage Inventory Page](#manage-inventory-page)
         3. [Stock Control Page](#stock-control-page)
         4. [Reporting Page](#reporting-page-1)
-        5. [404 Error](#404-error)
     2. [CSS](#css)
     3. [JavaScript](#javascript)
         1. [charts.js](#chartsjs)
@@ -45,7 +44,6 @@ Return to the [Inventory Management System README.md](README.md).
         2. [Manage Inventory Page](#manage-inventory-page-1)
         3. [Stock Control Page](#stock-control-page-1)
         4. [Reporting Page](#reporting-page-2)
-        5. [404 Error](#404-error-1)
 4. [Browser Compatibility](#browser-compatibility)
     1. [Google Chrome](#google-chrome)
     2. [Microsoft Edge](#microsoft-edge)
@@ -267,25 +265,23 @@ Below are the results of Python validation by direct input, using the [CI Python
 #### views.py 
 ![Python validation views.py by direct input result](documentation/validation/python/validation_viewspy_result.png)
 ### Console
-
+Below are the results of console output, using the Google Developer Tools, no errors have been found.
 #### Dashboard Page
-
+![Console output Dashboard page](documentation/validation/console/dashboard_console.png)
 #### Manage Inventory Page
-
+![Console output Manage Inventory page](documentation/validation/console/manage_inventory_console.png)
 #### Stock Control Page
-
+![Console output Stock Control page](documentation/validation/console/stock_control_console.png)
 #### Reporting Page
-
-#### 404 Error
-
+![Console output Reporting page](documentation/validation/console/reporting_console.png)
 ## Browser Compatibitlity
-
+he website has been tested in the following browsers:
 ### Google Chrome
-
+![Website in Google Chrome](documentation/validation/browsers/chrome_compatibility.png)
 ### Microsoft Edge
-
+![Website in Microsoft Edge](documentation/validation/browsers/edge_compatibility.png)
 ### Firefox
-
+![Website in Firefox](documentation/validation/browsers/firefox_compatibility.png)
 ## Accessibility
 
 ## Performance
