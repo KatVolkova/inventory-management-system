@@ -372,6 +372,7 @@ To deploy the project on your own computer you can clone it:
 - [DataTables Django](https://docs.djangoproject.com/en/5.1/ref/databases/) - django documentation for using DataTables
 - [Stackoverflow](https://stackoverflow.com/) - used for general code advice mostly on css responsiveness 
 - [Views in Django](https://www.geeksforgeeks.org/views-in-django-python/) - provides clarification on using  views in Django
+- [FooterCallback](https://datatables.net/examples/advanced_init/footer_callback.html) - the use of footer callback function in DataTables
 
 
 
