@@ -282,9 +282,6 @@ he website has been tested in the following browsers:
 ![Website in Microsoft Edge](documentation/validation/browsers/edge_compatibility.png)
 ### Firefox
 ![Website in Firefox](documentation/validation/browsers/firefox_compatibility.png)
-## Accessibility
-
-## Performance
 
 ## Responsiveness
 All pages have been tested for responsiveness, using the [Responsive Web Design Checker](https://ui.dev/amiresponsive):
@@ -300,22 +297,26 @@ All pages have been tested for responsiveness, using the [Responsive Web Design 
 ### 404 Error
 ![Responsiveness report for 404 error page](documentation/validation/responsiveness/404_error_responsiveness.png)
 ## Lighthouse
-
+Each page has been reviewed using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/), for both mobile and desktop:
+Please note that performance indicators for mobile phones is lower than for desktop. This is due to the fact that the site is optimised for 
+desktop usage, as it is primarily intended for  tasks such as editing inventory, generating reports, and analyzing stock levels. 
+The use of DataTables and charts may impact performance on mobile devices due to their computational and loading requirements.
 ### Dashboard Page -  Desktop
+![Desktop performance report for Dashboard page](documentation/validation/lighthouse/lighthouse_dashboard_desktop.png)
 ### Dashboard Page -  Mobile
-
+![Mobile performance report for Dashboard page](documentation/validation/lighthouse/lighthouse_dashboard_mobile.png)
 ### Manage Inventory Page - Desktop
+![Desktop performance report for Manage Inventory page](documentation/validation/lighthouse/lighthouse_Manage_inventory_desktop.png)
 ### Manage Inventory Page - Mobile
-
+![Mobile performance report for Manage Inventory page](documentation/validation/lighthouse/lighthouse_Manage_inventory_mobile.png)
 ### Stock Control Page - Desktop
+![Desktop performance report for Stock Control Page](documentation/validation/lighthouse/lighthouse_stock_control_desktop.png)
 ### Stock Control Page - Mobile
-
+![Mobile performance report for Stock Control page](documentation/validation/lighthouse/lighthouse_stock_control_mobile.png)
 ### Reporting Page - Desktop
+![Desktop performance report for Reporting page](documentation/validation/lighthouse/lighthouse_reporting_desktop.png)
 ### Reporting Page - Mobile
-
-### 404 Error - Desktop
-### 404 Error - Mobile
-
+![Mobile performance report for Reporting page](documentation/validation/lighthouse/lighthouse_stock_control_mobile.png)
 ## Bugs
 
 ## Unfixed Bugs
