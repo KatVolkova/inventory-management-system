@@ -300,11 +300,11 @@ Detailed information about testing is available in the [Testing Documentation](T
 The Application has been deployed from GitHub to Heroku by following these steps:
 
 1. Create or log in to your account at heroku.com.
-2. Create a new app, add a unique app name (e.g., financial-statements-analyser) and choose your region.
+2. Create a new app, add a unique app name (e.g., inventory - management - system) and choose your region.
 3. Click on create app.
 4. Go to "Settings".
-5. Under Config Vars, add the private API key information using key 'CRED' and the value from the .json file. Also, add a key 'PORT' and value '8000'.
-6. Add required buildpacks. For this project, set Python on top and Node.js on the bottom.
+5. Under Config Vars add a key 'PORT' and value '8000'.
+6. Add required buildpacks.
 7. Go to "Deploy" and select "GitHub" in "Deployment method".
 8. Enter your repository name, click 'Search' and then 'Connect'.
 9. Choose the branch to build your app from.
@@ -334,7 +334,8 @@ To deploy the project on your own computer you can clone it:
 - Press 'Enter' to create the copy.
 
 
-## Technologies Used
+## Credits 
+### Technologies Used
 
 - HTML
 - CSS
@@ -361,12 +362,8 @@ To deploy the project on your own computer you can clone it:
 - [Heroku](https://www.heroku.com//) has been used to host the website.
 
 
-## Credits and References
+### References
 
-- Templates for a favicon were taken and customised using [Canva](https://www.canva.com/)
-- Fonts were taken from [Google Fonts](https://fonts.google.com/)
-- Icons for the social networks links were taken from [Font Awesome](https://fontawesome.com/)
-- Favicon was re-sized and converted into webp format using [Pixlr](https://pixlr.com/)
 - [W3 schools](https://www.w3schools.com/) - For general documentation
 - [ChatGPT](https://openai.com/index/chatgpt/) - For general debugging along with other tools and coding advice on using charts and DataTables
 - [Chart.js](https://www.chartjs.org/docs/latest/) - For general documentation
