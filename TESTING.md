@@ -164,17 +164,14 @@ Return to the [Inventory Management System README.md](README.md).
 
 | **Feature**                | **Action**                                                         | **Expected Result**                                                                                     | **Actual Result** |
 |----------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------|
-| Add Category Button        | Click the "Add Category" button.                                  | Redirects to the "Add New Category" form.                                                               |                   |
-| Add Item Button            | Click the "Add Item" button.                                      | Redirects to the "Add New Item" form.                                                                   |                   |
-| Add Transaction Button      | Click the "Add Transaction" button.                              | Redirects to the "Record a New Transaction" form.                                                       |                   |
-| View Transaction Button     | Click the "View Transaction" button.                             | Redirects to the "View All Transactions" page.                                                          |                   |
-| Reports Button             | Click the "Reports" button.                                      | Redirects to the "Reports" page showing stock and inventory reports.                                    |                   |
-| Low Stock Button           | Click the "Low Stock" button.                                    | Redirects to the "Low Stock Items" page.                                                                |                   |
-| Responsiveness             | Resize the browser to small, medium, and large screen sizes.      | Buttons adjust their size, and layout remains seamless across all screen sizes.                         |                   |
-| Button Colors              | Hover over each button.                                           | Each button's background or border color changes slightly to indicate hover interactivity.              |                   |
-| Accessibility              | Navigate through buttons using the Tab key.                      | Buttons are accessible via keyboard navigation, and focus state is clearly visible.                     |                   |
-| Mobile Layout              | View buttons on small screens (below 768px).                     | Buttons stack vertically or adjust appropriately for better readability and usability on small screens.  |                   |
-| Functional Links           | Verify that each button leads to the correct page when clicked.  | Each button redirects to the intended functionality or form/page.                                       |                   |
+| Add Category Button        | Click the "Add Category" button.                                  | Redirects to the "Add New Category" form.                                                               | Works as expected                  |
+| Add Item Button            | Click the "Add Item" button.                                      | Redirects to the "Add New Item" form.                                                                   | Works as expected                  |
+| Add Transaction Button      | Click the "Add Transaction" button.                              | Redirects to the "Record a New Transaction" form.                                                       | Works as expected                  |
+| View Transaction Button     | Click the "View Transaction" button.                             | Redirects to the "View All Transactions" page.                                                          | Works as expected                  |
+| Reports Button             | Click the "Reports" button.                                      | Redirects to the "Reporting" page showing stock and inventory reports.                                    | Works as expected                  |
+| Low Stock Button           | Click the "Low Stock" button.                                    | Redirects to the "Stock Control" page.                                                                | Works as expected                  |
+| Responsiveness             | Resize the browser to small, medium, and large screen sizes.      | Buttons adjust their size, and layout remains seamless across all screen sizes.                         | Works as expected                  |
+| Button Colors              | Hover over each button.                                           | Each button's background and border colour changes to indicate hover interactivity.              | Works as expected                   |
 
 #### Charts Overview
 
