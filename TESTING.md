@@ -214,11 +214,9 @@ Return to the [Inventory Management System README.md](README.md).
 ### Footer
 | Feature          | Action                                                                                 | Expected Result                                                                                      | Actual Result |
 |-------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------|
-| Footer Links      | Click each social media link (Facebook, Twitter, Instagram).                          | Each link redirects to the correct respective external website (e.g., Facebook, Twitter, Instagram). |               |
-| Responsive Design | Resize the browser to various screen sizes (large, medium, small).                    | The footer adjusts seamlessly across different screen sizes without overlapping or breaking layout.  |               |
-| Accessibility     | Navigate through the footer links using the keyboard (Tab key) or screen reader tools.| Footer links are focusable, and accessible labels are correctly read by screen readers.              |               |
-| Design Consistency| Verify that the footer design matches the overall theme of the application.           | Footer uses consistent colors, font styles, and spacing aligned with the application's branding.     |               |
-| Link Hover Effect | Hover over each social media link to observe the hover behavior.                      | Links display a hover effect (e.g., underline or color change) to indicate interactivity.            |               |
+| Footer Links      | Click each social media link (Facebook, X, Instagram).                          | Each link redirects to the correct respective external website (e.g., Facebook, X, Instagram). | Works as expected              |
+| Responsive Design | Resize the browser to various screen sizes (large, medium, small).                    | The footer adjusts seamlessly across different screen sizes without overlapping or breaking layout.  | Works as expected              |
+| Link Hover Effect | Hover over each social media link to observe the hover behavior.                      | Links display a hover effect (colour change) to indicate interactivity.            | Works as expected              |
 
 
 ## Code Validation
