@@ -182,7 +182,7 @@ Return to the [Inventory Management System README.md](README.md).
 #### Search Bar and Inventory list
 
 | **Feature**                 | **Action**                                                                 | **Expected Result**                                                                                         | **Actual Result** |
-|-----------------------------|---------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-------------------|
+|-----------------------------|----------------------------------|--------------------------|-------------------|
 | Search Bar                  | Enter a search term (e.g., item name, SKU, category).                      | The inventory items list updates to show only items matching the search term.                              | Works as expected                  |
 |                             | Clear the search term using the "Clear" button.                           | The inventory items list resets to display all items.                                                      | Works as expected                  |
 |                             | Test the search with various inputs (uppercase, lowercase, partial match).| The search is case-insensitive and matches partial terms appropriately.                                     | Works as expected                 |
@@ -198,7 +198,7 @@ Return to the [Inventory Management System README.md](README.md).
 ### Reporting page
 #### Charts
 | **Feature**        | **Action**                                                                                                                                  | **Expected Result**                                                                                                                                                                | **Actual Result** |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+|---------------------|---------------|------------------|-------------------|
 | Total Quantity      | Hover over bars to view the data tooltips.                                                                                                 | Data tooltips display correct values when hovering over the respective bars.                                                                                                      | Works as expected                  |
 | Total Value by Category | Hover over bars to view the data tooltips.                                                                                                 | Data tooltips display correct category values and corresponding amounts when hovering over the respective bars.                                                                   | Works as expected                  |
 | Category Contribution | Hover over the pie chart sections to view the data tooltips.                                                                              | Data tooltips display the correct percentage contribution of each category.                                                                                                       | Works as expected                  |
@@ -209,7 +209,7 @@ Return to the [Inventory Management System README.md](README.md).
 
 ### Footer
 | Feature          | Action                                                                                 | Expected Result                                                                                      | Actual Result |
-|-------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------|
+|-------------------|----------------|---------------|---------------|
 | Footer Links      | Click each social media link (Facebook, X, Instagram).                          | Each link redirects to the correct respective external website (e.g., Facebook, X, Instagram). | Works as expected              |
 | Responsive Design | Resize the browser to various screen sizes (large, medium, small).                    | The footer adjusts seamlessly across different screen sizes without overlapping or breaking layout.  | Works as expected              |
 | Link Hover Effect | Hover over each social media link to observe the hover behavior.                      | Links display a hover effect (colour change) to indicate interactivity.            | Works as expected              |
@@ -317,5 +317,19 @@ The use of DataTables and charts may impact performance on mobile devices due to
 ![Mobile performance report for Reporting page](documentation/validation/lighthouse/lighthouse_stock_control_mobile.png)
 ## Bugs
 
-## Unfixed Bugs
+### Solved Bugs
 
+| **Bug Number** | **Description**  | **Cause** |**Solution**                                                                                                                                                     |
+|----|--------|-----------------|---------------|
+| **1**      | Search functionality not working as expected     | Typo in query parameter view.                       | Updated the view to filter items correctly .                                       
+| **2**      | Low stock alerts display incorrect items         | Incorrect logic in the queryset filtering for low stock items.                                 | Updated `low_stock_items` view .                                                        |
+| **3**      | Charts not displying properly                    | Missing chart elements in the HTML.                | Update stock_report.html  file.                                                                   |
+| **4**      | Buttons not responsive on mobile devices                | Conflict between  media queries and  Bootstrap.                                       | Added media queries for smaller screen sizes and Bootstrap class removed from item_detail.html.                                                            |
+| **5**      | Stock quantity not updating after transaction recorded    | Transactions view not linked to the `Item` model.                                              | Updated `record_transaction` view to adjust `Item.quantity` based on transaction type.                                     |
+| **6**      | Incorrect totals in stock report                 | Total shown per page displayed  only  | Update DataTables footercallback to include the entire datasest.                               |
+
+### Unfixed Bugs
+
+| **Bug** | **Description**|
+|---------|-----------------|
+| Chart overview link| Clicking on a mini chart in the Chart Overview section redirects to the report page but does not scroll to the specific chart.
