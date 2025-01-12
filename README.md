@@ -68,9 +68,31 @@ To deploy the project on your own computer you can clone it:
 - At the prompt, type `git clone` and add the string copied earlier.
 - Press 'Enter' to create the copy.
 
-### Gitpod Workspaces
 
 ## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- Python
+- Django
+- jQuery
+- [Bootstrap](https://getbootstrap.com/)
+- [Git](https://git-scm.com/) - For version control.
+- [Github](https://github.com/) - To save and store the files for the website.
+- [Google Fonts](https://fonts.google.com/) - To import the fonts used on the website.
+- [Google Chrome](https://www.google.co.uk/chrome/) has been used for website testing.
+- [Google Developer Tools](https://developers.google.com/web/tools) - To troubleshoot and test features and solve issues with responsiveness and styling.
+- [Microsoft Edge](https://www.microsoft.com/en-gb/edge/) has been used for website testing.
+- [Firefox](https://www.mozilla.org/en-GB/firefox/new/) has been used for website testing.
+- [Canva.com](https://canva.com/) To create and customise favicon.
+- [Am I Responsive?](http://ami.responsivedesign.is/) To show the website image on a range of devices.
+- [Pixlr](https://pixlr.com/) To re-size favicon
+- [Grammarly](https://app.grammarly.com/ ) - has been used for spell-checking
+- [Balsamiq](https://balsamiq.com/) - Used to create wireframes.
+- [Gitpod](https://gitpod.io/) has been used as an online IDE
+- [Heroku](https://www.heroku.com//) has been used to host the website.
+
 
 ## Credits and References
 
