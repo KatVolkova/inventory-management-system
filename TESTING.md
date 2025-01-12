@@ -66,7 +66,9 @@ Return to the [Inventory Management System README.md](README.md).
     9. [404 Error - Desktop](#404-error---desktop)
     10. [404 Error - Mobile](#404-error---mobile)
 8. [Bugs](#bugs)
-9. [Unfixed Bugs](#unfixed-bugs)
+    1. [Solved bugs](#solved-bugs)
+    2. [Unfixed Bugs](#unfixed-bugs)
+
 
 
 ## User Story Validation
@@ -296,7 +298,7 @@ All pages have been tested for responsiveness, using the [Responsive Web Design 
 ![Responsiveness report for 404 error page](documentation/validation/responsiveness/404_error_responsiveness.png)
 ## Performance
 Each page has been reviewed using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/), for both mobile and desktop:
-Please note that performance indicators for mobile phones is lower than for desktop. This is due to the fact that the site is optimised for 
+Please note that performance indicators for mobile phones are lower than for desktop. This is due to the fact that the site is optimised for 
 desktop usage, as it is primarily intended for  tasks such as editing inventory, generating reports, and analyzing stock levels. 
 The use of DataTables and charts may impact performance on mobile devices due to their computational and loading requirements.
 ### Dashboard Page -  Desktop
@@ -323,7 +325,7 @@ The use of DataTables and charts may impact performance on mobile devices due to
 |----|--------|-----------------|---------------|
 | **1**      | Search functionality not working as expected     | Typo in query parameter view.                       | Updated the view to filter items correctly .                                       
 | **2**      | Low stock alerts display incorrect items         | Incorrect logic in the queryset filtering for low stock items.                                 | Updated `low_stock_items` view .                                                        |
-| **3**      | Charts not displying properly                    | Missing chart elements in the HTML.                | Update stock_report.html  file.                                                                   |
+| **3**      | Charts not displaying properly                    | Missing chart elements in the HTML.                | Update stock_report.html  file.                                                                   |
 | **4**      | Buttons not responsive on mobile devices                | Conflict between  media queries and  Bootstrap.                                       | Added media queries for smaller screen sizes and Bootstrap class removed from item_detail.html.                                                            |
 | **5**      | Stock quantity not updating after transaction recorded    | Transactions view not linked to the `Item` model.                                              | Updated `record_transaction` view to adjust `Item.quantity` based on transaction type.                                     |
 | **6**      | Incorrect totals in stock report                 | Total shown per page displayed  only  | Update DataTables footercallback to include the entire datasest.                               |

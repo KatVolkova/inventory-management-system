@@ -11,6 +11,46 @@ The Inventory Management System is a web-based application built using Django to
 
 ## Index
 
+1. [Overview](#overview)
+2. [Project Description](#project-description)
+    1. [Main Goals](#main-goals)
+    2. [User Goals](#user-goals)
+    3. [Site Owner Goals](#site-owner-goals)
+3. [Features](#features)
+    1. [Favicon](#favicon)
+    2. [Navigation](#navigation)
+    3. [Footer](#footer)
+    4. [Dashboard Page](#dashboard-page)
+        1. [Analytics Section](#analytics-section)
+        2. [Quick Actions](#quick-actions)
+        3. [Charts Overview](#charts-overview)
+    5. [Manage Inventory](#manage-inventory)
+        1. [Search Bar](#search-bar)
+        2. [Inventory List](#inventory-list)
+    6. [Item Detail Page](#item-detail-page)
+    7. [Stock Control (Low Stock Alerts) Page](#stock-control-low-stock-alerts-page)
+    8. [Reporting Page](#reporting-page)
+        1. [Stock Report](#stock-report)
+        2. [Charts](#charts)
+    9. [Register, Login, and Logout](#register-login-and-logout)
+    10. [Admin Panel Link](#admin-panel-link)
+    11. [Error Pages (404 and 500)](#error-pages-404-and-500)
+    12. [Accessibility Features](#accessibility-features)
+    13. [Data Export (Reporting Tables and Charts)](#data-export-reporting-tables-and-charts)
+    14. [Forms for Adding and Editing Data](#forms-for-adding-and-editing-data)
+4. [Future Implementations](#future-implementations)
+5. [Design](#design)
+    1. [Colour Scheme](#colour-scheme)
+    2. [Typography](#typography)
+6. [Testing](#testing)
+7. [Deployment](#deployment)
+    1. [Heroku](#heroku)
+    2. [Fork Repository](#fork-repository)
+    3. [Local Clones](#local-clones)
+8. [Credits](#credits)
+    1. [Technologies Used](#technologies-used)
+    2. [References](#references)
+
 ## Project Description
 
 ### Main goals
@@ -50,7 +90,7 @@ The Inventory Management System is a web-based application built using Django to
 
 - Links are highlighted based on the current active page for better user experience.
 
-- Admin Panel is higgen for unlogged users.
+- Admin Panel is hidden for unlogged users.
 
 - Collapsible menu for smaller screen sizes (hamburger menu).
 
@@ -90,7 +130,7 @@ The Inventory Management System is a web-based application built using Django to
 
 #### Manage Inventory
 
-- Search bar enable users to look for item title, category, description and SKU (stock keeping unit)
+- Search bar enables users to look for item title, category, description and SKU (stock keeping unit)
 
 ![](documentation/features/search_bar.png)
 
