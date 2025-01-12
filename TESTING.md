@@ -287,17 +287,18 @@ he website has been tested in the following browsers:
 ## Performance
 
 ## Responsiveness
+All pages have been tested for responsiveness, using the [Responsive Web Design Checker](https://ui.dev/amiresponsive):
 
 ### Dashboard Page
-
+![Responsiveness report for Dashboard page](documentation/validation/responsiveness/dashboard_responsiveness.png)
 ### Manage Inventory Page
-
+![Responsiveness report for Manage Inventory page](documentation/validation/responsiveness/manage_inventory_responsiveness.png)
 ### Stock Control Page
-
+![Responsiveness report for Stock Control page](documentation/validation/responsiveness/stock_control_responsiveness.png)
 ### Reporting Page
-
+![Responsiveness report for Reporting page](documentation/validation/responsiveness/reporting_responsiveness.png)
 ### 404 Error
-
+![Responsiveness report for 404 error page](documentation/validation/responsiveness/404_error_responsiveness.png)
 ## Lighthouse
 
 ### Dashboard Page -  Desktop
