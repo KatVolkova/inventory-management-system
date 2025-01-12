@@ -206,12 +206,19 @@ form .form-control, form .form-select {
     background-color: #FFFFFF; 
     margin: 20px 0; 
 }
-
+.quick-actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px;
+}
 
 .quick-actions-buttons a {
-    flex: 1 1 auto; 
+    width: auto; 
     max-width: 200px; 
-    text-align: center;
+    text-align: center; 
+    padding: 10px 20px;
 }
 
 /* Charts Overview */
@@ -420,27 +427,41 @@ td.text-end {
 @media screen and (max-width: 768px) {
     /* Naviagation */
     .navbar-text {
-        display: none !important; /* Ensure it's always hidden */
+        display: none !important; 
     }
     /* Dashboard */
     /* Analytics Section */
+    .analytics-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 160px; 
+        padding: 10px; 
+    }
     .card-number {
-        font-size: 1.5rem; 
-        word-wrap: break-word; 
+        font-size: 1.25rem; 
+        line-height: 1.2; 
+        word-wrap: break-word;
+    }
+    .analytics-card-title {
+        font-size: 1rem; 
+        text-align: center;
     }
     /* Quick Actions Section */
     .quick-actions-buttons {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center; 
         align-items: center; 
-        gap: 10px; 
+        gap: 15px; 
+        padding: 10px;
     }
 
     .quick-actions-buttons a {
         width: 100%; 
-        max-width: 180px; 
-        margin: 0 auto; 
+        max-width: 200px; 
+        text-align: center; 
     }
     /* Manage Stock Page */
     .list-group-item h3 {
