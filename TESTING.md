@@ -237,17 +237,17 @@ Below are the results of CSS validation by direct input, using the [W3C CSS Vali
 ![CSS validation by direct input](documentation/validation/css/css_validation_direct_input.png)
 ![CSS validation by direct input result](documentation/validation/css/css_validation_confirmation.png)
 ### JavaScript
-
+Below are the results of JavaScript validation for each file, using the [JSHint Validation Service](https://jshint.com/):
 #### charts.js
-
+![JS validation charts.js by direct input result](documentation/validation/js/validation_chartsjs_result.png)
 #### dashboard.js
-
+![JS validation dashboard.js by direct input result](documentation/validation/js/validation_dashboardjs_result.png)
 #### stock_report.js
-
+![JS validation stock_report.js by direct input result](documentation/validation/js/validation_stock_reportjs_result.png)
 #### tables.js
-
+![JS validation tables.js by direct input result](documentation/validation/js/validation_tablesjs_result.png)
 #### transactions.js
-
+![JS validation transactions.js by direct input result](documentation/validation/js/validation_transactionsjs_result.png)
 ### Python
 
 #### admin.py

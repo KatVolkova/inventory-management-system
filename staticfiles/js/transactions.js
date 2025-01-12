@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (itemSelectForm && itemSelect) {
         itemSelectForm.addEventListener('submit', function (event) {
             if (!itemSelect.value) {
-                event.preventDefault(); // Prevent form submission
+                event.preventDefault(); 
                 alert('Please select an item to proceed.');
             }
         });
