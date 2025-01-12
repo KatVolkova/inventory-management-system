@@ -249,23 +249,23 @@ Below are the results of JavaScript validation for each file, using the [JSHint 
 #### transactions.js
 ![JS validation transactions.js by direct input result](documentation/validation/js/validation_transactionsjs_result.png)
 ### Python
-
+Below are the results of Python validation by direct input, using the [CI Python Linter](https://pep8ci.herokuapp.com/).
 #### admin.py
-
+![Python validation admin.py by direct input result](documentation/validation/python/validation_adminpy_result.png)
 #### apps.py
-
+![Python validation apps.py by direct input result](documentation/validation/python/validation_appspy_result.png)
 #### error_views.py
-
+![Python validation error_views.py by direct input result](documentation/validation/python/validation_error_viewspy_result.png)
 #### forms.py
-
+![Python validation forms.py by direct input result](documentation/validation/python/validation_formspy_result.png)
 #### models.py
-
+![Python validation models.py by direct input result](documentation/validation/python/validation_modelspy_result.png)
 #### urls.py
-
+![Python validation urls.py by direct input result](documentation/validation/python/validation_urlspy_result.png)
 #### utils.py
-
+![Python validation utils.py by direct input result](documentation/validation/python/validation_utilspy_result.png)
 #### views.py 
-
+![Python validation views.py by direct input result](documentation/validation/python/validation_viewspy_result.png)
 ### Console
 
 #### Dashboard Page

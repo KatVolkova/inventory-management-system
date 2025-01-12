@@ -131,7 +131,7 @@ def record_transaction(request, item_id):
         item.save()
         transaction.save()
         messages.success(request, "Transaction recorded successfully!")
-        return redirect('item-detail', pk=item.id)  
+        return redirect('item-detail', pk=item.id)
 
     return render(
         request,
