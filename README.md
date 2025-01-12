@@ -2,7 +2,7 @@
 ## Site Preview
 ![Inventory Management System website shown on a variety of screen sizes](documentation/site_overview.png)
 
-Visit the deployed site: [Inventory Management System](https://inventory-mgmt-app-1aceae60ebf8.herokuapp.com/stock-report/)
+Visit the deployed site: [Inventory Management System](https://inventory-mgmt-app-1aceae60ebf8.herokuapp.com/)
 
 
 ## Overview
@@ -37,6 +37,12 @@ The Inventory Management System is a web-based application built using Django to
 ### Features
 
 #### Future Implementations
+
+1. Implement a system for assigning roles and permissions to users.
+2. Use historical data and trends to predict future stock needs, helping to optimize inventory levels and avoid overstocking or shortages.
+3. Maintain a log of all user actions (e.g., edits, deletions, and transactions) for accountability and troubleshooting.
+4. Allow users to generate custom reports (e.g., specific date ranges or categories) and export them in various formats like CSV, Excel, or PDF.
+5. Develop a mobile-friendly version of the site or a dedicated mobile app for on-the-go inventory management.
 
 ## Design
 
