@@ -48,15 +48,13 @@ Return to the [Inventory Management System README.md](README.md).
     1. [Google Chrome](#google-chrome)
     2. [Microsoft Edge](#microsoft-edge)
     3. [Firefox](#firefox)
-5. [Accessibility](#accessibility)
-6. [Performance](#performance)
-7. [Responsiveness](#responsiveness)
+5. [Performance](#performance)
+6. [Responsiveness](#responsiveness)
     1. [Dashboard Page](#dashboard-page-2)
     2. [Manage Inventory Page](#manage-inventory-page-2)
     3. [Stock Control Page](#stock-control-page-2)
     4. [Reporting Page](#reporting-page-3)
-    5. [404 Error](#404-error-2)
-8. [Lighthouse](#lighthouse)
+7. [Lighthouse](#lighthouse)
     1. [Dashboard Page - Desktop](#dashboard-page---desktop)
     2. [Dashboard Page - Mobile](#dashboard-page---mobile)
     3. [Manage Inventory Page - Desktop](#manage-inventory-page---desktop)
@@ -67,8 +65,8 @@ Return to the [Inventory Management System README.md](README.md).
     8. [Reporting Page - Mobile](#reporting-page---mobile)
     9. [404 Error - Desktop](#404-error---desktop)
     10. [404 Error - Mobile](#404-error---mobile)
-9. [Bugs](#bugs)
-10. [Unfixed Bugs](#unfixed-bugs)
+8. [Bugs](#bugs)
+9. [Unfixed Bugs](#unfixed-bugs)
 
 
 ## User Story Validation
@@ -296,7 +294,7 @@ All pages have been tested for responsiveness, using the [Responsive Web Design 
 ![Responsiveness report for Reporting page](documentation/validation/responsiveness/reporting_responsiveness.png)
 ### 404 Error
 ![Responsiveness report for 404 error page](documentation/validation/responsiveness/404_error_responsiveness.png)
-## Lighthouse
+## Performance
 Each page has been reviewed using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/), for both mobile and desktop:
 Please note that performance indicators for mobile phones is lower than for desktop. This is due to the fact that the site is optimised for 
 desktop usage, as it is primarily intended for  tasks such as editing inventory, generating reports, and analyzing stock levels. 
