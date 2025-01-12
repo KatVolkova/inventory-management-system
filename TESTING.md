@@ -177,20 +177,10 @@ Return to the [Inventory Management System README.md](README.md).
 
 | **Feature**                | **Action**                                                       | **Expected Result**                                                                                     | **Actual Result** |
 |----------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------|
-| Total Quantity Chart       | Hover over each bar in the chart.                               | Displays a tooltip with the category name and total quantity.                                           |                   |
-|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
-|                            | Check that the chart's labels (categories and values) are visible and not overlapping. | Labels and values are clearly displayed without overlapping or truncation.                             |                   |
-| Low Stock Trends Chart     | Hover over each point on the chart.                             | Displays a tooltip with the category name and low stock value.                                          |                   |
-|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
-|                            | Verify the line and area rendering for smoothness and accuracy.  | The line graph and shaded area render smoothly without glitches.                                        |                   |
-| Total Value by Category Chart | Hover over each bar in the chart.                               | Displays a tooltip with the category name and total value.                                              |                   |
-|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
-|                            | Verify that the chart scales proportionally without data loss.   | The chart scales correctly, and all bars are visible and proportional.                                  |                   |
-| Category Contribution Chart| Hover over each segment in the pie chart.                       | Displays a tooltip with the category name and contribution percentage.                                  |                   |
-|                            | Resize the browser to different screen sizes (large, medium, small). | The chart adjusts its size and remains readable on all screen sizes.                                    |                   |
-|                            | Verify that the segments are distinct and labeled.               | All segments are clearly distinct, and each is labeled or tooltipped accurately.                        |                   |
-| Accessibility              | Navigate to each chart using keyboard navigation.               | Each chart is accessible via keyboard, and tooltips can be triggered by focus or interaction.           |                   |
-| Mobile Responsiveness      | View charts on a mobile device or small screen.                 | All charts stack or resize appropriately for mobile screens without loss of readability or usability.    |                   |
+| All charts       | Hover over each bar in the chart.                               | Displays a tooltip with the category name and total quantity.                                           | Works as expected                  |
+| All charts     | Resize the browser to different screen sizes (large, medium, small).                            | The chart adjusts its size.                                          | Works as expected                  |
+| AAll charts              | Click on any of the four charts to  navigate to the reporting page               |  Link navigates to the full size charts with an export functionality on the Reporting page          |  Works as expected                 |
+
 
 ### Manage Inventory
 #### Search Bar
