@@ -1,37 +1,28 @@
 # The Inventory Management System
+## Site Preview
+
 
 ## Overview
 
-
-### General Information
-
-### Site Preview
-
-### Site Link
-
 ## Index
 
-## User Experience Design
+## Project Description
 
-### Strategy
+### User goals
 
-#### User Experience
-
-#### User Expectations
-
-#### User Stories
+### Site owner goals
 
 ### Features
 
-#### Future Features
+#### Future Implementations
 
-### Structure
+## Design
 
-#### Wireframes
+### Wireframes
 
-#### Colours
+### Colour Scheme
 
-#### Typography
+### Typography
 
 
 ## Testing
@@ -39,7 +30,7 @@ Detailed information about testing is available in the [Testing Documentation](T
 
 ## Deployment
 
-### GitHub Pages
+### Heroku
 
 ### Forks
 
@@ -47,6 +38,7 @@ Detailed information about testing is available in the [Testing Documentation](T
 
 ### Gitpod Workspaces
 
+## Technologies Used
+
 ## Credits and References
 
-## Technologies Used
