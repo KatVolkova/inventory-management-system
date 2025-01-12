@@ -21,6 +21,17 @@
 ### Wireframes
 
 ### Colour Scheme
+The following colour palette has been used:
+- **#F4F7FC**: background color for the body, providing a light and clean look.
+- **#343a40**: text and general elements to create contrast and readability.
+- **#1e7a7a**: brand color for the logo, buttons, headers.
+- **#dd4b3a**: applied to alerts and danger buttons, as well as for important actions and warnings.
+- **#495057**: footer and other darker sections.
+
+Screenshots below show an example of the colour palette:
+![Colour palette example 1](documentation/design/colours/colour_palette_example1.png)
+![Colour palette example 1](documentation/design/colours/colour_palette_example2.png)
+![Colour palette example 1](documentation/design/colours/colour_palette_example3.png)
 
 ### Typography
 The website uses the following font styles for its design:
